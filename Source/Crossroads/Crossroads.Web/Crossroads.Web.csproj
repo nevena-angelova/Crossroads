@@ -179,7 +179,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -246,6 +245,16 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Crossroads.Data.Models\Crossroads.Data.Models.csproj">
+      <Project>{0518e602-a34b-4acd-bd50-4a69ccd0befd}</Project>
+      <Name>Crossroads.Data.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Crossroads.Data\Crossroads.Data.csproj">
+      <Project>{ba2c8552-59e4-421b-b3e6-608344519b0e}</Project>
+      <Name>Crossroads.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

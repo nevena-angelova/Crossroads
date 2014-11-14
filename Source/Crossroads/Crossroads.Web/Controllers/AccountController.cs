@@ -9,6 +9,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using Crossroads.Web.Models;
+using Crossroads.Data.Models;
+using Crossroads.Data;
 
 namespace Crossroads.Web.Controllers
 {
