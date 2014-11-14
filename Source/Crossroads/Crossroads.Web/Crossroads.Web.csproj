@@ -244,9 +244,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Crossroads.Data.Common\Crossroads.Data.Common.csproj">
+      <Project>{fe32d11e-02c1-46f7-a628-41de5fb57575}</Project>
+      <Name>Crossroads.Data.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Crossroads.Data.Models\Crossroads.Data.Models.csproj">
       <Project>{0518e602-a34b-4acd-bd50-4a69ccd0befd}</Project>
       <Name>Crossroads.Data.Models</Name>
