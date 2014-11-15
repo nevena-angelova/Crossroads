@@ -1,0 +1,14 @@
+﻿@model IEnumerable<Crossroads.Data.Models.ApplicationUser>
+@{
+    ViewBag.Title = "Users";
+}
+
+<h2>Users</h2>
+
+<div>
+    @foreach (var user in Model)
+    {
+        <p>@user.UserName</p>
+    }
+</div>
+
