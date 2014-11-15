@@ -9,7 +9,7 @@ namespace Crossroads.Data.Models
     {
         public ApplicationUser()
         {
-             //This will prevent from 
+            // This will prevent UserManager.CreateAsync from causing exception
             this.CreatedOn = DateTime.Now;
         }
 
