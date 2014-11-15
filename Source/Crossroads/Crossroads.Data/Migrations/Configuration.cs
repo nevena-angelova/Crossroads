@@ -9,7 +9,7 @@ namespace Crossroads.Data.Migrations
     {
         public Configuration()
         {
-            this.AutomaticMigrationsEnabled = false;
+            this.AutomaticMigrationsEnabled = true;
             this.ContextKey = "Crossroads.Data.ApplicationDbContext";
 
             //TODO: Remove in production
