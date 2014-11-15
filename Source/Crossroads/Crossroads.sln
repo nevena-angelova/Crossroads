@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crossroads.Web", "Crossroad
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crossroads.Data.Common", "Crossroads.Data.Common\Crossroads.Data.Common.csproj", "{FE32D11E-02C1-46F7-A628-41DE5FB57575}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crossroads.Web.Infrastructure", "Crossroads.Web.Infrastructure\Crossroads.Web.Infrastructure.csproj", "{8C5FABD4-056F-4992-A810-9BD569442BFC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{FE32D11E-02C1-46F7-A628-41DE5FB57575}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE32D11E-02C1-46F7-A628-41DE5FB57575}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE32D11E-02C1-46F7-A628-41DE5FB57575}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C5FABD4-056F-4992-A810-9BD569442BFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C5FABD4-056F-4992-A810-9BD569442BFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C5FABD4-056F-4992-A810-9BD569442BFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C5FABD4-056F-4992-A810-9BD569442BFC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,5 +52,6 @@ Global
 		{0518E602-A34B-4ACD-BD50-4A69CCD0BEFD} = {EF9C19D2-88F0-4D1F-8321-26D4574461E5}
 		{FE32D11E-02C1-46F7-A628-41DE5FB57575} = {EF9C19D2-88F0-4D1F-8321-26D4574461E5}
 		{327B75E9-B763-4E21-A354-4136FE7FEECB} = {2AD05708-37C1-4847-9ACF-2F260092DA31}
+		{8C5FABD4-056F-4992-A810-9BD569442BFC} = {2AD05708-37C1-4847-9ACF-2F260092DA31}
 	EndGlobalSection
 EndGlobal
