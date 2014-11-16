@@ -11,9 +11,9 @@ namespace Crossroads.Web.Controllers
 {
     public class UsersController : Controller
     {
-        private IRepository<ApplicationUser> users;
+        private IDeletableEntityRepository<ApplicationUser> users;
 
-        public UsersController(IRepository<ApplicationUser> users)
+        public UsersController(IDeletableEntityRepository<ApplicationUser> users)
         {
             this.users = users;
         }

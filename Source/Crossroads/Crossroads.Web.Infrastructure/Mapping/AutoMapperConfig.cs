@@ -9,16 +9,9 @@
 
     public class AutoMapperConfig
     {
-        private Assembly assembly;
-
-        public AutoMapperConfig(Assembly assembly)
-        {
-            this.assembly = assembly;
-        }
-
         public void Execute()
         {
-            var types = this.assembly.GetExportedTypes();
+            var types = Assembly.GetCallingAssembly().GetExportedTypes();
 
             LoadStandardMappings(types);
 

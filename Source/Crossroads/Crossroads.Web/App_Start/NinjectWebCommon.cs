@@ -70,6 +70,8 @@ namespace Crossroads.Web.App_Start
 
             kernel.Bind(typeof(IRepository<ApplicationUser>)).To(typeof(DeletableEntityRepository<ApplicationUser>));
 
+            kernel.Bind(typeof(IRepository<Post>)).To(typeof(DeletableEntityRepository<Post>));
+
             kernel.Bind(typeof(IDeletableEntityRepository<>)).To(typeof(DeletableEntityRepository<>));
 
             kernel.Bind(typeof(IRepository<>)).To(typeof(GenericRepository<>));

@@ -16,12 +16,13 @@ namespace Crossroads.Data
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Configuration>());
         }
 
+        public IDbSet<Post> Posts { get; set; }
+
         public IDbSet<Tag> Tags { get; set; }
 
         public override int SaveChanges()
         {
             this.ApplyAuditInfoRules();
-            this.ApplyDeletableEntityRules();
             return base.SaveChanges();
         }
 
@@ -47,21 +48,6 @@ namespace Crossroads.Data
                 {
                     entity.ModifiedOn = DateTime.Now;
                 }
-            }
-        }
-
-        private void ApplyDeletableEntityRules()
-        {
-            // Approach via @julielerman: http://bit.ly/123661P
-            foreach (
-            var entry in
-            this.ChangeTracker.Entries()
-            .Where(e => e.Entity is IDeletableEntity && (e.State == EntityState.Deleted)))
-            {
-                var entity = (IDeletableEntity)entry.Entity;
-                entity.DeletedOn = DateTime.Now;
-                entity.IsDeleted = true;
-                entry.State = EntityState.Modified;
             }
         }
     }

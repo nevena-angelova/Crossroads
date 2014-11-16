@@ -22,7 +22,7 @@ namespace Crossroads.Web
             ViewEngines.Engines.Clear();
             ViewEngines.Engines.Add(new RazorViewEngine());
 
-            var autoMapperConfig = new AutoMapperConfig(Assembly.GetExecutingAssembly());
+            var autoMapperConfig = new AutoMapperConfig();
             autoMapperConfig.Execute();
         }
     }
