@@ -11,6 +11,7 @@ using Microsoft.Owin.Security;
 using Crossroads.Web.Models;
 using Crossroads.Data.Models;
 using Crossroads.Data;
+using System.IO;
 
 namespace Crossroads.Web.Controllers
 {
@@ -80,8 +81,28 @@ namespace Crossroads.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser() { UserName = model.UserName };
-                var result = await UserManager.CreateAsync(user, model.Password);
+                var user = new ApplicationUser()
+                {
+                    UserName = model.UserName,
+                    Email = model.Email,
+                };
+
+                if (model.ProfileImage != null)
+                {
+                    using (var memory = new MemoryStream())
+                    {
+                        model.ProfileImage.InputStream.CopyTo(memory);
+                        var content = memory.GetBuffer();
+
+                        user.Image = new Image
+                        {
+                            Content = content,
+                            FileExtension = model.ProfileImage.FileName.Split(new[] { '.' }).Last()
+                        };
+                    }
+                }
+
+                var result = await UserManager.CreateAsync(user, model.Password); 
                 if (result.Succeeded)
                 {
                     await SignInAsync(user, isPersistent: false);
@@ -380,7 +401,8 @@ namespace Crossroads.Web.Controllers
 
         private class ChallengeResult : HttpUnauthorizedResult
         {
-            public ChallengeResult(string provider, string redirectUri) : this(provider, redirectUri, null)
+            public ChallengeResult(string provider, string redirectUri)
+                : this(provider, redirectUri, null)
             {
             }
 

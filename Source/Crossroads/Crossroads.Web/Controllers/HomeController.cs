@@ -22,6 +22,11 @@ namespace Crossroads.Web.Controllers
 
         public ActionResult Index()
         {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return View("~/Views/Account/Register.cshtml");
+            }
+
             return View();
         }
 

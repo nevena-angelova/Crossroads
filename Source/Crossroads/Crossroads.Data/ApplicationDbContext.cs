@@ -18,7 +18,7 @@ namespace Crossroads.Data
 
         public IDbSet<Post> Posts { get; set; }
 
-        public IDbSet<Tag> Tags { get; set; }
+        public IDbSet<Image> Images { get; set; }
 
         public override int SaveChanges()
         {

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Web;
 
 namespace Crossroads.Web.Models
 {
@@ -30,34 +31,42 @@ namespace Crossroads.Web.Models
 
     public class LoginViewModel
     {
-        [Required]
-        [Display(Name = "User name")]
+        [Required(ErrorMessage = "Потребителското име е задължително")]
+        [Display(Name = "Потребителско име")]
         public string UserName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Паролата е задължителна")]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Парола")]
         public string Password { get; set; }
 
-        [Display(Name = "Remember me?")]
+        [Display(Name = "Запомни ме?")]
         public bool RememberMe { get; set; }
     }
 
     public class RegisterViewModel
     {
-        [Required]
-        [Display(Name = "User name")]
+        [Required(ErrorMessage = "Потребителското име е задължително")]
+        [Display(Name = "Потребителско име")]
+        [StringLength(16, MinimumLength = 6, ErrorMessage = "Потребителското име трябва да е от {2} до {1} символа.")]
         public string UserName { get; set; }
 
-        [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [Required(ErrorMessage = "E-mail-ът е задължителен")]
+        [Display(Name = "E-mail")]
+        public string Email { get; set; }
+
+        [Required(ErrorMessage = "Паролата е задължителна")]
+        [StringLength(100, ErrorMessage = "Паролата трябва да е от {2} до {1} символа.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Парола")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Display(Name = "Потрвърди паролата")]
+        [Compare("Password", ErrorMessage = "Паролата и потвърдената парола не съвпадат.")]
         public string ConfirmPassword { get; set; }
+
+        [Display(Name = "Снимка")]
+        public HttpPostedFileBase ProfileImage { get; set; }
     }
 }

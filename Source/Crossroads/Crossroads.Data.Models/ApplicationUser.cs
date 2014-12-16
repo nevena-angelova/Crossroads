@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Crossroads.Data.Common.Models;
+using System.Web;
 
 namespace Crossroads.Data.Models
 {
@@ -25,5 +26,9 @@ namespace Crossroads.Data.Models
         public DateTime? DeletedOn { get; set; }
 
         public bool isOnline { get; set; }
+
+        public int? ImageId { get; set; }
+
+        public virtual Image Image { get; set; }
     }
 }
