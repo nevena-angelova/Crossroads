@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Crossroads.Data.Models.ValidationAttributes;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web;
 
@@ -84,7 +86,13 @@ namespace Crossroads.Web.Models
         [Compare("Password", ErrorMessage = "Паролата и потвърдената парола не съвпадат.")]
         public string ConfirmPassword { get; set; }
 
+        public bool IsMale { get; set; }
 
+        [Required(ErrorMessage = "Рожденната дата е задължителена")]
+        [Display(Name = "Рожденна дата")]
+        [DateRange("1910/01/01", "2015/01/01")]
+        [DataType(DataType.Date)]
+        public DateTime BirthDate { get; set; }
 
         [Display(Name = "Снимка")]
         public HttpPostedFileBase ProfileImage { get; set; }

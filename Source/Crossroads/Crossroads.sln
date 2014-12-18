@@ -7,15 +7,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{AA3883D0-F
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{6A888F18-E51E-4B78-8F4D-2DC3D06F2894}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crossroads.Data", "C:\Users\toshiba\Desktop\Crossroads\Source\Crossroads\Crossroads.Data\Crossroads.Data.csproj", "{BA2C8552-59E4-421B-B3E6-608344519B0E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crossroads.Data.Common", "C:\Users\toshiba\Desktop\Crossroads\Source\Crossroads\Crossroads.Data.Common\Crossroads.Data.Common.csproj", "{FE32D11E-02C1-46F7-A628-41DE5FB57575}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crossroads.Data.Models", "C:\Users\toshiba\Desktop\Crossroads\Source\Crossroads\Crossroads.Data.Models\Crossroads.Data.Models.csproj", "{0518E602-A34B-4ACD-BD50-4A69CCD0BEFD}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crossroads.Web", "Crossroads.Web\Crossroads.Web.csproj", "{FE302E3D-F9A1-4539-B2FA-AC782DF07056}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crossroads.Web.Infrastructure", "C:\Users\toshiba\Desktop\Crossroads\Source\Crossroads\Crossroads.Web.Infrastructure\Crossroads.Web.Infrastructure.csproj", "{8C5FABD4-056F-4992-A810-9BD569442BFC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crossroads.Data", "D:\Telerik\ASP.NET MVC\TEst\Crossroads\Crossroads.Data\Crossroads.Data.csproj", "{BA2C8552-59E4-421B-B3E6-608344519B0E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crossroads.Data.Common", "D:\Telerik\ASP.NET MVC\TEst\Crossroads\Crossroads.Data.Common\Crossroads.Data.Common.csproj", "{FE32D11E-02C1-46F7-A628-41DE5FB57575}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crossroads.Data.Models", "D:\Telerik\ASP.NET MVC\TEst\Crossroads\Crossroads.Data.Models\Crossroads.Data.Models.csproj", "{0518E602-A34B-4ACD-BD50-4A69CCD0BEFD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crossroads.Web.Infrastructure", "D:\Telerik\ASP.NET MVC\TEst\Crossroads\Crossroads.Web.Infrastructure\Crossroads.Web.Infrastructure.csproj", "{8C5FABD4-056F-4992-A810-9BD569442BFC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +23,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FE302E3D-F9A1-4539-B2FA-AC782DF07056}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE302E3D-F9A1-4539-B2FA-AC782DF07056}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE302E3D-F9A1-4539-B2FA-AC782DF07056}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE302E3D-F9A1-4539-B2FA-AC782DF07056}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BA2C8552-59E4-421B-B3E6-608344519B0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BA2C8552-59E4-421B-B3E6-608344519B0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA2C8552-59E4-421B-B3E6-608344519B0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -35,10 +39,6 @@ Global
 		{0518E602-A34B-4ACD-BD50-4A69CCD0BEFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0518E602-A34B-4ACD-BD50-4A69CCD0BEFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0518E602-A34B-4ACD-BD50-4A69CCD0BEFD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FE302E3D-F9A1-4539-B2FA-AC782DF07056}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FE302E3D-F9A1-4539-B2FA-AC782DF07056}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FE302E3D-F9A1-4539-B2FA-AC782DF07056}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FE302E3D-F9A1-4539-B2FA-AC782DF07056}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8C5FABD4-056F-4992-A810-9BD569442BFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8C5FABD4-056F-4992-A810-9BD569442BFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C5FABD4-056F-4992-A810-9BD569442BFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -48,10 +48,10 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{FE302E3D-F9A1-4539-B2FA-AC782DF07056} = {6A888F18-E51E-4B78-8F4D-2DC3D06F2894}
 		{BA2C8552-59E4-421B-B3E6-608344519B0E} = {AA3883D0-F547-45EE-8069-1BFFE4D38DE4}
 		{FE32D11E-02C1-46F7-A628-41DE5FB57575} = {AA3883D0-F547-45EE-8069-1BFFE4D38DE4}
 		{0518E602-A34B-4ACD-BD50-4A69CCD0BEFD} = {AA3883D0-F547-45EE-8069-1BFFE4D38DE4}
-		{FE302E3D-F9A1-4539-B2FA-AC782DF07056} = {6A888F18-E51E-4B78-8F4D-2DC3D06F2894}
 		{8C5FABD4-056F-4992-A810-9BD569442BFC} = {6A888F18-E51E-4B78-8F4D-2DC3D06F2894}
 	EndGlobalSection
 EndGlobal

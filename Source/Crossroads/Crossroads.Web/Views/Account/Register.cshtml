@@ -40,6 +40,21 @@
         </div>
     </div>
     <div class="form-group">
+        @Html.LabelFor(m => m.IsMale, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.RadioButtonFor(m => m.IsMale, true) Мъж
+            @Html.RadioButtonFor(m => m.IsMale, false) Жена
+            @Html.ValidationMessageFor(m => m.IsMale, null, new { @class = "help-inline" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.BirthDate, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.BirthDate, new { @id = "datepicker", @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.BirthDate, null, new { @class = "help-inline" })
+        </div>
+    </div>
+    <div class="form-group">
         @Html.LabelFor(m => m.ProfileImage, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.TextBoxFor(m => m.ProfileImage, new { type = "file", @class = "form-control" })
@@ -51,6 +66,27 @@
             <input type="submit" class="btn btn-default" value="Register" />
         </div>
     </div>
+}
+
+<script>
+    $(function () {
+        $("#datepicker").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "1910:2015",
+            monthNamesShort: ["Януари", "Февруари", "Март", "Април", "Май", "Юни", "Юли", "Август", "Септ", "Октомври", "Ноември", "Декември"],
+            dayNamesMin: ["Пн.", "Вт.", "Ср.", "Чт.", "Пт.", "Сб.", "Нд."],
+        });
+    });
+</script>
+
+@section JavaScript {
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jquery-ui")
+}
+
+@section CSS {
+    @Styles.Render("~/Content/datepicker")
 }
 
 @section Scripts {

@@ -180,6 +180,7 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ValidationAttributes\DateRangeAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -188,6 +189,39 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\themes\base\accordion.css" />
+    <Content Include="Content\themes\base\all.css" />
+    <Content Include="Content\themes\base\autocomplete.css" />
+    <Content Include="Content\themes\base\base.css" />
+    <Content Include="Content\themes\base\button.css" />
+    <Content Include="Content\themes\base\core.css" />
+    <Content Include="Content\themes\base\datepicker.css" />
+    <Content Include="Content\themes\base\dialog.css" />
+    <Content Include="Content\themes\base\draggable.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\menu.css" />
+    <Content Include="Content\themes\base\progressbar.css" />
+    <Content Include="Content\themes\base\resizable.css" />
+    <Content Include="Content\themes\base\selectable.css" />
+    <Content Include="Content\themes\base\selectmenu.css" />
+    <Content Include="Content\themes\base\slider.css" />
+    <Content Include="Content\themes\base\sortable.css" />
+    <Content Include="Content\themes\base\spinner.css" />
+    <Content Include="Content\themes\base\tabs.css" />
+    <Content Include="Content\themes\base\theme.css" />
+    <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -204,6 +238,8 @@
     <Content Include="Scripts\jquery-2.1.1.min.js" />
     <Content Include="Scripts\jquery-2.1.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui-1.11.2.js" />
+    <Content Include="Scripts\jquery-ui-1.11.2.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -258,19 +294,19 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="C:\Users\toshiba\Desktop\Crossroads\Source\Crossroads\Crossroads.Data.Common\Crossroads.Data.Common.csproj">
+    <ProjectReference Include="D:\Telerik\ASP.NET MVC\TEst\Crossroads\Crossroads.Data.Common\Crossroads.Data.Common.csproj">
       <Project>{fe32d11e-02c1-46f7-a628-41de5fb57575}</Project>
       <Name>Crossroads.Data.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\toshiba\Desktop\Crossroads\Source\Crossroads\Crossroads.Data.Models\Crossroads.Data.Models.csproj">
+    <ProjectReference Include="D:\Telerik\ASP.NET MVC\TEst\Crossroads\Crossroads.Data.Models\Crossroads.Data.Models.csproj">
       <Project>{0518e602-a34b-4acd-bd50-4a69ccd0befd}</Project>
       <Name>Crossroads.Data.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\toshiba\Desktop\Crossroads\Source\Crossroads\Crossroads.Data\Crossroads.Data.csproj">
+    <ProjectReference Include="D:\Telerik\ASP.NET MVC\TEst\Crossroads\Crossroads.Data\Crossroads.Data.csproj">
       <Project>{ba2c8552-59e4-421b-b3e6-608344519b0e}</Project>
       <Name>Crossroads.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\toshiba\Desktop\Crossroads\Source\Crossroads\Crossroads.Web.Infrastructure\Crossroads.Web.Infrastructure.csproj">
+    <ProjectReference Include="D:\Telerik\ASP.NET MVC\TEst\Crossroads\Crossroads.Web.Infrastructure\Crossroads.Web.Infrastructure.csproj">
       <Project>{8c5fabd4-056f-4992-a810-9bd569442bfc}</Project>
       <Name>Crossroads.Web.Infrastructure</Name>
     </ProjectReference>
