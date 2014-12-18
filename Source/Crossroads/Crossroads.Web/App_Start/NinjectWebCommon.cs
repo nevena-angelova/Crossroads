@@ -10,10 +10,11 @@ namespace Crossroads.Web.App_Start
 
     using Ninject;
     using Ninject.Web.Common;
-    using System.Data.Entity;
-    using Crossroads.Data;
     using Crossroads.Data.Common.Repository;
     using Crossroads.Data.Models;
+    using Crossroads.Web.Models;
+    using System.Data.Entity;
+    using Crossroads.Data;
 
     public static class NinjectWebCommon 
     {
@@ -59,6 +60,10 @@ namespace Crossroads.Web.App_Start
             }
         }
 
+        /// <summary>
+        /// Load your modules or register your services here!
+        /// </summary>
+        /// <param name="kernel">The kernel.</param>
         /// <summary>
         /// Load your modules or register your services here!
         /// </summary>
