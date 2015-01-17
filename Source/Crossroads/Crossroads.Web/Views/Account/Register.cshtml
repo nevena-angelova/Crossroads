@@ -50,7 +50,7 @@
     <div class="form-group">
         @Html.LabelFor(m => m.BirthDate, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.BirthDate, new { @id = "datepicker", @class = "form-control" })
+            @Html.EditorFor(m => m.BirthDate)
             @Html.ValidationMessageFor(m => m.BirthDate, null, new { @class = "help-inline" })
         </div>
     </div>
@@ -58,12 +58,12 @@
         @Html.LabelFor(m => m.ProfileImage, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.TextBoxFor(m => m.ProfileImage, new { type = "file", @class = "form-control" })
-            @*@Html.ValidationMessageFor(m => m.UploadedImage, null, new { @class = "help-inline" })*@
+            @Html.ValidationMessageFor(m => m.ProfileImage, null, new { @class = "help-inline" })
         </div>
     </div>
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
+            <input type="submit" class="btn btn-default" value="Регистрирай" />
         </div>
     </div>
 }

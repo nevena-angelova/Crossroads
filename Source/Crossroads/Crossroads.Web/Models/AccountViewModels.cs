@@ -86,11 +86,12 @@ namespace Crossroads.Web.Models
         [Compare("Password", ErrorMessage = "Паролата и потвърдената парола не съвпадат.")]
         public string ConfirmPassword { get; set; }
 
+        [Display(Name = "Пол")]
         public bool IsMale { get; set; }
 
         [Required(ErrorMessage = "Рожденната дата е задължителена")]
         [Display(Name = "Рожденна дата")]
-        [DateRange("1910/01/01", "2015/01/01")]
+        [DateRange("01/01/1910", "01/01/2015")]
         [DataType(DataType.Date)]
         public DateTime BirthDate { get; set; }
 

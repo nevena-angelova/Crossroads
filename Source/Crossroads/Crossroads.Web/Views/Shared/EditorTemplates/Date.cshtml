@@ -1,0 +1,9 @@
+﻿@model DateTime?
+@{
+    var value = "";
+    if (Model.HasValue)
+    {
+        value = String.Format("{0:d}", Model.Value.ToString("dd/MM/yyyy"));
+    }
+}
+@Html.TextBox("", value, new { @id = "datepicker", @class = "form-control" })
