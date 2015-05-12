@@ -1,0 +1,43 @@
+﻿@using Crossroads.Web.Areas.Administration.ViewModels.Interests
+@using Crossroads.Web.Infrastructure.Constants
+    @model IList<InterestViewModel>
+    @{
+        ViewBag.Title = "Интереси";
+    }
+
+    @Html.ActionLink("Сортирай", "ListInterests", new { ordered = true })
+
+    @Ajax.ActionLink("Добави нов", "AddInterest",
+new AjaxOptions
+{
+    HttpMethod = "GET",
+    UpdateTargetId = "addInterest",
+    InsertionMode = InsertionMode.Replace
+})
+
+    <div id="addInterest"></div>
+    <ol id="interestsList">
+        @foreach (var interest in Model)
+        {
+            @Html.Partial(Partials.Interest, interest)
+        }
+    </ol>
+
+    @section JavaScriptToHead {
+        @Scripts.Render("~/bundles/jquery")
+    }
+
+    @section JavaScriptToFooter {
+        @Scripts.Render("~/bundles/jqueryval")
+        @Scripts.Render("~/bundles/jqueryajax")
+
+        <script>
+            function interestFormShow() {
+                $('#addInterest form').show();
+            }
+
+            function interestFormHide() {
+                $('#addInterest form').hide()
+            }
+        </script>
+    }

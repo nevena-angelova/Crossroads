@@ -1,0 +1,56 @@
+﻿@using Crossroads.Web.ViewModels.ForumViewModels
+@using Crossroads.Web.Infrastructure.Constants
+@model List<TopUserViewModel>
+
+<h2 class="page-title">Класиране:</h2>
+
+<div class="top-users">
+    @{
+        int len;
+        int rows = 10;
+        int cols = 3;
+
+        for (int i = 1; i <= cols; i++)
+        {
+            len = Model.Count;
+            if (len > i * rows)
+            {
+                len = i * rows;
+            }
+            <div class="top-users-col">
+                <ul>
+                    @for (int j = rows * (i - 1); j < len; j++)
+                    {
+                        <li>
+                            <div class="top-user-img">
+                                <a href="/Profile/DisplayProfile/?userName=@Model[j].UserName" target="_blank">
+                                    @if (@Model[j].Image != null)
+                                    {
+                                        <img src="@Url.Action("GetImage", "Profile", new { image = Model[j].Image, limitWidth = 50 })" alt="Аватар" />
+                                    }
+                                    else
+                                    {
+                                        <img src="@Url.Content("~/Content/img/no-photo-50x50.png")" alt="Аватар" />
+                                    }
+                                </a>
+                            </div>
+                            <div class="top-user-info">
+                                <h4>Място: @(j + 1)</h4>
+                                @Html.ActionLink(Model[j].UserName, "DisplayProfile",
+                                new { controller = "Profile", userName = Model[i].UserName },
+                                new { target = "_blank" })
+                                (@Model[j].ForumPoints точки)
+                            </div>
+                        </li>
+                    }
+                </ul>
+            </div>
+        }
+    }
+</div>
+
+@section Scripts {
+    <script>
+        $('body').addClass('top-users-page');
+    </script>
+}

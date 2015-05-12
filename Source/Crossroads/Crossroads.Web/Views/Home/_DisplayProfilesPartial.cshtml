@@ -1,0 +1,28 @@
+﻿@using Crossroads.Web.Infrastructure.Constants
+@using Crossroads.Web.ViewModels.ProfilesViewModels
+@model IPagedList<ProfileViewModel>
+
+@foreach (var profile in Model)
+{
+    @Html.Partial(Partials.UserInfo,
+    new UserInfoViewModel
+    {
+        UserName = profile.UserName,
+        Image = profile.Image,
+        ImageWidth = 100,
+        IsUserOnline = profile.IsUserOnline
+    })
+}
+
+@if (Model.PageCount > 1)
+{
+    <div class="pager">
+        @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount, new AjaxOptions
+           {
+               UpdateTargetId = "profiles",
+               HttpMethod = "POST"
+           }).Options(o => o.Action("Display"))
+    </div>
+}
+
+

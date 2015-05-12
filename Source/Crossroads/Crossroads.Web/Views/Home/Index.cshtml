@@ -1,0 +1,88 @@
+﻿@using Crossroads.Web.ViewModels.ProfilesViewModels
+@model IPagedList<ProfileViewModel>
+@{
+    ViewBag.Title = "Профили";
+}
+
+<h2 class="page-title">Търси профил по:</h2>
+<div class="search">
+    @using (Ajax.BeginForm("Search", new { searchProperty = "UserName" },
+    new AjaxOptions
+    {
+        UpdateTargetId = "profiles",
+        InsertionMode = InsertionMode.Replace,
+        HttpMethod = "GET"
+    }, new { id = "searchForm" }))
+    {
+        <input type="text" name="searchString" oninput="changed('#searchForm')" />
+        <input type="submit" value="потребителско име" />
+    }
+
+    @using (Ajax.BeginForm("Search", new { searchProperty = "About" },
+    new AjaxOptions
+    {
+        UpdateTargetId = "profiles",
+        InsertionMode = InsertionMode.Replace,
+        HttpMethod = "GET"
+    }, new { id = "aboutSearchForm" }))
+    {
+        <input type="text" name="searchString" oninput="changed('#aboutSearchForm')" />
+        <input type="submit" value="дума в описанието" />
+    }
+
+    @using (Ajax.BeginForm("Search", new { searchProperty = "Band" },
+    new AjaxOptions
+    {
+        UpdateTargetId = "profiles",
+        InsertionMode = InsertionMode.Replace,
+        HttpMethod = "GET"
+    }, new { id = "bandSearchForm" }))
+    {
+        <input type="text" name="searchString" oninput="changed('#bandSearchForm')" />
+        <input type="submit" value="любимa групa" />
+    }
+</div>
+
+@Ajax.ActionLink("Разширено търсене", "FilterProfiles", null,
+new AjaxOptions
+{
+    HttpMethod = "GET",
+    InsertionMode = InsertionMode.Replace,
+    UpdateTargetId = "profilesSearchFilter",
+    OnSuccess = "filterShow"
+}, new { @class = "advanced-search-btn" })
+
+<div id="profilesSearchFilter"></div>
+
+<div id="profiles">
+    @Html.Action("Display")
+</div>
+
+@section JavaScript {
+    @Scripts.Render("~/bundles/jquery-ui")
+    @Scripts.Render("~/bundles/jquery.multiselect")
+}
+
+@section CSS {
+    @Styles.Render("~/Content/theme")
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryajax")
+
+    <script>
+        $('body').addClass('profiles-page');
+
+        function changed(formId) {
+            $(formId).submit();
+        }
+
+        function filterShow() {
+            $('#profilesSearchFilter').show('slow');
+        }
+
+        function filterHide() {
+            $('#profilesSearchFilter').hide('slow');
+        }
+    </script>
+}

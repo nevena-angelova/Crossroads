@@ -1,0 +1,29 @@
+﻿@using Crossroads.Web.Areas.Administration.ViewModels.ForumViewModels.Comments
+@model AdminEditCommentViewModel
+
+@using (Ajax.BeginForm("AdminEditComment",
+        new AjaxOptions
+        {
+            HttpMethod = "POST",
+            InsertionMode = InsertionMode.Replace,
+            UpdateTargetId = "comment" + Model.Id
+        }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+    @Html.EditorFor(m => m.Content)
+    <div class="buttons">
+        <input class="default-btn" type="submit" value="Промени" />
+        @Ajax.ActionLink("Откажи", "AdminEditComment", new { id = Model.Id, refuse = true },
+        new AjaxOptions
+        {
+            HttpMethod = "GET",
+            InsertionMode = InsertionMode.Replace,
+            UpdateTargetId = "comment" + Model.Id
+        }, new { @class = "refuse-btn" })
+    </div>
+}
+
+<script type="text/javascript" language=javascript>
+    $.validator.unobtrusive.parse($('#comment' + @(Model.Id)));
+</script>

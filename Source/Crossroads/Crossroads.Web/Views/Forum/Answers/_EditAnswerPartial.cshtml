@@ -1,0 +1,29 @@
+﻿@using Crossroads.Web.ViewModels.ForumViewModels.Answers
+@model EditAnswerViewModel
+@using (Ajax.BeginForm("EditAnswer", "Answers",
+        new AjaxOptions
+        {
+            HttpMethod = "POST",
+            InsertionMode = InsertionMode.ReplaceWith,
+            UpdateTargetId = "answer" + Model.Id,
+            OnBegin = "formHide('#editAnswerForm'," + Model.Id + ")",
+            OnSuccess = "editedOnSuccess('#answer" + Model.Id + "')"
+        }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+    @Html.HiddenFor(m => m.Id)
+    @Html.HiddenFor(m => m.UserName)
+    @Html.EditorFor(m => m.Content)
+    <div class="buttons">
+        <input class="default-btn" type="submit" value="Промени" />
+        <a class="refuse-btn" onclick="formHide('#editAnswerForm@(Model.Id)')" href="javascript:void(0)">Откажи</a>
+    </div>
+}
+
+<script type="text/javascript" language=javascript>
+    $.validator.setDefaults({
+        ignore: ""
+    });
+    $.validator.unobtrusive.parse($('#editAnswerForm@(Model.Id)'));
+</script>

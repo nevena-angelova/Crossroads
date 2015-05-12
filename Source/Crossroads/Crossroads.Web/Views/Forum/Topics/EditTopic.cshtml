@@ -1,0 +1,33 @@
+﻿@using Crossroads.Web.ViewModels.ForumViewModels.Topics
+@model EditTopicViewModel
+@{
+    ViewBag.Title = "Промяна на " + Model.Title;
+}
+
+<div class="edit-topic">
+    @using (Html.BeginForm("EditTopic", "Topics", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary()
+        @Html.HiddenFor(m => m.Id)
+        @Html.HiddenFor(m => m.UserName)
+        @Html.TextBoxFor(m => m.Title, new { @class = "default-input" })
+        @Html.EditorFor(m => m.Content)
+        <div class="buttons">
+            <input class="default-btn" type="submit" value="Промени" />
+            @Html.ActionLink("Откажи", "DisplayTopic", "Topics", new { topicId = Model.Id }, new { @class = "refuse-btn" })
+        </div>
+    }
+</div>
+
+@section JavaScript {
+    @Scripts.Render("~/bundles/jquery")
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $('body').addClass('edit-topic-page');
+    </script>
+}
