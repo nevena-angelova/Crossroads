@@ -657,6 +657,7 @@ h2.page-title { font-size: 20px; line-height: 32px; font-weight: normal; margin:
 .author-info em { font-size: 13px; }
 .item-content { text-align: justify; -ms-word-break: break-all; word-break: break-all; }
 .item-details .item-content a { color: #777; }
+.item-details .item-content a:hover { text-decoration: underline; }
 
 .item-btns { position: absolute; right: 10px; bottom: 10px; font-size: 0; }
 .item-btns a + a { margin-left: 5px; }
@@ -824,12 +825,12 @@ h2.page-title { font-size: 20px; line-height: 32px; font-weight: normal; margin:
 .answers-page.admin .buttons .refuse-btn,
 .comments-page.admin .buttons .refuse-btn { color: #fff; }
 
-h4.box-topic-title { line-height: 22px; font-size: 14px; font-weight: normal; }
-h4.box-topic-title a { color: #fff; text-decoration: underline; font-weight: bold; }
-h4.box-topic-title a:hover { text-decoration: none; }
-.box-info { display: inline-block; margin-bottom: 5px; color: #777; }
-.box-info a { color: inherit; text-decoration: underline; }
-.box-info a:hover { text-decoration: none; }
+h4.admin-item-topic-title { line-height: 22px; font-size: 14px; font-weight: normal; }
+h4.admin-item-topic-title a { color: #fff; text-decoration: underline; font-weight: bold; }
+h4.admin-item-topic-title a:hover { text-decoration: none; }
+.admin-item-info { display: inline-block; margin-bottom: 5px; color: #777; }
+.admin-item-info a { color: inherit; text-decoration: underline; }
+.admin-item-info a:hover { text-decoration: none; }
 
 .comments-page.admin .item-left { width: 120px; }
 

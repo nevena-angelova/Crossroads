@@ -10,7 +10,7 @@ namespace Crossroads.Web.ViewModels.ForumViewModels.Comments
         [AllowHtml]
         [UIHint("TinyMCE")]
         [Required(ErrorMessage = "Съдържанието е задължително.")]
-        [StringLength(1000, MinimumLength = 10, ErrorMessage = "Съдържанието трябва да е от {2} до {1} символа.")]
+        [StringLength(2000, MinimumLength = 10, ErrorMessage = "Съдържанието трябва да е от {2} до {1} символа.")]
         [Display(Name = "Съдържание:")]
         public string Content { get; set; }
 
