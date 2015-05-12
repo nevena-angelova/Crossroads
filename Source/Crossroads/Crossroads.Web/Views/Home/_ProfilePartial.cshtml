@@ -1,0 +1,19 @@
+﻿@model IList<Crossroads.Web.ViewModels.ProfilesViewModel.ProfileViewModel>
+
+@for (int i = 0; i < Model.Count; i++)
+{
+    <div>
+        <a href="/Profile/Display/?userName=@Model[i].UserName">
+            @if (Model[i].ImageId != null)
+            {
+                <img src="@Url.Action("Image", "Profile", new { id = Model[i].ImageId.Value })" alt="@Model[i].UserName" width="100px" />
+            }
+            else
+            {
+                <img src="@Url.Content("~/Content/img/default.jpg")" alt="@Model[i].UserName" width="100px" />
+            }
+        </a>
+        @Html.ActionLink(@Model[i].UserName, "Display", new { controller = "Profile", userName = @Model[i].UserName})
+    </div>
+}
+

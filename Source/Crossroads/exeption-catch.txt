@@ -1,0 +1,18 @@
+try
+                {
+                    this.Data.SaveChanges();
+                }
+                catch (System.Data.Entity.Validation.DbEntityValidationException ex)
+                {
+                    string result = "";
+
+                    foreach (var error in ex.EntityValidationErrors)
+                    {
+                        foreach (var err in error.ValidationErrors)
+                        {
+                            result += err.ErrorMessage + "; ";
+                        }   
+                    }
+
+                    return Content(result);
+                }

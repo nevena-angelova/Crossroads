@@ -1,0 +1,15 @@
+﻿@model Crossroads.Web.ViewModels.ProfileViewModels.Comments.CommentViewModel
+<div>
+    @Model.Content
+</div>
+@if (Model.ImageId != null)
+{
+    <img src="@Url.Action("Image", "Profile", new { id = Model.ImageId.Value })" alt="@Model.AuthorName" width="100px" />
+}
+else
+{
+    <img src="@Url.Content("~/Content/img/default.jpg")" alt="@Model.AuthorName" width="100px" />
+}
+
+@Html.ActionLink(@Model.AuthorName, "Display", new { controller = "Profile", userName = @Model.AuthorName })
+<span>@Model.DateCreated</span>

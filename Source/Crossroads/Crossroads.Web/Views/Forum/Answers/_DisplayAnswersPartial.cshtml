@@ -1,0 +1,16 @@
+﻿@using Crossroads.Web.ViewModels.ForumViewModels.Answers
+@using Crossroads.Web.Infrastructure.Constants
+@model IPagedList<DisplayAnswerViewModel>
+@foreach (var answer in Model)
+{
+    @Html.Partial(Partials.DisplayAnswer, answer)
+}
+
+@if (Model.PageCount > 1)
+{
+    <div class="pager">
+        @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount).Options(o => o
+                        .AddRouteValue("topicId", ViewBag.TopicId))
+    </div>
+}
+

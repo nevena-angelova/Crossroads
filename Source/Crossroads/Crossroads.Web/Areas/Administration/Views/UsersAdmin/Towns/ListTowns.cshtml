@@ -1,0 +1,48 @@
+﻿@using Crossroads.Web.Areas.Administration.ViewModels.UserViewModels.Towns
+@using Crossroads.Web.Infrastructure.Constants
+@model IList<TownOutputViewModel>
+@{
+    ViewBag.Title = "Градове";
+}
+
+<h2 class="page-title">
+    @ViewBag.Title
+    @Ajax.ActionLink("Добави град", "AddTown", null,
+        new AjaxOptions
+        {
+            HttpMethod = "GET",
+            UpdateTargetId = "addTownForm",
+            InsertionMode = InsertionMode.Replace,
+            OnSuccess = "inputClear"
+        }, new { @class = "admin-add-item" })
+</h2>
+<div id="addTownForm"></div>
+@Html.ActionLink("Сортирай", "ListTowns", new { ordered = true }, new { @class = "sort-items" })
+
+<ul id="townsList" class="boxes">
+    @foreach (var town in Model)
+    {
+        @Html.Partial(Partials.Town, town)
+    }
+</ul>
+
+@section JavaScriptToHead {
+    @Scripts.Render("~/bundles/jquery")
+}
+
+@section JavaScriptToFooter {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryajax")
+
+    <script>
+        $('body').addClass('towns-page');
+
+        function townFormHide() {
+            $('#addTownForm form').hide()
+        }
+
+        function inputClear() {
+            $('#addTownInput').val('');
+        }
+    </script>
+}

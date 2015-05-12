@@ -1,0 +1,114 @@
+﻿@using Crossroads.Web.ViewModels.ForumViewModels
+@using Crossroads.Web.Infrastructure.Constants
+@model IList<DisplayCategoryViewModel>
+
+@{
+    ViewBag.Title = "Форум категории";
+}
+
+<h2 class="page-title">Търси теми по: </h2>
+
+<div class="search">
+    @using (Html.BeginForm("SearchTopics", "Topics", new { searchProperty = "Title" }))
+    {
+        <input type="text" name="searchString" />
+        <input type="submit" name="" value="заглавие" />
+    }
+
+    @using (Html.BeginForm("SearchTopics", "Topics", new { searchProperty = "UserName" }))
+    {
+        <input type="text" name="searchString" />
+        <input type="submit" value="автор" />
+    }
+</div>
+
+<div class="top-links">
+    @Html.ActionLink("TOP 30 теми ", "TopTopics", "Topics")
+    @Html.ActionLink("TOP 30 потребители", "TopUsers", "Forum")
+</div>
+
+<div class="forum-table">
+    @foreach (var category in Model)
+    {
+        <div class="row">
+            <div class="col category">
+                @Html.ActionLink(@category.Name, "DisplayTopics", new { controller = "Topics", categoryId = category.Id, categoryName = category.Name })
+                <span>@category.Description</span>
+            </div>
+            <div class="col topic-answer-count">
+                <p><strong>@category.TopicsCount</strong> теми</p>
+                <p><strong>@category.AnswersCount</strong> отговора</p>
+            </div>
+            <div class="col last-topic">
+                <div class="topic-wrap">
+                    @if (@category.TopicsCount > 0)
+                    {
+                        if (category.CategoryLastAnswerDateCreated != null &&
+                            category.CategoryLastAnswerDateCreated.Value.CompareTo(category.LastTopicDateCreated.Value) > 0)
+                        {
+                            <div class="author-img">
+                                <a href="/Profile/DisplayProfile/?userName=@category.CategoryLastAnswerAuthor" target="_blank">
+                                    @if (@category.CategoryLastAnswerAuthorImage != null)
+                                    {
+                                        <img src="@Url.Action(" getimage", "Profile" , new { image=category.CategoryLastAnswerAuthorImage, limitwidth= 50 })" alt="Аватар" />
+                                    }
+                                    else
+                                    {
+                                        <img src="@Url.Content("~/Content/img/no-photo-50x50.png")" alt="аватар" />
+                                    }
+                                </a>
+                            </div>
+                            <div class="topic-info">
+                                @Html.ActionLink(@category.CategoryLastAnswerTopicTitle, "DisplayTopic",
+                                        new { controller = "Topics", topicId = @category.CategoryLastAnswerTopicId },
+                                        new { @class = "topic-link" })
+
+                                @Html.ActionLink(category.CategoryLastAnswerAuthor, "DisplayProfile",
+                                        new { controller = "Profile", userName = category.CategoryLastAnswerAuthor },
+                                        new { @class = "profile-link", target = "_blank" })
+
+                                <span>@category.CategoryLastAnswerDateCreated</span>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="author-img">
+                                <a href="/Profile/DisplayProfile/?userName=@category.LastTopicAuthor" target="_blank">
+                                    @if (category.LastTopicAuthorImage != null)
+                                    {
+                                        <img src="@Url.Action("GetImage", "Profile", new { image = category.LastTopicAuthorImage, limitWidth = 50 })" alt="Аватар" />
+                                    }
+                                    else
+                                    {
+                                        <img src="@Url.Content("~/Content/img/no-photo-50x50.png")" alt="аватар" />
+                                    }
+                                </a>
+                            </div>
+                            <div class="topic-info">
+                                @Html.ActionLink(@category.LastTopicTitle, "DisplayTopic",
+                                    new { controller = "Topics", topicId = @category.LastTopicId },
+                                    new { @class = "topic-link" })
+
+                                @Html.ActionLink(category.LastTopicAuthor, "DisplayProfile",
+                                        new { controller = "Profile", userName = category.LastTopicAuthor },
+                                        new { @class = "profile-link", target = "_blank" })
+
+                                <span>@category.LastTopicDateCreated</span>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <text>няма теми</text>
+                    }
+                </div>
+            </div>
+
+        </div>
+    }
+</div>
+@section Scripts {
+    <script>
+        $('body').addClass('forum-page');
+    </script>
+}

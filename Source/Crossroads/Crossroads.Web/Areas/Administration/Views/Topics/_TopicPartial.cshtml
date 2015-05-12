@@ -1,0 +1,11 @@
+﻿@using Crossroads.Web.Areas.Administration.ViewModels.ForumViewModels.Topics
+@model TopicOutputViewModel
+
+<div id="topicDiv@(Model.Id)">
+    <h4>@Model.Title</h4>
+    <h5>от: @Model.Category</h5>
+    <div class="admin-topic-info">автор: @Model.Author, на: @Model.DateCreated, @Model.AnswerCount отговора, @Model.Votes гласа, @Model пъти видяна</div>
+    <div class="admin-topic-content">
+        @Model.Content
+    </div>
+</div>

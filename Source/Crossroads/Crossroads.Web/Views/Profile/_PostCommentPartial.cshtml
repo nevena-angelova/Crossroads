@@ -1,0 +1,18 @@
+﻿@model Crossroads.Web.ViewModels.ProfileViewModels.Comments.AddCommentViewModel
+
+@using (Ajax.BeginForm("PostComment", "ProfileComments",
+        new AjaxOptions
+        {
+            HttpMethod = "POST",
+            InsertionMode = InsertionMode.InsertBefore,
+            UpdateTargetId = "comments",
+            OnSuccess = "textClear"
+        }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.ProfileId)
+    @Html.EditorFor(m => m.Content)
+    @Html.ValidationMessageFor(m => m.Content, null)
+
+    <input type="submit" value="Изпрати" />
+}

@@ -1,0 +1,199 @@
+﻿@using Crossroads.Web.Areas.Administration.ViewModels.Users
+@model DisplayUserViewModel
+@{
+    ViewBag.Title = Model.UserName;
+}
+
+<div class="user-info">
+    @if (TempData["UserNameError"] != null)
+    {
+        <div class="error">
+            @TempData["UserNameError"]
+        </div>
+    }
+    <div class="account-info">
+        <div>
+            <strong>Потребителско име:</strong>
+            @Model.UserName
+        </div>
+        <div>
+            <strong>Email:</strong>
+            @Model.Email
+        </div>
+        <div>
+            <strong>Парола:</strong>
+            **********
+        </div>
+    </div>
+    <div class="profile-info">
+        <div>
+            @if (Model.Image != null)
+            {
+                <img src="@Url.Action("GetImage", new { image = Model.Image })" alt="Аватар" />
+            }
+            else
+            {
+                <img src="@Url.Content("~/Content/img/default.jpg")" alt="Аватар" />
+            }
+        </div>
+        <div class="profile-online">
+            @if (Model.IsUserOnline)
+            {
+                <text>Online</text>
+            }
+            else
+            {
+                <text>Offline</text>
+            }
+        </div>
+        <div>
+            <strong>Име:</strong>
+            @if (Model.FirstName != null)
+            {
+                @Model.FirstName
+            }
+            else
+            {
+                <em>Няма информация</em>
+            }
+        </div>
+        <div>
+            <strong>Фамилия:</strong>
+            @if (Model.FirstName != null)
+            {
+                @Model.LastName
+            }
+            else
+            {
+                <em>Няма информация</em>
+            }
+        </div>
+        <div>
+            <strong>Пол:</strong>
+            @if (Model.IsMale != null)
+            {
+                if (Model.IsMale == true)
+                {
+                    @("мъж")
+                }
+                else
+                {
+                    @("жена")
+                }
+            }
+            else
+            {
+                <em>Няма информация</em>
+            }
+        </div>
+        <div>
+            <strong>Град:</strong>
+            @if (Model.Town != null)
+            {
+                @Model.Town
+            }
+            else
+            {
+                <em>Няма информация</em>
+            }
+        </div>
+        <div>
+            <strong>Рожденна дата:</strong>
+            @if (Model.BirthDate != null)
+            {
+                @Model.BirthDate.Value.ToShortDateString()
+            }
+            else
+            {
+                <em>Няма информация</em>
+            }
+        </div>
+        <div>
+            <strong>Любими групи:</strong>
+            @if (Model.Bands != null)
+            {
+                @Model.Bands
+            }
+            else
+            {
+                <em>Няма информация</em>
+            }
+        </div>
+        <div>
+            <strong>Стилове музика:</strong>
+            @{
+                int genresCount = Model.MusicGenres.Count;
+                if (genresCount > 0)
+                {
+                    for (int i = 0; i < genresCount; i++)
+                    {
+                        @Model.MusicGenres.ElementAt(i).Name
+                        if (i < genresCount - 1)
+                        {
+                            @(", ")
+                        }
+                    }
+                }
+                else
+                {
+                    <em>Няма информация</em>
+                }
+            }
+        </div>
+        <div>
+            <strong>Интереси:</strong>
+            @{
+                int interestsCount = Model.Interests.Count;
+                if (interestsCount > 0)
+                {
+                    for (int i = 0; i < interestsCount; i++)
+                    {
+                        @Model.Interests.ElementAt(i).Name
+                        if (i < interestsCount - 1)
+                        {
+                            @(", ")
+                        }
+                    }
+                }
+                else
+                {
+                    <em>Няма информация</em>
+                }
+            }
+        </div>
+        <div>
+            <strong>Регистриран на:</strong>
+            @Model.DateCreated
+        </div>
+        <div>
+            <strong>Форум точки:</strong>
+            @Model.ForumPoints
+        </div>
+        <div>
+            <strong>Последно активен:</strong>
+            @if (Model.LastActionTime != null)
+            {
+                @Model.LastActionTime
+            }
+            else
+            {
+                <em>Няма информация</em>
+            }
+        </div>
+        <div>
+            <strong>За мен:</strong>
+            @if (Model.About != null)
+            {
+                @Html.Raw(Model.About)
+            }
+            else
+            {
+                <em>Няма информация</em>
+            }
+        </div>
+    </div>
+    <div>
+        @Html.ActionLink("Промени", "EditUser", new { userName = Model.UserName })
+        @Html.ActionLink("Изтрий", "DeleteUser", new { userName = Model.UserName }, new { onclick = "return confirm('Потвърждавате ли изтриването?');" })
+    </div>
+</div>

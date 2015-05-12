@@ -1,0 +1,47 @@
+﻿@using Crossroads.Web.Areas.Administration.ViewModels.UserViewModels.MusicGenres
+@using Crossroads.Web.Infrastructure.Constants
+@model IList<GenreOutputViewModel>
+@{
+    ViewBag.Title = "Музикални стилове";
+}
+
+<h2 class="page-title">
+    @ViewBag.Title
+    @Ajax.ActionLink("Добави стил", "AddGenre", null,
+    new AjaxOptions
+    {
+        HttpMethod = "GET",
+        UpdateTargetId = "addGenreForm",
+        InsertionMode = InsertionMode.Replace
+    }, new { @class = "admin-add-item" })
+</h2>
+<div id="addGenreForm"></div>
+@Html.ActionLink("Сортирай", "ListGenres", new { ordered = true }, new { @class = "sort-items" })
+
+<ul id="genresList" class="boxes">
+    @foreach (var genre in Model)
+    {
+        @Html.Partial(Partials.Genre, genre)
+    }
+</ul>
+
+@section JavaScriptToHead {
+    @Scripts.Render("~/bundles/jquery")
+}
+
+@section JavaScriptToFooter {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryajax")
+
+    <script>
+        $('body').addClass('music-genres-page');
+
+        function genreFormHide() {
+            $('#addGenreForm form').hide()
+        }
+
+        function inputClear() {
+            $('#addGenreInput').val('');
+        }
+    </script>
+}

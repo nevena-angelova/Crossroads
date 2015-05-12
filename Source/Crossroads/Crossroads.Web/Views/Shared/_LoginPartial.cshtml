@@ -1,0 +1,46 @@
+﻿@using Microsoft.AspNet.Identity
+@using Crossroads.Web.ViewModels
+@model LoginViewModel
+
+@if (Request.IsAuthenticated)
+{
+    <div class="logged-user">
+        @using (Html.BeginForm("LogOff", "Account", new { area = string.Empty }, FormMethod.Post, new { id = "logoutForm" }))
+        {
+            @Html.AntiForgeryToken()
+            @("Здравей, " + User.Identity.GetUserName() + "!")
+            <a class="logout-btn" href="javascript:document.getElementById('logoutForm').submit()">Изход</a>
+        }
+    </div>
+}
+else
+{
+    <div class="login">
+        <a id="loginBtn" href="#">Вход</a>
+        <div id="loginFields">
+            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(m => m.UserName, new { placeholder = "Потребителско име" })
+                @Html.PasswordFor(m => m.Password, new { placeholder = "Парола" })
+                <input type="submit" value="Вход" />
+                <div class="remember-me">
+                    @Html.CheckBoxFor(m => m.RememberMe)
+                    @Html.LabelFor(m => m.RememberMe)
+                </div>
+                <p>
+                    @Html.ActionLink("Регистрация", "Register", "Account")
+                </p>
+            }
+        </div>
+    </div>
+}
+
+
+
+
+
+
+
+

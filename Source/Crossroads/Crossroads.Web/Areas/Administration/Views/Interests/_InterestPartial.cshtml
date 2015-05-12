@@ -1,0 +1,21 @@
+﻿@using Crossroads.Web.Areas.Administration.ViewModels.Interests
+@model InterestViewModel
+
+<li id="interestLi@(Model.Id)">
+    <div id="interest@(Model.Id)">@Model.Name</div>
+    @Ajax.ActionLink("Промени", "EditInterest", new { id = Model.Id },
+                    new AjaxOptions
+                    {
+                        HttpMethod = "GET",
+                        UpdateTargetId = "interest" + Model.Id,
+                        InsertionMode = InsertionMode.Replace
+                    })
+    @Ajax.ActionLink("Изтрий", "DeleteInterest", new { id = Model.Id },
+                    new AjaxOptions
+                    {
+                        HttpMethod = "DELETE",
+                        UpdateTargetId = "interestLi" + Model.Id,
+                        InsertionMode = InsertionMode.ReplaceWith,
+                        Confirm = "Потвърждавате ли изтриването?"
+                    })
+</li>
