@@ -20,9 +20,6 @@ namespace Crossroads.Web
             bundles.Add(new ScriptBundle("~/bundles/jquery-ui").Include(
                         "~/Scripts/jquery-ui-{version}.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/jquery.multiselect").Include(
-                        "~/Scripts/jquery.multiselect.js"));
-
             bundles.Add(new StyleBundle("~/Content/css").Include(
                         "~/Content/site.css"));
 
