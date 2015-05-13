@@ -1,0 +1,22 @@
+﻿@using Crossroads.Web.Areas.Administration.ViewModels.UserViewModels.Interests
+@model InterestInputViewModel
+
+@using (Ajax.BeginForm("AddInterest",
+        new AjaxOptions
+        {
+            HttpMethod = "POST",
+            InsertionMode = InsertionMode.InsertBefore,
+            UpdateTargetId = "interestsList",
+            OnSuccess = "inputClear"
+        }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+    @Html.TextBoxFor(m => m.Name, new { id = "addInterestInput", @class = "default-input" })
+    <input class="default-btn" type="submit" value="Добави" />
+    <a class="refuse-btn" href="javascript:void(0)" onclick="interestFormHide()">Откажи</a>
+}
+
+<script type="text/javascript" language=javascript>
+    $.validator.unobtrusive.parse($('#addInterestForm'));
+</script>

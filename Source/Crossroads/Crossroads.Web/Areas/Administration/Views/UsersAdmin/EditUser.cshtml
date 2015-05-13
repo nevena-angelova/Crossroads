@@ -1,0 +1,123 @@
+﻿@using Crossroads.Web.Areas.Administration.ViewModels.Users
+@model EditUserViewModel
+@{
+    ViewBag.Title = Model.UserName;
+}
+
+@using (Html.BeginForm("EditUser", "UsersAdmin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+    @Html.HiddenFor(m => m.Id)
+    @Html.HiddenFor(m => m.ProfileUserId)
+    <div class="user-info">
+        <div class="account-info">
+            <div>
+                <strong>@Html.LabelFor(m => m.UserName)</strong>
+                @Html.TextBoxFor(m => m.UserName)
+                @Html.ValidationMessageFor(m => m.UserName, null)
+            </div>
+            <div>
+                <strong>@Html.LabelFor(m => m.Email)</strong>
+                @Html.TextBoxFor(m => m.Email, new { placeholder = Model.Email })
+                @Html.ValidationMessageFor(m => m.Email, null)
+            </div>
+            <div>
+                <strong>@Html.LabelFor(m => m.Password)</strong>
+                @Html.TextBoxFor(m => m.Password, new { type = "password" })
+                @Html.ValidationMessageFor(m => m.Password, null)
+            </div>
+        </div>
+        <div class="profile-info">
+            <div>
+                @Html.LabelFor(m => m.ProfileImage)
+                @if (Model.Image != null)
+                {
+                    <img src="@Url.Action("GetImage", new { image = Model.Image })" alt="Аватар" />
+                }
+                @Html.TextBoxFor(m => m.ProfileImage, new { type = "file" })
+                @Html.ValidationMessageFor(m => m.ProfileImage, null)
+            </div>
+            <div>
+                <strong>@Html.LabelFor(m => m.FirstName)</strong>
+                @Html.TextBoxFor(m => m.FirstName)
+                @Html.ValidationMessageFor(m => m.FirstName, null)
+            </div>
+            <div>
+                <strong>@Html.LabelFor(m => m.LastName)</strong>
+                @Html.TextBoxFor(m => m.LastName)
+                @Html.ValidationMessageFor(m => m.LastName, null)
+            </div>
+            <div>
+                <strong>@Html.LabelFor(m => m.IsMale)</strong>
+                @Html.RadioButtonFor(m => m.IsMale, true) Мъж
+                @Html.RadioButtonFor(m => m.IsMale, false) Жена
+                @Html.ValidationMessageFor(m => m.IsMale, null)
+            </div>
+            <div>
+                <strong>@Html.LabelFor(m => m.TownId)</strong>
+                @Html.DropDownListFor(m => m.TownId, (IEnumerable<SelectListItem>)ViewBag.Towns, "--- Изберете град ---")
+            </div>
+            <div>
+                <strong>@Html.LabelFor(m => m.BirthDate)</strong>
+                @Html.EditorFor(m => m.BirthDate)
+                @Html.ValidationMessageFor(m => m.BirthDate, null)
+            </div>
+            <div>
+                <strong>@Html.LabelFor(m => m.Bands)</strong>
+                @Html.TextBoxFor(m => m.Bands)
+                @Html.ValidationMessageFor(m => m.Bands, null)
+            </div>
+            <div>
+                <strong>@Html.LabelFor(m => m.MusicGenresIds)</strong>
+                @Html.ListBoxFor(m => m.MusicGenresIds, (IEnumerable<SelectListItem>)ViewBag.AllMusicGenres, new { @class = "multi-select" })
+            </div>
+            <div>
+                <strong>@Html.LabelFor(m => m.InterestsIds)</strong>
+                @Html.ListBoxFor(m => m.InterestsIds, (IEnumerable<SelectListItem>)ViewBag.AllInterests, new { @class = "multi-select" })
+            </div>
+            <div>
+                @Html.LabelFor(m => m.About)
+                @Html.EditorFor(m => m.About)
+                @Html.ValidationMessageFor(m => m.About, null)
+            </div>
+            <div>
+                <input type="submit" value="Промени" />
+            </div>
+        </div>
+    </div>
+}
+
+@section JavaScriptToHead  {
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jquery-ui")
+    @Scripts.Render("~/bundles/jquery.multiselect")
+}
+@section CssToHead  {
+    @Styles.Render("~/Content/datepicker")
+}
+@section JavaScriptToFooter {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(function () {
+            $("#datepicker").datepicker({
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "1910:2015",
+                monthNamesShort: ["Януари", "Февруари", "Март", "Април", "Май", "Юни", "Юли", "Август", "Септ", "Октомври", "Ноември", "Декември"],
+                dayNamesMin: ["Пн.", "Вт.", "Ср.", "Чт.", "Пт.", "Сб.", "Нд."],
+                dateFormat: 'dd/mm/yy'
+            });
+
+            $(".multi-select").multiselect({
+                selectedText: "# of # selected",
+                position: {
+                    my: 'left bottom',
+                    at: 'left top'
+                }
+
+            });
+        });
+    </script>
+}

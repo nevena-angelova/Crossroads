@@ -1,0 +1,92 @@
+﻿@using Crossroads.Web.Areas.Administration.ViewModels.ForumViewModels.Topics
+@using Crossroads.Web.Infrastructure.Constants
+@using MvcPaging
+@model IPagedList<AdminTopicViewModel>
+@{
+    ViewBag.Title = "Теми";
+}
+
+<div class="show-btns">
+    @Html.ActionLink("Покажи всички", "ListTopics")
+    @Html.ActionLink("Покажи флагнати", "ListTopics", new { searchProperty = "Flagged", orderBy = "Flags descending" })
+</div>
+
+<div class="admin-filter">
+
+    @using (Html.BeginForm("ListTopics", "TopicsAdmin", new { searchProperty = "UserName" }))
+    {
+        <input type="text" name="searchValue" placeholder="@(ViewBag.SearchProperty == "UserName"? @ViewBag.SearchValue : "")" />
+        <input type="submit" value="Търси по автор" />
+    }
+
+    @using (Html.BeginForm("ListTopics", "TopicsAdmin", new { searchProperty = "Title" }))
+    {
+        <input type="text" name="searchValue" placeholder="@(ViewBag.SearchProperty == "Title" ? @ViewBag.SearchValue : "")" />
+        <input type="submit" value="Търси по заглавие" />
+    }
+
+    @using (Html.BeginForm("ListTopics", "TopicsAdmin", new { searchProperty = "Category" }))
+    {
+        <div class="admin-drop-down">
+            @Html.DropDownList("searchValue", (IEnumerable<SelectListItem>)ViewBag.Categories, "Изберете категория")
+        </div>
+        <input type="submit" value="Търси по категория" />
+    }
+
+    @using (Html.BeginForm("ListTopics", "TopicsAdmin", new { searchValue = ViewBag.SearchValue, searchProperty = ViewBag.SearchProperty }))
+    {
+        <div class="admin-drop-down">
+            <select name="orderBy">
+                <option disabled selected>Избери критерий</option>
+                @if (String.IsNullOrWhiteSpace(ViewBag.SearchValue) || ViewBag.SearchProperty != "Title")
+                {
+                    <option value="Title">заглавие</option>
+                }
+                @if (String.IsNullOrWhiteSpace(ViewBag.SearchValue) || ViewBag.SearchProperty != "Category")
+                {
+                    <option value="Category.Name">категория</option>
+                }
+                @if (String.IsNullOrWhiteSpace(ViewBag.SearchValue) || ViewBag.SearchProperty != "UserName")
+                {
+                    <option value="AuthorProfile.ProfileUser.UserName">автор</option>
+                }
+                <option value="DateCreated descending">дата на създаване</option>
+                <option value="Votes descending">рейтинг</option>
+                <option value="Views descending">посещения</option>
+                <option value="Answers.Count descending">брой отговори</option>
+            </select>
+        </div>
+        <input type="submit" value="Сортирай" />
+    }
+</div>
+
+<h2 class="page-title">@ViewBag.Title</h2>
+
+<div id="topicsList" class="topics">
+    @if (ViewBag.NothingFound != null)
+    {
+        @ViewBag.NothingFound
+    }
+
+    @foreach (var topic in Model)
+    {
+        @Html.Partial(Partials.AdminTopic, topic);
+    }
+</div>
+
+@if (Model.PageCount > 1)
+{
+    <div class="pager">
+        @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount).Options(o => o
+        .AddRouteValue("orderBy", ViewBag.OrderBy)
+        .AddRouteValue("searchValue", ViewBag.SearchValue)
+        .AddRouteValue("searchProperty", ViewBag.SearchProperty))
+    </div>
+}
+
+
+@section JavaScriptToFooter {
+    <script>
+        $('body').addClass('topics-page admin');
+    </script>
+}

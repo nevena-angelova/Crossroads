@@ -1,0 +1,21 @@
+﻿@using Crossroads.Web.Areas.Administration.ViewModels.UserViewModels.MusicGenres
+@model GenreOutputViewModel
+
+<li id="genreLi@(Model.Id)">
+    <div class="box" id="genre@(Model.Id)">@Model.Name</div>
+    @Ajax.ActionLink("Промени", "EditGenre", new { id = Model.Id },
+        new AjaxOptions
+        {
+            HttpMethod = "GET",
+            UpdateTargetId = "genre" + Model.Id,
+            InsertionMode = InsertionMode.Replace
+        }, new { @class = "edit-btn" })
+    @Ajax.ActionLink("Изтрий", "DeleteGenre", new { id = Model.Id },
+        new AjaxOptions
+        {
+            HttpMethod = "DELETE",
+            UpdateTargetId = "genreLi" + Model.Id,
+            InsertionMode = InsertionMode.ReplaceWith,
+            Confirm = "Потвърждавате ли изтриването?"
+        }, new { @class = "delete-btn" })
+</li>

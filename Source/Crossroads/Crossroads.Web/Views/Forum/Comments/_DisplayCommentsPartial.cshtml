@@ -1,0 +1,7 @@
+﻿@using Crossroads.Web.ViewModels.ForumViewModels.Comments
+@using Crossroads.Web.Infrastructure.Constants
+@model List<DisplayCommentViewModel>
+@foreach (var comment in Model)
+{
+    @Html.Partial(Partials.DisplayComment, comment)
+}
