@@ -22,6 +22,12 @@ namespace Crossroads.Web
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                         "~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/Content/theme").Include(
+            "~/Content/themes/base/theme.css"));
+
+            bundles.Add(new StyleBundle("~/Content/datepicker").Include(
+                        "~/Content/themes/base/datepicker.css"));
         }
     }
 }
