@@ -14,10 +14,13 @@
     })
 }
 
-<div class="pager">
-    @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount, new AjaxOptions
+@if (Model.PageCount > 1)
+{
+    <div class="pager">
+        @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount, new AjaxOptions
            {
                UpdateTargetId = "profiles",
                HttpMethod = "POST"
            }).Options(o => o.Action("Search").AddRouteValue("searchString", ViewBag.SearchString).AddRouteValue("searchProperty", ViewBag.SearchProperty))
-</div>
+    </div>
+}
