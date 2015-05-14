@@ -62,6 +62,9 @@
 }
 
 <script>
+
+    $('.multi-select option:selected').removeAttr('selected');
+
     $(function () {
         $(".multi-select").multiselect({
             selectedText: "# от # избрани",
