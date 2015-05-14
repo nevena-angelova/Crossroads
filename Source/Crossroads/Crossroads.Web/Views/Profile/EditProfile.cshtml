@@ -100,19 +100,34 @@
             $('#inputFileName').text(inputFile.val());
         })
 
-        $.validator.addMethod('date', function (value, element) {
-            if (this.optional(element)) {
-                return true;
+        // The validator function
+        $.validator.addMethod('rangeDate', function (value, element, param) {
+            if (!value) {
+                return true; // not testing 'is required' here!
             }
-            var ok = true;
             try {
-                $.datepicker.parseDate('dd/mm/yy', value);
+                var dateValue = $.datepicker.parseDate("dd/mm/yy", value);
             }
-            catch (err) {
-                ok = false;
+            catch (e) {
+                return false;
             }
-            return ok;
+            return param.min <= dateValue && dateValue <= param.max;
         });
+
+        // The adapter to support ASP.NET MVC unobtrusive validation
+        $.validator.unobtrusive.adapters.add('rangedate', ['min', 'max'],
+        function (options) {
+         var params = {
+             min: $.datepicker.parseDate("yy/mm/dd", options.params.min),
+             max: $.datepicker.parseDate("yy/mm/dd", options.params.max)
+         };
+
+         options.rules['rangeDate'] = params;
+         if (options.message) {
+             options.messages['rangeDate'] = options.message;
+         }
+     });
+
 
         $(function () {
             $("#datepicker").datepicker({
