@@ -153,15 +153,23 @@ namespace Crossroads.Web.Controllers
 
                     HttpPostedFileBase file = profile.ProfileImage;
                     string fileName = file.FileName.Split(new[] { '.' }).First();
-                    string fileExtension = file.FileName.Split(new[] { '.' }).Last();
-                    string image = fileName + "-" + profile.Id + randNum + "." + fileExtension;
-                    string url = Path.Combine(HttpContext.Server.MapPath("~/App_Data/Avatars/"), image);
+                    string image = fileName + "-" + profile.Id + randNum + ".png";
 
                     if (HttpPostedFileBaseExtensions.IsImage(file))
                     {
                         Image img = Image.FromStream(file.InputStream);
                         Bitmap bitmap = this.ResizeImage(img, 300);
-                        bitmap.Save(url);
+
+                        using (MemoryStream ms = new MemoryStream())
+                        {
+                            bitmap.Save(ms, ImageFormat.Png);
+                            DropboxHandler.UploadFile(ms.GetBuffer(), image);
+                        }
+
+                        if (dbProfile.Image != null)
+                        {
+                            DropboxHandler.Delete(dbProfile.Image);
+                        }
 
                         dbProfile.Image = image;
                     }
@@ -187,8 +195,12 @@ namespace Crossroads.Web.Controllers
         [OutputCache(Duration = 60 * 60 * 168, VaryByParam = "image; limitWidth")]
         public ActionResult GetImage(string image, int? limitWidth)
         {
-            string imageUrl = Path.Combine(HttpContext.Server.MapPath("~/App_Data/Avatars/"), image);
-            Image img = Image.FromFile(imageUrl);
+            Image img;
+            using (MemoryStream stream = new MemoryStream(DropboxHandler.GetBytes(image)))
+            {
+                img = Image.FromStream(stream);
+            }
+
             if (img == null)
             {
                 return HttpNotFound("Image not found!");
