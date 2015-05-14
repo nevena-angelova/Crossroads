@@ -45,11 +45,11 @@
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.InterestsIds)
-        @Html.ListBoxFor(m => m.InterestsIds, (IEnumerable<SelectListItem>)ViewBag.AllInterests, new { @class = "multi-select interests-select" })
+        @Html.ListBoxFor(m => m.InterestsIds, (IEnumerable<SelectListItem>)ViewBag.AllInterests, new { @class = "multi-select" })
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.MusicGenresIds)
-        @Html.ListBoxFor(m => m.MusicGenresIds, (IEnumerable<SelectListItem>)ViewBag.AllMusicGenres, new { @class = "multi-select genres-select" })
+        @Html.ListBoxFor(m => m.MusicGenresIds, (IEnumerable<SelectListItem>)ViewBag.AllMusicGenres, new { @class = "multi-select" })
     </div>
     <div>
         @Html.LabelFor(m => m.IsOnline)
@@ -63,22 +63,7 @@
 
 <script>
     $(function () {
-        $(".multi-select.interests-select").multiselect({
-            classes: 'interests-select',
-            selectedText: "# от # избрани",
-            noneSelectedText: "Изберете опция",
-            checkAllText: 'Изберете всички',
-            uncheckAllText: 'Откажете всички',
-            show: ["explode", 500],
-            hide: ["explode", 500],
-            position: {
-                my: 'left bottom',
-                at: 'left top'
-            }
-        });
-
-        $(".multi-select.genres-select").multiselect({
-            classes: 'genres-select',
+        $(".multi-select").multiselect({
             selectedText: "# от # избрани",
             noneSelectedText: "Изберете опция",
             checkAllText: 'Изберете всички',

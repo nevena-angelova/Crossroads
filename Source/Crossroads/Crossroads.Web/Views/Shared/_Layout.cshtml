@@ -41,7 +41,9 @@
             using (Html.BeginForm("LogOff", "Account", new { area = string.Empty }, FormMethod.Post, new { id = "logoutFormMobile" }))
             {
                 @Html.AntiForgeryToken()
-                @("Здравей, " + User.Identity.GetUserName() + "!")
+                <span class="hello-user">
+                    Здравей, @(User.Identity.GetUserName()) !
+                </span>
                 <a class="logout-btn-mobile" href="javascript:document.getElementById('logoutFormMobile').submit()">Изход</a>
             }
         }
