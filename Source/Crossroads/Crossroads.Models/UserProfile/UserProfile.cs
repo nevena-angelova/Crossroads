@@ -42,7 +42,7 @@ namespace Crossroads.Models.Profile
 
         public bool? IsMale { get; set; }
 
-        [DataType(DataType.Date)]
+        [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? BirthDate { get; set; }
 
         [StringLength(1500)]

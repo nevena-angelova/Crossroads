@@ -40,7 +40,7 @@ namespace Crossroads.Web.Areas.Administration.ViewModels.UserViewModels.Users
 
         [Display(Name = "Рожденна дата:")]
         [DateRange("01/01/1910", "01/01/2015")]
-        [DataType(DataType.Date)]
+        [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? BirthDate { get; set; }
 
         public string Image { get; set; }
