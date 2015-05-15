@@ -6,7 +6,7 @@ namespace Crossroads.Web.ViewModels.ValidationAttributes
 {
     public class DateRangeAttribute : ValidationAttribute
     {
-        private const string DateFormat = "dd/mm/yyyy";
+        private const string DateFormat = "MM/dd/yyyy";
         private const string DefaultErrorMessage = "'{0}' трябва да е между {1:d} и {2:d}.";
 
         public DateTime MinDate { get; set; }
@@ -41,7 +41,7 @@ namespace Crossroads.Web.ViewModels.ValidationAttributes
 
         private static DateTime ParseDate(string dateValue)
         {
-            return DateTime.ParseExact(dateValue, DateFormat, CultureInfo.InvariantCulture);
+            return DateTime.ParseExact(dateValue, DateFormat, new CultureInfo("en-US"));
         }
     }
 }

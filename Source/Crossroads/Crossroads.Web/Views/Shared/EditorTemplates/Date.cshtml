@@ -1,9 +1,10 @@
-﻿@model DateTime?
+﻿@using System.Globalization;
+@model DateTime?
 @{
     var value = "";
     if (Model.HasValue)
     {
-        value = String.Format("{0:d}", Model.Value.ToString("dd/mm/yyyy", System.Globalization.CultureInfo.InvariantCulture));
+        value = String.Format("{0:d}", Model.Value.ToString("MM/dd/yyyy", new CultureInfo("en-US")));
     }
 }
 @Html.TextBox("", value, new { @id = "datepicker"})
