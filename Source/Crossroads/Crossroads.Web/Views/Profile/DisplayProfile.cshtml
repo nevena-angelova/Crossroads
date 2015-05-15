@@ -8,7 +8,7 @@
 }
 
 <h2 class="page-title">
-   <span class="profile-user-name">@ViewBag.Title</span>
+    <span class="profile-user-name">@ViewBag.Title</span>
     @if (Model.IsUserOnline)
     {
         <span class="profile-online">Online</span>
@@ -237,16 +237,19 @@ else
 
 @section JavaScript {
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/Scripts/tinymce/langs/bg_BG.js")
 }
 
 @section CSS {
-    @Styles.Render("~/Scripts/tinymce/skins/lightgray/skin.min.css")
+    @Styles.Render("~/Content/datepicker")
+    @Styles.Render("~/Content/theme")
 }
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/jqueryajax")
     @Scripts.Render("~/bundles/jquery-ui")
+    @Scripts.Render("~/Scripts/tinymce/tinymce.js")
 
     <script>
 
