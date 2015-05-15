@@ -16,7 +16,6 @@ using Crossroads.Web.Infrastructure.Services;
 using System.Drawing;
 using System.Drawing.Imaging;
 using Crossroads.Web.Infrastructure.Populators;
-using System.Globalization;
 
 namespace Crossroads.Web.Controllers
 {
@@ -122,12 +121,8 @@ namespace Crossroads.Web.Controllers
                 dbProfile.TownId = profile.TownId;
                 dbProfile.Bands = profile.Bands;
                 dbProfile.IsMale = profile.IsMale;
+                dbProfile.BirthDate = profile.BirthDate;
                 dbProfile.About = profile.About;
-
-                string dateToString = String.Format("{0:d}", profile.BirthDate.Value.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture));
-                DateTime dateFormatted = DateTime.ParseExact(dateToString, "MM/dd/yyyy", CultureInfo.InvariantCulture);
-
-                dbProfile.BirthDate = dateFormatted;
 
                 dbProfile.Interests.Clear();
 
