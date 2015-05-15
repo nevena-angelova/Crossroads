@@ -383,6 +383,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\tinymce\langs\bg_BG.js" />
     <Content Include="Scripts\tinymce\license.txt" />
     <Content Include="Scripts\tinymce\plugins\advlist\plugin.js" />
     <Content Include="Scripts\tinymce\plugins\advlist\plugin.min.js" />
@@ -594,6 +595,12 @@
     <Content Include="Views\Forum\Comments\_AddCommentPartial.cshtml" />
     <Content Include="Views\Forum\Comments\_DisplayCommentPartial.cshtml" />
     <Content Include="Views\Forum\Comments\_EditCommentPartial.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\TinyMCE.cshtml" />
+    <Content Include="Views\Profile\Comments\_EditCommentPartial.cshtml" />
+    <Content Include="Views\Forum\TopUsers.cshtml" />
+    <Content Include="Views\Forum\Topics\DisplayFoundTopics.cshtml" />
+    <Content Include="Views\Forum\Topics\TopTopics.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-small.woff" />
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-small.ttf" />
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-small.json" />
@@ -604,18 +611,14 @@
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce.eot" />
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\readme.md" />
     <Content Include="Scripts\tinymce\langs\readme.md" />
-    <Content Include="Views\Shared\EditorTemplates\TinyMCE.cshtml" />
-    <Content Include="Views\Profile\Comments\_EditCommentPartial.cshtml" />
-    <Content Include="Views\Forum\TopUsers.cshtml" />
-    <Content Include="Views\Forum\Topics\DisplayFoundTopics.cshtml" />
-    <Content Include="Views\Forum\Topics\TopTopics.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Avatars\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Crossroads.Common\Crossroads.Common.csproj">
