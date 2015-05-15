@@ -129,7 +129,7 @@ else
         </div>
         <div class="profile-info-group">
             <strong>Регистриран на:</strong>
-            @Model.DateCreated
+            @Model.DateCreated.ToShortDateString()
         </div>
         <div class="profile-info-group">
             <strong>Форум точки:</strong> @Model.ForumPoints
@@ -237,6 +237,10 @@ else
 
 @section JavaScript {
     @Scripts.Render("~/bundles/jquery")
+}
+
+@section CSS {
+    @Styles.Render("~/Scripts/tinymce/skins/lightgray/skin.min.css")
 }
 
 @section Scripts {
