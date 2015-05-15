@@ -50,7 +50,7 @@
                                 <a href="/Profile/DisplayProfile/?userName=@category.CategoryLastAnswerAuthor" target="_blank">
                                     @if (@category.CategoryLastAnswerAuthorImage != null)
                                     {
-                                        <img src="@Url.Action(" getimage", "Profile" , new { image=category.CategoryLastAnswerAuthorImage, limitWidth= 50 })" alt="Аватар" />
+                                        <img src="@Url.Action("GetImage", "Profile" , new { image=category.CategoryLastAnswerAuthorImage, limitWidth= 50 })" alt="Аватар" />
                                     }
                                     else
                                     {
