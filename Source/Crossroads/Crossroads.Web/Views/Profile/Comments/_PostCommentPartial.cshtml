@@ -13,14 +13,14 @@
     @Html.ValidationSummary()
     @Html.HiddenFor(m => m.ProfileId)
     @Html.EditorFor(m => m.Content)
-<div class="buttons">
-    <input class="default-btn" type="submit" value="Изпрати" />
-    <a class="refuse-btn" onclick="formHide('profileCommentForm')" href="javascript:void(0)">Откажи</a>
-</div>
+    <div class="buttons">
+        <input class="default-btn" type="submit" value="Изпрати" />
+        <a class="refuse-btn" onclick="formHide('profileCommentForm')" href="javascript:void(0)">Откажи</a>
+    </div>
 }
 
 <script type="text/javascript" language=javascript>
-    //ajax only validation not working correctly: 
+    //ajax only validation not working correctly:
     //tinymce hides the default textarea, so the jquery validator needs to be set to validate hidden fields.
     $.validator.setDefaults({
         ignore: ""
