@@ -92,7 +92,7 @@ a.ui-multiselect-close .ui-icon-circle-close { position: absolute; top: 50%; rig
 #header { position: relative; }
 #navigation { text-transform: uppercase; font-family: Corbel, Calibri, Arial, sans-serif; }
 #navigation ul { overflow: auto; }
-#navigation ul li a { display: block; color: #3c3c3c; }
+#navigation ul li a { display: block; color: #737373; }
 
 #logoutFormMobile, .login-btn-mobile { display: none; }
 
@@ -270,7 +270,7 @@ h2.page-title { font-size: 20px; line-height: 32px; font-weight: normal; margin:
 .search form + form { margin-left: 8px; }
 .search form input { vertical-align: middle; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 .search form input[type="text"] { height: 34px; padding: 0 5px; background: none; border: 1px solid #202020; color: #fff; font-size: 15px; border-radius: 2px; }
-.search form input[type="submit"] { height: 34px; margin-left: 4px; padding: 0 10px; background: #090909; color: #3a3a3a; font-size: 11px; text-transform: uppercase; border: none; border-radius: 2px; }
+.search form input[type="submit"] { height: 34px; margin-left: 4px; padding: 0 10px; background: #0b0b0b; color: #3a3a3a; font-size: 11px; text-transform: uppercase; border: none; border-radius: 2px; }
 
 /* home page */
 
@@ -296,7 +296,7 @@ h2.page-title { font-size: 20px; line-height: 32px; font-weight: normal; margin:
     .profiles-page .search form input[type="submit"] { font-size: 9px; }
 }
 
-.advanced-search-btn { font-size: 14px; text-decoration: underline; color: #565656; }
+.advanced-search-btn { font-size: 14px; text-decoration: underline; color: #636363; }
 
 .profiles-page .form { margin-top: 10px; }
 
@@ -329,8 +329,8 @@ h2.page-title { font-size: 20px; line-height: 32px; font-weight: normal; margin:
 
 .profiles-page #profiles { overflow: auto; margin-top: 10px; }
 .profiles-page .profile-wrap { display: inline-block; font-size: 0; width: 132px; margin: 5px; }
-.profiles-page .profile { font-size: 13px; padding: 10px 0; text-align: center; background-color: #0b0b0b; }
-.profiles-page .profile:hover { background-color: #0f0f0f; }
+.profiles-page .profile { font-size: 13px; padding: 10px 0; text-align: center; background-color: #0d0d0d; }
+.profiles-page .profile:hover { background-color: #111111; }
 .profiles-page .profile .avatar-wrap { display: table; width: 100px; font-size: 0; margin: 0 auto; }
 .profiles-page .profile .avatar { display: table-cell; vertical-align: middle; text-align: center; height: 100px; width: 100px; background: #000; }
 .profiles-page .profile img { max-height: 100px; }
