@@ -59,12 +59,12 @@
                 new { controller = "Profile", userName = Model.Topic.AuthorUserName },
                 new { target = "_blank" })
             (@Model.Topic.AuthorPoints точки)
-            на <em>@Model.Topic.DateCreated</em>
+            на <em>@Model.Topic.DateCreated.ToString("", System.Globalization.CultureInfo.InvariantCulture)</em>
 
             @if (Model.Topic.DateEdited != null)
             {
                 <text>промяна:</text>
-                <em>@Model.Topic.DateEdited</em>
+                <em>@Model.Topic.DateEdited.Value.ToString("", System.Globalization.CultureInfo.InvariantCulture)</em>
             }
         </div>
         <div class="item-content">

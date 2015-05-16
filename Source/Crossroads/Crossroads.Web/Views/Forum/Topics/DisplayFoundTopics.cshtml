@@ -50,7 +50,7 @@ else
                             new { controller = "Profile", userName = topic.LastAnswerAuthorUserName },
                             new { @class = "author-link", target = "_blank" })
                             (@topic.LastAnswerAuthorPionts точки)
-                            на <span>@topic.LastAnswerDateCreated</span>
+                            на <span>@topic.LastAnswerDateCreated.Value.ToString("", System.Globalization.CultureInfo.InvariantCulture)</span>
                         </div>
                     }
                 </div>

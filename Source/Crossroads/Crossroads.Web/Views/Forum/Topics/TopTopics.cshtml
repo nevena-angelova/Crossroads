@@ -35,7 +35,7 @@
                         new { controller = "Profile", userName = topic.AuthorUserName },
                         new { @class = "author-link", target = "_blank" })
                     (@topic.AuthorPoints точки)
-                    на <span>@topic.DateCreated</span>
+                    на <span>@topic.DateCreated.ToString("", System.Globalization.CultureInfo.InvariantCulture)</span>
                 </div>
                 @if (topic.LastAnswerAuthorUserName != null)
                 {
@@ -45,7 +45,7 @@
                             new { controller = "Profile", userName = topic.LastAnswerAuthorUserName },
                             new { @class = "author-link", target = "_blank" })
                         (@topic.LastAnswerAuthorPionts точки)
-                        на <span>@topic.LastAnswerDateCreated</span>
+                        на <span>@topic.LastAnswerDateCreated.Value.ToString("", System.Globalization.CultureInfo.InvariantCulture)</span>
                     </div>
                 }
             </div>
