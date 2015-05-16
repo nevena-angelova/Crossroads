@@ -49,7 +49,7 @@ a.ui-multiselect-close .ui-icon-circle-close { position: absolute; top: 50%; rig
 }
 
 @media only screen and (max-width: 580px) {
-    .ui-multiselect-menu {position: absolute !important; top: 0 !important; left: 0 !important; }
+    .ui-multiselect-menu { position: absolute !important; top: 0 !important; left: 0 !important; }
     .ui-multiselect-checkboxes li { width: 100%; }
     .ui-multiselect-all, .ui-multiselect-none { margin-left: 5px; }
 }
@@ -402,7 +402,7 @@ h2.page-title { font-size: 20px; line-height: 32px; font-weight: normal; margin:
 .profile-info-right h3 { margin-top: 0; }
 .profile-info-right { overflow: auto; }
 
-.display-profile-page .profile-info { margin-top: 15px; overflow: auto; }
+.display-profile-page .profile-info { margin-top: 15px; overflow: auto; clear: both; }
 .display-profile-page .profile-image { margin: 0 15px 10px 0; float: left; text-align: center; }
 
 .profile-info-middle { clear: both; }

@@ -67,7 +67,7 @@
                                         new { controller = "Profile", userName = category.CategoryLastAnswerAuthor },
                                         new { @class = "profile-link", target = "_blank" })
 
-                                <span>@category.CategoryLastAnswerDateCreated</span>
+                                <span>@category.CategoryLastAnswerDateCreated.Value.ToLocalTime()</span>
                             </div>
                         }
                         else
@@ -93,7 +93,7 @@
                                         new { controller = "Profile", userName = category.LastTopicAuthor },
                                         new { @class = "profile-link", target = "_blank" })
 
-                                <span>@category.LastTopicDateCreated</span>
+                                <span>@category.LastTopicDateCreated.Value.ToLocalTime()</span>
                             </div>
                         }
                     }

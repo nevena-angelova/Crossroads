@@ -38,7 +38,7 @@
             <strong>Последно активен:</strong>
             @if (Model.LastActionTime != null)
             {
-                @Model.LastActionTime
+                @Model.LastActionTime.Value.ToLocalTime();
             }
             else
             {
