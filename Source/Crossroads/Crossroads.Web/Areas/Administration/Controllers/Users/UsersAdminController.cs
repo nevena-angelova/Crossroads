@@ -33,7 +33,7 @@ namespace Crossroads.Web.Areas.Administration.Controllers.Users
     {
         private IDropDownListPopulator populator;
 
-        private const int DefaultPageSize = 4;
+        private const int DefaultPageSize = 15;
 
         public UsersAdminController(ICrossroadsData data, IDropDownListPopulator populator)
             : base(data)
