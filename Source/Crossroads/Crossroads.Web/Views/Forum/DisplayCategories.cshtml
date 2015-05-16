@@ -67,7 +67,7 @@
                                         new { controller = "Profile", userName = category.CategoryLastAnswerAuthor },
                                         new { @class = "profile-link", target = "_blank" })
 
-                                <span>@category.CategoryLastAnswerDateCreated.Value.ToString("dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture)</span>
+                                <span>@category.CategoryLastAnswerDateCreated.Value.ToString("", System.Globalization.CultureInfo.InvariantCulture)</span>
                             </div>
                         }
                         else
@@ -93,7 +93,7 @@
                                         new { controller = "Profile", userName = category.LastTopicAuthor },
                                         new { @class = "profile-link", target = "_blank" })
 
-                                <span>@category.LastTopicDateCreated.Value.ToString("dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture)</span>
+                                <span>@category.LastTopicDateCreated.Value.ToString("", System.Globalization.CultureInfo.InvariantCulture)</span>
                             </div>
                         }
                     }
