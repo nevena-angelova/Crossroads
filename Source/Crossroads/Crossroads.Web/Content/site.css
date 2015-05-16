@@ -23,7 +23,7 @@ edit-profile-comment-form { display: none; }
 
 /* jquery multiselect */
 
-.form-group .ui-multiselect { background: #0f0f0f; line-height: 35px; font-size: 15px; border: none; border-radius: 2px; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+.form-group .ui-multiselect { background: #222; line-height: 35px; font-size: 15px; border: none; border-radius: 2px; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 .form-group .ui-multiselect { color: inherit; }
 
 .ui-multiselect-menu { width: auto !important; max-width: 570px; min-width: 320px; overflow: auto; }
@@ -92,7 +92,7 @@ a.ui-multiselect-close .ui-icon-circle-close { position: absolute; top: 50%; rig
 #header { position: relative; }
 #navigation { text-transform: uppercase; font-family: Corbel, Calibri, Arial, sans-serif; }
 #navigation ul { overflow: auto; }
-#navigation ul li a { display: block; color: #737373; }
+#navigation ul li a { display: block; color: #636363; }
 
 #logoutFormMobile, .login-btn-mobile { display: none; }
 
@@ -179,14 +179,14 @@ h2.page-title { font-size: 20px; line-height: 32px; font-weight: normal; margin:
 
 /* form styles */
 
-.form { color: #555; }
+.form { color: #888; }
 .form-group { padding: 5px 0; font-size: 0; }
 .form-group label { display: inline-block; vertical-align: middle; font-size: 15px; }
 
 .form-group input[type="text"],
 .form-group input[type="password"],
 .form-group select,
-.form-group textarea { vertical-align: middle; font-size: 15px; color: #fff; background: none; border: 1px solid #0f0f0f; border-radius: 2px; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+.form-group textarea { vertical-align: middle; font-size: 15px; color: #fff; background: none; border: 1px solid #222; border-radius: 2px; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 
 .form-group input[type="text"],
 .form-group input[type="password"],
@@ -198,7 +198,7 @@ h2.page-title { font-size: 20px; line-height: 32px; font-weight: normal; margin:
 
 .form-group textarea { overflow: auto; min-height: 100px; }
 
-.form-group .form-drop-down { vertical-align: middle; display: inline-block; overflow: hidden; border: 1px solid #0f0f0f; border-radius: 2px; background: url('img/drop-down.png') no-repeat center right; background: url('img/drop-down.svg') no-repeat center right; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+.form-group .form-drop-down { vertical-align: middle; display: inline-block; overflow: hidden; border: 1px solid #222; border-radius: 2px; background: url('img/drop-down.png') no-repeat center right; background: url('img/drop-down.svg') no-repeat center right; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 .form-group .form-drop-down select { height: 33px; width: 110%; border: none; }
 .form-group .form-drop-down select option { background-color: #000; }
 
@@ -206,7 +206,7 @@ h2.page-title { font-size: 20px; line-height: 32px; font-weight: normal; margin:
 .form-radio input + input { margin-left: 5px; }
 
 .default-btn,
-.refuse-btn { display: inline-block; vertical-align: middle; padding: 0 10px; height: 35px; line-height: 35px; color: #fff; font-size: 15px; border: none; border-radius: 2px; }
+.refuse-btn { display: inline-block; vertical-align: middle; padding: 0 12px; height: 35px; line-height: 35px; color: #fff; font-size: 16px; border: none; border-radius: 2px; }
 
 .default-btn { cursor: pointer; background: #666; }
 .refuse-btn { background: #333; margin-left: 3px; }
@@ -265,12 +265,12 @@ h2.page-title { font-size: 20px; line-height: 32px; font-weight: normal; margin:
 
 /* search fields */
 
-.search { margin-bottom: 7px; padding: 10px; background: #151515; }
+.search { margin-bottom: 7px; padding: 10px; background: #131313; }
 .search form { display: inline-block; font-size: 0; }
-.search form + form { margin-left: 8px; }
+.search form + form { margin-left: 5px; }
 .search form input { vertical-align: middle; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
-.search form input[type="text"] { height: 34px; padding: 0 5px; background: none; border: 1px solid #202020; color: #fff; font-size: 15px; border-radius: 2px; }
-.search form input[type="submit"] { height: 34px; margin-left: 4px; padding: 0 10px; background: #0b0b0b; color: #3a3a3a; font-size: 11px; text-transform: uppercase; border: none; border-radius: 2px; }
+.search form input[type="text"] { height: 34px; padding: 0 5px; background: none; border: 1px solid #222; color: #fff; font-size: 15px; border-radius: 2px; }
+.search form input[type="submit"] { height: 34px; margin-left: 3px; padding: 0 10px; background: #0c0c0c; color: #555; font-size: 12px; text-transform: uppercase; border: none; border-radius: 2px; }
 
 /* home page */
 
@@ -296,7 +296,7 @@ h2.page-title { font-size: 20px; line-height: 32px; font-weight: normal; margin:
     .profiles-page .search form input[type="submit"] { font-size: 9px; }
 }
 
-.advanced-search-btn { font-size: 14px; text-decoration: underline; color: #636363; }
+.advanced-search-btn { font-size: 14px; text-decoration: underline; color: #888; }
 
 .profiles-page .form { margin-top: 10px; }
 
@@ -351,13 +351,13 @@ h2.page-title { font-size: 20px; line-height: 32px; font-weight: normal; margin:
 .display-profile-page .profile-offline { display: inline-block; vertical-align: 4px; line-height: 21px; padding: 0 5px; font-size: 12px; border-radius: 2px; }
 .display-profile-page .profile-online { background: #37b202; }
 .display-profile-page .profile-offline { background: #777; }
-.display-profile-page .edit-profile { color: #fff; margin-left: 5px; font-size: 15px; text-decoration: underline; }
+.display-profile-page .edit-profile { color: #fff; margin-left: 5px; font-size: 16px; text-decoration: underline; }
 .display-profile-page .edit-profile:hover { text-decoration: none; }
 
 .display-profile-page .default-btn.send-message { float: right; height: 40px; line-height: 40px; margin-top: 16px; }
 
-.display-profile-page #unreadMessages { float: right; margin-top: 16px; line-height: 40px; }
-.display-profile-page #unreadMessages a { float: right; margin-left: 10px; width: 80px; text-align: center; padding: 0; }
+.display-profile-page #unreadMessages { float: right; margin-top: 16px; line-height: 40px; text-align: right; }
+.display-profile-page #unreadMessages a { display: inline-block; margin-bottom: 3px; margin-left: 8px; width: 80px; background: #737373; text-align: center; padding: 0; }
 
 .display-profile-page #profileMessages { margin-top: -2px; border-radius: 2px; overflow: hidden; position: relative; }
 .display-profile-page .message-heading { padding: 10px; }
@@ -383,7 +383,7 @@ h2.page-title { font-size: 20px; line-height: 32px; font-weight: normal; margin:
 
 @media only screen and (max-width: 780px) {
     .display-profile-page #unreadMessages { float: none; display: block; margin-top: 0; background: #555; line-height: 35px; padding-left: 10px; }
-    .display-profile-page #unreadMessages a { border-radius: 0; }
+    .display-profile-page #unreadMessages a { margin-bottom: 0; border-radius: 0; }
     .display-profile-page #profileMessages { margin-top: 0; border-radius: 0; }
 }
 
@@ -398,7 +398,7 @@ h2.page-title { font-size: 20px; line-height: 32px; font-weight: normal; margin:
     #profileMessageForm .default-input { width: 100%; }
 }
 
-.display-profile-page h3 { overflow: auto; padding: 7px 10px; margin: 10px 0; color: #555; background: #0f0f0f; font-weight: normal; font-size: 18px; border-radius: 2px; }
+.display-profile-page h3 { overflow: auto; padding: 7px 10px; margin: 10px 0; color: #888; background: #151515; font-weight: normal; font-size: 18px; border-radius: 2px; }
 .profile-info-right h3 { margin-top: 0; }
 .profile-info-right { overflow: auto; }
 
@@ -417,15 +417,15 @@ h2.page-title { font-size: 20px; line-height: 32px; font-weight: normal; margin:
 .display-profile-page .add-comment-btn { float: right; font-size: 14px; line-height: 22px; color: #555; text-decoration: underline; }
 .display-profile-page #profileCommentForm { margin-bottom: 10px; }
 
-.display-profile-page .profile-comment { display: table; width: 100%; margin-bottom: 5px; border: 1px solid #0f0f0f; position: relative; }
-.display-profile-page .left-comment-wrap { display: table-cell; width: 120px; padding: 10px 0; text-align: center; border-right: 1px solid #0f0f0f; text-align: center; }
+.display-profile-page .profile-comment { display: table; width: 100%; margin-bottom: 5px; border: 1px solid #151515; position: relative; }
+.display-profile-page .left-comment-wrap { display: table-cell; width: 120px; padding: 10px 0; text-align: center; border-right: 1px solid #151515; text-align: center; }
 .display-profile-page .left-comment-wrap img { vertical-align: middle; }
 .display-profile-page .left-comment-wrap .comment-btns { padding-top: 5px; }
-.display-profile-page .left-comment-wrap .comment-btns a { display: block; margin: 5px 26px 0 26px; line-height: 22px; font-size: 13px; color: #555; background: #0f0f0f; border-radius: 2px; }
+.display-profile-page .left-comment-wrap .comment-btns a { display: block; margin: 5px 26px 0 26px; line-height: 26px; font-size: 14px; color: #888; background: #151515; border-radius: 2px; }
 
 .display-profile-page .comment-info-wrap { display: table-cell; vertical-align: top; padding: 10px; }
 .display-profile-page .comment-author-date { margin-bottom: 10px; }
-.display-profile-page .comment-author-date a { color: #555; }
+.display-profile-page .comment-author-date a { color: #888; }
 .display-profile-page .comment-author-date a:hover { text-decoration: underline; }
 .display-profile-page .comment-author-date em { font-size: 13px; }
 .display-profile-page .comment-content a { color: #555; }
