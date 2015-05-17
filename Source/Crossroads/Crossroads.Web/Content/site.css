@@ -632,8 +632,8 @@ h2.page-title { font-size: 20px; line-height: 32px; font-weight: normal; margin:
 .answer,
 .comment { position: relative; display: table; width: 100%; }
 
-.answer-wrap:nth-child(2n+1) { background: #111; }
-.answer-wrap:nth-child(2n) { background: #0a0a0a; }
+.answer-wrap:nth-child(2n+1) { background: #0a0a0a; }
+.answer-wrap:nth-child(2n) { background: #111; }
 .comment-container { padding-bottom: 10px; }
 
 .item-left { color: #777; }
