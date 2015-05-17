@@ -265,12 +265,12 @@ h2.page-title { font-size: 20px; line-height: 32px; font-weight: normal; margin:
 
 /* search fields */
 
-.search { margin-bottom: 7px; padding: 10px; background: #222; }
+.search { margin-bottom: 7px; padding: 10px; background: #333; }
 .search form { display: inline-block; font-size: 0; }
 .search form + form { margin-left: 5px; }
 .search form input { vertical-align: middle; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
-.search form input[type="text"] { height: 34px; padding: 0 5px; background: none; border: 1px solid #333; color: #fff; font-size: 15px; border-radius: 2px; }
-.search form input[type="submit"] { height: 34px; margin-left: 3px; padding: 0 10px; background: #111; color: #666; font-size: 12px; text-transform: uppercase; border: none; border-radius: 2px; }
+.search form input[type="text"] { height: 34px; padding: 0 5px; background: none; border: 1px solid #555; color: #fff; font-size: 15px; border-radius: 2px; }
+.search form input[type="submit"] { height: 34px; margin-left: 3px; padding: 0 10px; background: #1e1e1e; color: #777; font-size: 12px; text-transform: uppercase; border: none; border-radius: 2px; }
 
 /* home page */
 
@@ -329,7 +329,7 @@ h2.page-title { font-size: 20px; line-height: 32px; font-weight: normal; margin:
 
 .profiles-page #profiles { overflow: auto; margin-top: 10px; }
 .profiles-page .profile-wrap { display: inline-block; font-size: 0; width: 120px; margin: 2px; }
-.profiles-page .profile { font-size: 13px; padding: 10px 0; text-align: center; background-color: #0f0f0f; }
+.profiles-page .profile { font-size: 13px; padding: 10px 0; text-align: center; background-color: #111; }
 .profiles-page .profile:hover { background-color: #1a1a1a; }
 .profiles-page .profile .avatar-wrap { display: table; width: 100px; font-size: 0; margin: 0 auto; }
 .profiles-page .profile .avatar { display: table-cell; vertical-align: middle; text-align: center; height: 100px; width: 100px; background: #000; }
@@ -398,7 +398,7 @@ h2.page-title { font-size: 20px; line-height: 32px; font-weight: normal; margin:
     #profileMessageForm .default-input { width: 100%; }
 }
 
-.display-profile-page h3 { overflow: auto; padding: 7px 10px; margin: 10px 0; color: #888; background: #151515; font-weight: normal; font-size: 18px; border-radius: 2px; }
+.display-profile-page h3 { overflow: auto; padding: 7px 10px; margin: 10px 0; color: #888; background: #191919; font-weight: normal; font-size: 18px; border-radius: 2px; }
 .profile-info-right h3 { margin-top: 0; }
 .profile-info-right { overflow: auto; }
 
@@ -414,14 +414,14 @@ h2.page-title { font-size: 20px; line-height: 32px; font-weight: normal; margin:
     .display-profile-page .profile-image { float: none; text-align: center; }
 }
 
-.display-profile-page .add-comment-btn { float: right; font-size: 14px; line-height: 22px; color: #555; text-decoration: underline; }
+.display-profile-page .add-comment-btn { float: right; font-size: 14px; line-height: 22px; color: #888; text-decoration: underline; }
 .display-profile-page #profileCommentForm { margin-bottom: 10px; }
 
 .display-profile-page .profile-comment { display: table; width: 100%; margin-bottom: 5px; border: 1px solid #151515; position: relative; }
 .display-profile-page .left-comment-wrap { display: table-cell; width: 120px; padding: 10px 0; text-align: center; border-right: 1px solid #151515; text-align: center; }
 .display-profile-page .left-comment-wrap img { vertical-align: middle; }
 .display-profile-page .left-comment-wrap .comment-btns { padding-top: 5px; }
-.display-profile-page .left-comment-wrap .comment-btns a { display: block; margin: 5px 26px 0 26px; line-height: 26px; font-size: 14px; color: #888; background: #151515; border-radius: 2px; }
+.display-profile-page .left-comment-wrap .comment-btns a { display: block; margin: 5px 26px 0 26px; line-height: 26px; font-size: 14px; color: #888; background: #191919; border-radius: 2px; }
 
 .display-profile-page .comment-info-wrap { display: table-cell; vertical-align: top; padding: 10px; }
 .display-profile-page .comment-author-date { margin-bottom: 10px; }
@@ -514,9 +514,9 @@ h2.page-title { font-size: 20px; line-height: 32px; font-weight: normal; margin:
     .search form input[type="submit"] { width: 31%; margin-left: 1%; }
 }
 
-.forum-page .forum-table { color: #888; background: #151515; }
+.forum-page .forum-table { color: #888; background: #191919; }
 .forum-page .forum-table .col { padding: 10px; }
-.forum-page .forum-table .row:nth-child(2n+1) { background: #0c0c0c; }
+.forum-page .forum-table .row:nth-child(2n+1) { background: #0e0e0e; }
 .forum-page .forum-table .category a { font-size: 18px; color: #fff; }
 .forum-page .forum-table .category a:hover { text-decoration: underline; }
 .forum-page .forum-table .category span { display: block; margin-top: 5px; font-size: 13px; }
@@ -674,7 +674,7 @@ h2.page-title { font-size: 20px; line-height: 32px; font-weight: normal; margin:
 .delete-btn { display: inline-block; width: 62px; line-height: 26px; background-color: #555; border-right: 10px solid #555; padding: 0 20px 0 10px; color: #ccc; font-size: 14px; border-radius: 2px; }
 
 .topic-details-page .page-title { margin: 15px 10px; font-size: 26px; font-weight: normal; }
-.topic-details-page .answers-label { text-indent: 10px; background: #151515; color: #888; font-size: 14px; line-height: 32px; font-weight: normal; text-transform: uppercase; }
+.topic-details-page .answers-label { text-indent: 10px; background: #191919; color: #888; font-size: 14px; line-height: 32px; font-weight: normal; text-transform: uppercase; }
 .topic-details-page .answer-comments { margin: 0 10px 0 120px; }
 
 .comment { border: 1px solid #222; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
@@ -841,8 +841,8 @@ h4.admin-item-topic-title a:hover { text-decoration: none; }
 .forum-categories-page .sort-by a:hover { text-decoration: none; }
 
 .forum-categories-page .category { padding: 10px; overflow: auto; }
-.forum-categories-page .category:nth-child(2n+1) { background: #151515; }
-.forum-categories-page .category:nth-child(2n) { background: #0c0c0c; }
+.forum-categories-page .category:nth-child(2n+1) { background: #191919; }
+.forum-categories-page .category:nth-child(2n) { background: #0e0e0e; }
 .forum-categories-page .category h4 { color: #fff; font-size: 18px; }
 .forum-categories-page .category .category-description { color: #888; font-size: 13px; margin: 3px 0 13px 0; }
 .forum-categories-page .category span { color: #999; font-size: 13px; }
