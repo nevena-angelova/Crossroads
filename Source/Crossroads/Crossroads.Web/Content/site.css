@@ -92,7 +92,7 @@ a.ui-multiselect-close .ui-icon-circle-close { position: absolute; top: 50%; rig
 #header { position: relative; }
 #navigation { text-transform: uppercase; font-family: Corbel, Calibri, Arial, sans-serif; }
 #navigation ul { overflow: auto; }
-#navigation ul li a { display: block; color: #636363; }
+#navigation ul li a { display: block; color: #777; }
 
 #logoutFormMobile, .login-btn-mobile { display: none; }
 
@@ -108,7 +108,7 @@ h2.page-title { font-size: 20px; line-height: 32px; font-weight: normal; margin:
     #navigation { width: 850px; margin: -60px auto 0 auto; position: relative; line-height: 60px; background: url(img/nav-bg.png) repeat; text-align: center; font-size: 18px; }
     #navigation ul li a { padding: 0 35px; }
     #navigation ul li { float: left; }
-    #navigation ul li a:hover { background: #070707; }
+    #navigation ul li a:hover { background: #111; }
     .logo-wrap h1 { margin-left: 142px; }
     .logo-wrap { width: 850px; margin: 0 auto; padding: 330px 0 59px 0; }
     .logo-wrap img { margin-left: 100px; }
@@ -151,7 +151,7 @@ h2.page-title { font-size: 20px; line-height: 32px; font-weight: normal; margin:
     #logoutFormMobile { display: block; }
     .hello-user { text-transform: none; display: block; text-align: center; line-height: 40px; color: #fff; }
     .logout-btn-mobile,
-    .login-btn-mobile { display: block; margin: 0 8px; background: #0f0f0f; font-size: 14px; text-align: center; color: #636363; font-size: 17px; }
+    .login-btn-mobile { display: block; margin: 0 8px; background: #222; font-size: 14px; text-align: center; color: #636363; font-size: 17px; }
     .login-btn-mobile { margin-top: 10px; }
     .menu-btn-icon { display: block; height: 1px; background: #fff; border-radius: 20%; }
     .menu-btn-icon + .menu-btn-icon { margin-top: 8px; }
@@ -164,7 +164,7 @@ h2.page-title { font-size: 20px; line-height: 32px; font-weight: normal; margin:
     #navigation { display: none; background: #070707; line-height: 50px; width: 250px; position: absolute; top: 0px; right: 0px; bottom: 0; }
     #navigation.opened { display: block; }
     #navigation ul li { padding: 0 8px; }
-    #navigation ul li a { text-indent: 30px; text-indent: 5px; text-align: left; font-size: 14px; border-bottom: 1px solid #0f0f0f; }
+    #navigation ul li a { text-indent: 30px; text-indent: 5px; text-align: left; font-size: 14px; border-bottom: 1px solid #181818; }
     .error-page .text-danger { font-size: 18px; line-height: 0; }
 }
 
@@ -265,12 +265,12 @@ h2.page-title { font-size: 20px; line-height: 32px; font-weight: normal; margin:
 
 /* search fields */
 
-.search { margin-bottom: 7px; padding: 10px; background: #131313; }
+.search { margin-bottom: 7px; padding: 10px; background: #222; }
 .search form { display: inline-block; font-size: 0; }
 .search form + form { margin-left: 5px; }
 .search form input { vertical-align: middle; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
-.search form input[type="text"] { height: 34px; padding: 0 5px; background: none; border: 1px solid #222; color: #fff; font-size: 15px; border-radius: 2px; }
-.search form input[type="submit"] { height: 34px; margin-left: 3px; padding: 0 10px; background: #0c0c0c; color: #555; font-size: 12px; text-transform: uppercase; border: none; border-radius: 2px; }
+.search form input[type="text"] { height: 34px; padding: 0 5px; background: none; border: 1px solid #333; color: #fff; font-size: 15px; border-radius: 2px; }
+.search form input[type="submit"] { height: 34px; margin-left: 3px; padding: 0 10px; background: #111; color: #666; font-size: 12px; text-transform: uppercase; border: none; border-radius: 2px; }
 
 /* home page */
 
@@ -328,16 +328,16 @@ h2.page-title { font-size: 20px; line-height: 32px; font-weight: normal; margin:
 }
 
 .profiles-page #profiles { overflow: auto; margin-top: 10px; }
-.profiles-page .profile-wrap { display: inline-block; font-size: 0; width: 132px; margin: 5px; }
-.profiles-page .profile { font-size: 13px; padding: 10px 0; text-align: center; background-color: #0d0d0d; }
-.profiles-page .profile:hover { background-color: #111111; }
+.profiles-page .profile-wrap { display: inline-block; font-size: 0; width: 120px; margin: 2px; }
+.profiles-page .profile { font-size: 13px; padding: 10px 0; text-align: center; background-color: #0f0f0f; }
+.profiles-page .profile:hover { background-color: #1a1a1a; }
 .profiles-page .profile .avatar-wrap { display: table; width: 100px; font-size: 0; margin: 0 auto; }
 .profiles-page .profile .avatar { display: table-cell; vertical-align: middle; text-align: center; height: 100px; width: 100px; background: #000; }
 .profiles-page .profile img { max-height: 100px; }
 .profiles-page .profile .user { display: block; color: #fff; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; }
 .profiles-page .profile strong { display: block; font-size: 11px; margin-top: 5px; }
 .profiles-page .profile .online { color: #37b202; }
-.profiles-page .profile .offline { color: #3c3c3c; }
+.profiles-page .profile .offline { color: #555; }
 
 @media only screen and (max-width: 1009px) {
     #profiles { text-align: center; }
@@ -514,9 +514,9 @@ h2.page-title { font-size: 20px; line-height: 32px; font-weight: normal; margin:
     .search form input[type="submit"] { width: 31%; margin-left: 1%; }
 }
 
-.forum-page .forum-table { color: #888; background: #111; }
+.forum-page .forum-table { color: #888; background: #151515; }
 .forum-page .forum-table .col { padding: 10px; }
-.forum-page .forum-table .row:nth-child(2n+1) { background: #0a0a0a; }
+.forum-page .forum-table .row:nth-child(2n+1) { background: #0c0c0c; }
 .forum-page .forum-table .category a { font-size: 18px; color: #fff; }
 .forum-page .forum-table .category a:hover { text-decoration: underline; }
 .forum-page .forum-table .category span { display: block; margin-top: 5px; font-size: 13px; }
@@ -841,8 +841,8 @@ h4.admin-item-topic-title a:hover { text-decoration: none; }
 .forum-categories-page .sort-by a:hover { text-decoration: none; }
 
 .forum-categories-page .category { padding: 10px; overflow: auto; }
-.forum-categories-page .category:nth-child(2n+1) { background: #0a0a0a; }
-.forum-categories-page .category:nth-child(2n) { background: #111; }
+.forum-categories-page .category:nth-child(2n+1) { background: #151515; }
+.forum-categories-page .category:nth-child(2n) { background: #0c0c0c; }
 .forum-categories-page .category h4 { color: #fff; font-size: 18px; }
 .forum-categories-page .category .category-description { color: #888; font-size: 13px; margin: 3px 0 13px 0; }
 .forum-categories-page .category span { color: #999; font-size: 13px; }
