@@ -29,7 +29,7 @@
     <div class="form-group">
         @Html.LabelFor(m => m.TownId)
         <div class="form-drop-down">
-            @Html.DropDownListFor(m => m.TownId, (IEnumerable<SelectListItem>)ViewBag.Towns, "Изберете град")
+            @Html.DropDownListFor(m => m.TownId, (IEnumerable<SelectListItem>)ViewBag.Towns, "Изберете град", new { id = "selectTown" })
         </div>
     </div>
     <div class="form-group">
@@ -62,7 +62,7 @@
 }
 
 <script>
-
+    $('#selectTown option:selected').removeAttr('selected');
     $('.multi-select option:selected').removeAttr('selected');
 
     $(function () {
