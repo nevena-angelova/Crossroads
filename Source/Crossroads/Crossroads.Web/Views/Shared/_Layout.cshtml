@@ -48,10 +48,12 @@
             }
         }
         <ul>
-            <li>@Html.ActionLink("Начало", "Index", "Home", new { area = string.Empty }, null)</li>
-            <li>@Html.ActionLink("Профил", "DisplayProfile", "Profile", new { area = string.Empty }, new { userName = User.Identity.Name })</li>
-            <li>@Html.ActionLink("Форум", "DisplayCategories", "Forum", new { area = string.Empty }, null)</li>
-            <li>@Html.ActionLink("За сайта", "About", "Home", new { area = string.Empty }, null)</li>
+            @{string action = ViewContext.RouteData.Values["Action"].ToString();}
+
+            <li @if (action == "Index") { <text> class="active" </text>      }>@Html.ActionLink("Начало", "Index", "Home", new { area = string.Empty }, null)</li>
+            <li @if (action == "DisplayProfile") { <text> class="active" </text>       }>@Html.ActionLink("Профил", "DisplayProfile", "Profile", new { area = string.Empty }, new { userName = User.Identity.Name })</li>
+            <li @if (action == "DisplayCategories") { <text> class="active" </text>        }>@Html.ActionLink("Форум", "DisplayCategories", "Forum", new { area = string.Empty }, null)</li>
+            <li @if (action == "About") { <text> class="active" </text>   }>@Html.ActionLink("За сайта", "About", "Home", new { area = string.Empty }, null)</li>
             @if (User.IsInRole(GlobalConstants.AdminRole))
             {
                 <li>@Html.ActionLink("Администрация", "ListUsers", "UsersAdmin", new { area = "Administration" }, null)</li>

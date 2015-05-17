@@ -93,6 +93,7 @@ a.ui-multiselect-close .ui-icon-circle-close { position: absolute; top: 50%; rig
 #navigation { text-transform: uppercase; font-family: Corbel, Calibri, Arial, sans-serif; }
 #navigation ul { overflow: auto; }
 #navigation ul li a { display: block; color: #777; }
+#navigation ul li.active a { background: #111; }
 
 #logoutFormMobile, .login-btn-mobile { display: none; }
 
