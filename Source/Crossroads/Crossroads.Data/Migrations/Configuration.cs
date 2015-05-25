@@ -43,26 +43,6 @@ namespace Crossroads.Data.Migrations
 
         private void SeedUsers(CrossroadsDbContext context)
         {
-
-            User adminTestUser = new User
-            {
-                Email = "test-admin@gmail.com",
-                UserName = "TestAdmin"
-            };
-
-            this.userManager.Create(adminTestUser, "123456");
-
-            this.userManager.AddToRole(adminTestUser.Id, GlobalConstants.AdminRole);
-
-            UserProfile adminTestProfile = new UserProfile
-            {
-                ProfileUser = adminTestUser,
-                DateCreated = DateTime.Now,
-                ForumPoints = 0
-            };
-
-            context.Profiles.Add(adminTestProfile);
-
             if (context.Users.Any())
             {
                 return;
