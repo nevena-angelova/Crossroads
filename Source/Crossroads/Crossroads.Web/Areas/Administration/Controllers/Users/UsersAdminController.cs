@@ -260,6 +260,11 @@ namespace Crossroads.Web.Areas.Administration.Controllers.Users
                 this.Data.Messages.Delete(messageId);
             }
 
+            if (profile.Image != null)
+            {
+                DropboxHandler.Delete(profile.Image);
+            }
+
             this.Data.Profiles.Delete(profile);
             this.Data.Users.Delete(user);
 

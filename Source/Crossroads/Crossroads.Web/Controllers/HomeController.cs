@@ -21,7 +21,7 @@ namespace Crossroads.Web.Controllers
     public class HomeController : BaseController
     {
         private IDropDownListPopulator populator;
-        private const int DefaultPageSize = 21;
+        private const int DefaultPageSize = 24;
 
         public HomeController(ICrossroadsData data, IDropDownListPopulator populator)
             : base(data)
