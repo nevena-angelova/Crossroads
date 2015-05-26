@@ -4,7 +4,7 @@
         new AjaxOptions
         {
             HttpMethod = "POST",
-            InsertionMode = InsertionMode.Replace,
+            InsertionMode = InsertionMode.ReplaceWith,
             UpdateTargetId = "profileComment" + Model.Id,
             OnBegin = "formHide('editProfileCommentForm" + Model.Id + "')",
             OnSuccess = "editedOnSuccess('profileComment" + Model.Id + "')"
