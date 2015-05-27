@@ -973,7 +973,6 @@ h4.admin-item-topic-title a:hover { text-decoration: none; }
     .users-page.admin .users-table .users-row { position: relative; padding: 10px; background-color: #131313; border-bottom: 1px solid #000; }
     .users-page.admin .users-table .users-col { color: #888; }
     .users-page.admin .users-table .users-col:first-child a { color: #fff; }
-
     .users-page.admin .users-table .user-details-btn { position: absolute; right: 10px; bottom: 10px; }
 }
 
