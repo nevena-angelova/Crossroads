@@ -208,12 +208,10 @@ h2.page-title { font-size: 20px; line-height: 32px; font-weight: normal; margin:
 
 .default-btn,
 .refuse-btn { display: inline-block; vertical-align: middle; padding: 0 12px; height: 35px; line-height: 35px; color: #fff; font-size: 16px; border: none; border-radius: 2px; }
-
 .default-btn { cursor: pointer; background: #666; }
 .refuse-btn { background: #333; margin-left: 3px; }
 
 .default-input { height: 32px; padding: 0 5px; margin-bottom: 5px; border: 1px solid gray; border-radius: 3px; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
-
 .buttons { margin-top: 5px; }
 
 /* about page */

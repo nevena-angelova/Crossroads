@@ -1,25 +1,23 @@
+using Crossroads.Common;
+using Crossroads.Models;
+using Crossroads.Models.Profile;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System;
+using System.Data.Entity;
+using System.Data.Entity.Migrations;
+using System.Linq;
+
 namespace Crossroads.Data.Migrations
 {
-    using Crossroads.Common;
-    using Crossroads.Models;
-    using Crossroads.Models.Profile;
-    using Microsoft.AspNet.Identity;
-    using Microsoft.AspNet.Identity.EntityFramework;
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Migrations;
-    using System.Linq;
-
     public sealed class Configuration : DbMigrationsConfiguration<Crossroads.Data.CrossroadsDbContext>
     {
-
         private UserManager<User> userManager;
 
         public Configuration()
         {
             this.AutomaticMigrationsEnabled = true;
             this.AutomaticMigrationDataLossAllowed = true;
-
         }
 
         protected override void Seed(CrossroadsDbContext context)
