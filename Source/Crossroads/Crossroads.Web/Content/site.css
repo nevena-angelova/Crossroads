@@ -917,13 +917,13 @@ h4.admin-item-topic-title a:hover { text-decoration: none; }
 .sort-items:hover { text-decoration: none; }
 
 .boxes { overflow: auto; }
-.boxes > li { position: relative; float: left; width: 50%; padding: 10px; background: #262626; border-right: 1px solid #161616; border-bottom: 1px solid #161616; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
-.boxes > li .box { font-size: 22px; margin-bottom: 18px; line-height: 35px; }
+.boxes > li { position: relative; float: left; width: 50%; padding: 10px; background: #c6c6c6; box-shadow: 0 0 1px #000; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+.boxes > li .box {color: #000; font-size: 22px; margin-bottom: 18px; line-height: 35px; }
 .boxes .edit-item { position: relative; font-size: 0; padding-right: 161px; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
-.box .default-btn { position: absolute; right: 73px; width: 85px; padding: 0; }
-.box .refuse-btn { position: absolute; right: 0; width: 70px; padding: 0; text-align: center; }
+.box .default-btn { position: absolute; right: 73px; top: 0; width: 85px; padding: 0; }
+.box .refuse-btn { position: absolute; right: 0; top: 0; width: 70px; padding: 0; text-align: center; }
 
-.boxes .default-input { width: 100%; }
+.boxes .default-input { width: 100%; border: none; }
 .boxes .validation-summary-errors { font-size: 12px; position: absolute; z-index: 1; bottom: 23px; left: 10px; right: 0; }
 
 @media only screen and (max-width: 660px) {
