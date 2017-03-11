@@ -1,0 +1,62 @@
+﻿@using Crossroads.Web.ViewModels.ProfilesViewModels
+@model FilterViewModel
+
+@using (Ajax.BeginForm("FilterProfiles", null,
+    new AjaxOptions
+    {
+        UpdateTargetId = "profiles",
+        InsertionMode = InsertionMode.Replace,
+        HttpMethod = "POST",
+        OnSuccess = "Index.filterHide"
+    }, new { @class = "form", id = "searchForm", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        @Html.LabelFor(m => m.FirstName)
+        @Html.TextBoxFor(m => m.FirstName)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.LastName)
+        @Html.TextBoxFor(m => m.LastName)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.IsMale)
+        <div class="form-radio">
+            @Html.RadioButtonFor(m => m.IsMale, true) Мъж
+            @Html.RadioButtonFor(m => m.IsMale, false) Жена
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.TownId)
+        <div class="form-drop-down">
+            @Html.DropDownListFor(m => m.TownId, (IEnumerable<SelectListItem>)ViewBag.Towns, "Изберете град", new { id = "selectTown" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Години: </label>
+        <div class="age">
+            <div class="form-drop-down">
+                @Html.DropDownListFor(m => m.StartAge, (IEnumerable<SelectListItem>)ViewBag.Age, "от")
+            </div>
+            <div class="form-drop-down">
+                @Html.DropDownListFor(m => m.EndAge, (IEnumerable<SelectListItem>)ViewBag.Age, "до")
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.InterestsIds)
+        @Html.ListBoxFor(m => m.InterestsIds, (IEnumerable<SelectListItem>)ViewBag.AllInterests, new { @class = "multi-select" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.MusicGenresIds)
+        @Html.ListBoxFor(m => m.MusicGenresIds, (IEnumerable<SelectListItem>)ViewBag.AllMusicGenres, new { @class = "multi-select" })
+    </div>
+    <div>
+        @Html.LabelFor(m => m.IsOnline)
+        @Html.RadioButtonFor(m => m.IsOnline, true)
+    </div>
+    <div class="form-group buttons">
+        <input class="default-btn" type="submit" value="Изпрати" />
+        <a class="refuse-btn" href="javascript:void(0)" onclick="Index.filterHide()">Скрий</a>
+    </div>
+}

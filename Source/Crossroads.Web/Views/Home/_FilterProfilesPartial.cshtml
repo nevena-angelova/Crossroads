@@ -1,0 +1,44 @@
+﻿@using MvcPaging;
+@using Crossroads.Web.Infrastructure.Constants
+@using Crossroads.Web.ViewModels.ProfilesViewModels
+@model CurrentFilterViewModel
+
+@if (Model.Profiles.TotalItemCount > 0)
+{
+    foreach (var profile in Model.Profiles)
+    {
+        @Html.Partial(Partials.UserInfo,
+            new UserInfoViewModel
+            {
+                UserName = profile.UserName,
+                Image = profile.Image,
+                ImageWidth = 100,
+            })
+    }
+}
+else
+{
+    <div class="no-items-found">Няма намерени потребители.</div>
+}
+
+@if (Model.Profiles.PageCount > 1)
+{
+    <div class="pager">
+        @Html.Pager(Model.Profiles.PageSize, Model.Profiles.PageNumber, Model.Profiles.TotalItemCount,
+            new AjaxOptions
+            {
+                UpdateTargetId = "profiles",
+                HttpMethod = "POST"
+            }).Options(o => o
+                .Action("FilterProfiles")
+                .AddRouteValueFor(m => m.InterestsIds)
+                .AddRouteValueFor(m => m.MusicGenresIds)
+                .AddRouteValue("FirstName", Model.FirstName)
+                .AddRouteValue("LastName", Model.LastName)
+                .AddRouteValue("TownId", Model.TownId)
+                .AddRouteValue("IsMale", Model.IsMale)
+                .AddRouteValue("StartAge", Model.StartAge)
+                .AddRouteValue("EndAge", Model.EndAge)
+                .AddRouteValue("IsOnline", Model.IsOnline))
+    </div>
+}

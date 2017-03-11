@@ -1,0 +1,244 @@
+﻿@using Crossroads.Web.ViewModels.ProfileViewModels
+@using Crossroads.Web.Infrastructure.Constants
+@model DisplayProfileViewModel
+@{
+    ViewBag.Title = "Профил на " + Model.UserName;
+}
+
+<h2 class="page-title">
+    <span class="profile-user-name">@ViewBag.Title</span>
+    @{bool isCurrentUser = Model.UserName == User.Identity.Name;
+        if (isCurrentUser)
+        {
+            <span class="profile-online">Online</span>
+            @Html.ActionLink("Редактирай", "EditProfile", new { userName = Model.UserName }, new { @class = "edit-profile" })
+        }
+        else
+        {
+            <span class="profile-offline">Offline</span>
+        }
+    }
+</h2>
+
+@if (isCurrentUser)
+{
+    <span id="unreadMessages">
+        <span id="hasMessages" @if (@Model.UnreadMessages > 0) { <text> class="true" </text>                       }>
+            Непрочетени съобщения:
+            <strong>@Model.UnreadMessages</strong>
+        </span>
+        @Ajax.ActionLink("Покажи", "DisplayMessages", "ProfileMessages", new { id = Model.Id },
+            new AjaxOptions
+            {
+                UpdateTargetId = "profileMessages",
+                HttpMethod = "GET",
+                InsertionMode = InsertionMode.Replace,
+                OnBegin = "return DisplayProfile.profileMessagesHide($(this))",
+                OnSuccess = "DisplayProfile.profileMessagesShow($(this))"
+            }, new { @class = "default-btn" })
+    </span>
+    <div id="profileMessages"></div>
+}
+else
+{
+    @Ajax.ActionLink("Изпрати съобщение", "PostMessage", "ProfileMessages", new { profileId = Model.Id },
+        new AjaxOptions
+        {
+            HttpMethod = "GET",
+            UpdateTargetId = "profileMessageForm",
+            InsertionMode = InsertionMode.Replace,
+            OnSuccess = "DisplayProfile.formShow('profileMessageForm')"
+        }, new { @class = "default-btn send-message" })
+
+    <div id="msgSuccsess"></div>
+    <div id="profileMessageForm" class="mce-form"></div>
+}
+
+<div class="profile-info">
+    @if (Model.Image != null)
+            {
+        <div class="profile-image">
+            <img src="@Url.Action("GetImage", "Profile", new { image = Model.Image })" alt="Аватар" />
+        </div>
+    }
+    <div class="profile-info-right">
+        <h3>Обща информация</h3>
+        @if (Model.FirstName != null)
+        {
+            <div class="profile-info-group">
+                <strong>Име: </strong>@Model.FirstName
+            </div>
+        }
+
+        @if (Model.LastName != null)
+        {
+            <div class="profile-info-group">
+                <strong>Фамилия: </strong>@Model.LastName
+            </div>
+        }
+        <div class="profile-info-group">
+            <strong>Email:</strong>
+            @Model.Email
+        </div>
+
+        @if (Model.IsMale != null)
+        {
+            <div class="profile-info-group">
+                <strong>Пол: </strong>
+                @if (Model.IsMale == true)
+                {
+                    @("мъж")
+                }
+                else
+                {
+                    @("жена")
+                }
+            </div>
+        }
+
+        @if (Model.Town != null)
+        {
+            <div class="profile-info-group">
+                <strong>Град: </strong>@Model.Town
+            </div>
+        }
+
+        @if (Model.BirthDate != null)
+        {
+            <div class="profile-info-group">
+                <strong>Години: </strong>@Html.Action("GetAge", new { birthday = Model.BirthDate })
+            </div>
+        }
+
+        <div class="profile-info-group">
+            <strong>Регистриран на:</strong>
+            @Model.DateCreated
+        </div>
+        <div class="profile-info-group">
+            <strong>Форум точки:</strong> @Model.ForumPoints
+        </div>
+
+        @if (Model.Skype != null)
+        {
+            <div class="profile-info-group">
+                <strong>Skype потребител: </strong>@Model.Skype
+            </div>
+        }
+
+        @if (Model.Facebook != null)
+        {
+            <div class="profile-info-group">
+                <strong>Facebook профил: </strong>@Model.Facebook
+            </div>
+        }
+    </div>
+    <div class="profile-info-middle">
+        <h3>Допълнителна информация</h3>
+        <div class="profile-info-group">
+            <strong>Любими групи:</strong>
+            @if (Model.Bands != null)
+            {
+                @Model.Bands
+            }
+            else
+            {
+                <em>Няма информация</em>
+            }
+        </div>
+        <div class="profile-info-group">
+            <strong>Стилове музика:</strong>
+            @{
+                int genresCount = Model.MusicGenres.Count;
+                if (genresCount > 0)
+                {
+                    for (int i = 0; i < genresCount; i++)
+                    {
+                        @Model.MusicGenres.ElementAt(i).Name
+                        if (i < genresCount - 1)
+                        {
+                            @(", ")
+                        }
+                    }
+                }
+                else
+                {
+                    <em>Няма информация</em>
+                }
+            }
+        </div>
+        <div class="profile-info-group">
+            <strong>Интереси:</strong>
+            @{
+                int interestsCount = Model.Interests.Count;
+                if (interestsCount > 0)
+                {
+                    for (int i = 0; i < interestsCount; i++)
+                    {
+                        @Model.Interests.ElementAt(i).Name
+                        if (i < interestsCount - 1)
+                        {
+                            @(", ")
+                        }
+                    }
+                }
+                else
+                {
+                    <em>Няма информация</em>
+                }
+            }
+        </div>
+    </div>
+    <div>
+        <h3>За мен</h3>
+        <div class="profile-info-group">
+            @if (!String.IsNullOrWhiteSpace(Model.About))
+            {
+                @Model.About
+            }
+            else
+            {
+                <em>Няма информация</em>
+            }
+        </div>
+    </div>
+</div>
+
+<h3>
+    Коментари
+    @if (!isCurrentUser)
+            {
+        @Ajax.ActionLink("Напиши коментар", "PostComment", "ProfileComments", new { profileId = Model.Id },
+        new AjaxOptions
+        {
+            HttpMethod = "GET",
+            UpdateTargetId = "profileCommentForm",
+            InsertionMode = InsertionMode.Replace,
+            OnSuccess = "DisplayProfile.formShow('profileCommentForm')"
+        }, new { @class = "add-comment-btn" })
+    }
+</h3>
+<div id="profileCommentForm" class="mce-form"></div>
+<div id="profileComments">
+    @if (Model.ProfileComments.Count > 0)
+            {
+                foreach (var comment in Model.ProfileComments.Reverse())
+                {
+            @Html.Partial(Partials.ProfileComment, comment)
+        }
+    }
+    else
+    {
+        <em id="noComments">Няма коментари.</em>
+    }
+</div>
+
+@section JavaScript {
+    @Scripts.Render("~/bundles/jquery")
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryajax")
+    @Scripts.Render("~/bundles/jquery-ui")
+    @Scripts.Render("~/Scripts/display-profile.js")
+}

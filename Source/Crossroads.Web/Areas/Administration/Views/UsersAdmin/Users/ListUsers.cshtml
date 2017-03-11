@@ -1,0 +1,57 @@
+﻿@using Crossroads.Web.Areas.Administration.ViewModels.UserViewModels.Users
+@using MvcPaging
+@model IPagedList<UserViewModel>
+@{
+    ViewBag.Title = "Потребители";
+}
+
+<h2 class="page-title">@ViewBag.Title</h2>
+
+<div class="admin-filter">
+    @using (Html.BeginForm("ListUsers", "UsersAdmin", FormMethod.Get))
+    {
+        <input type="text" name="searchString" />
+        <input type="submit" value="Търси" />
+    }
+</div>
+
+<div class="users-table">
+    <div class="users-haed-row">
+        <div class="user-name-th">
+            @Html.ActionLink("Име", "ListUsers",
+                new { orderBy = "UserName", searchString = ViewBag.SearchString })
+        </div>
+        <div class="email-th">Email</div>
+        <div class="last-activity-th">
+            @Html.ActionLink("Последна активност", "ListUsers",
+                new { orderBy = "LastActionTime descending", searchString = ViewBag.SearchString })
+        </div>
+        <div class="user-details-th"></div>
+    </div>
+    @foreach (var user in Model)
+    {
+        <div class="users-row">
+            <div class="users-col">@Html.ActionLink(user.UserName, "DisplayUser", new { userName = user.UserName }, new { @class = "user-name" })</div>
+            <div class="users-col">@user.Email</div>
+            <div class="users-col">@user.LastActionTime</div>
+            <div class="users-col user-details-td">
+                @Html.ActionLink("Детайли", "DisplayUser", new { userName = user.UserName }, new { @class = "user-details-btn" })
+            </div>
+        </div>
+    }
+</div>
+
+@if (Model.PageCount > 1)
+{
+    <div class="pager">
+        @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount).Options(o => o
+        .AddRouteValue("orderBy", ViewBag.OrderBy)
+        .AddRouteValue("searchString", ViewBag.SearchString))
+    </div>
+}
+
+@section JavaScriptToFooter {
+    <script>
+        $('body').addClass('users-page admin');
+    </script>
+}

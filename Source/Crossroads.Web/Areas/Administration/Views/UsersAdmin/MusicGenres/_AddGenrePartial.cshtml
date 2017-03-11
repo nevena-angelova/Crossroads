@@ -1,0 +1,22 @@
+﻿@using Crossroads.Web.Areas.Administration.ViewModels.UserViewModels.MusicGenres
+@model GenreInputViewModel
+
+@using (Ajax.BeginForm("AddGenre",
+        new AjaxOptions
+        {
+            HttpMethod = "POST",
+            InsertionMode = InsertionMode.InsertBefore,
+            UpdateTargetId = "genresList",
+            OnSuccess = "inputClear"
+        }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+    @Html.TextBoxFor(m => m.Name, new { id = "addGenreInput", @class = "default-input" })
+    <input class="default-btn" type="submit" value="Добави" />
+    <a class="refuse-btn" href="javascript:void(0)" onclick="genreFormHide()">Откажи</a>
+}
+
+<script type="text/javascript" language=javascript>
+    $.validator.unobtrusive.parse($('#addGenreForm'));
+</script>

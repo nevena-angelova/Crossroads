@@ -1,0 +1,94 @@
+﻿@using Crossroads.Web.ViewModels.ProfileViewModels
+@using Crossroads.Web.Infrastructure.Constants
+@model EditProfileViewModel
+@{
+    ViewBag.Title = "Профил на " + Model.UserName;
+}
+
+<h2 class="page-title">@ViewBag.Title</h2>
+
+@using (Html.BeginForm("EditProfile", "Profile", FormMethod.Post, new { @class = "form", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+    @Html.HiddenFor(m => m.Id)
+    @Html.HiddenFor(m => m.UserName)
+
+    <div class="form-group image-group">
+        @if (Model.Image != null)
+        {
+            <img src="@Url.Action("GetImage", "Profile", new { image = Model.Image })" alt="Аватар" />
+        }
+        else
+        {
+            <img src="@Url.Content("~/Content/img/no-photo-big.png")" alt="Аватар" />
+        }
+        <div class="choose-image">
+            <div class="file-input-mask">Изберете снимка</div>
+            @Html.TextBoxFor(m => m.ProfileImage, new { type = "file", @class = "file-input" })
+            <div id="inputFileName"></div>
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.FirstName)
+        @Html.TextBoxFor(m => m.FirstName)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.LastName)
+        @Html.TextBoxFor(m => m.LastName)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.IsMale)
+        <div class="form-radio">
+            @Html.RadioButtonFor(m => m.IsMale, true) Мъж
+            @Html.RadioButtonFor(m => m.IsMale, false) Жена
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.TownId)
+        <div class="form-drop-down">
+            @Html.DropDownListFor(m => m.TownId, (IEnumerable<SelectListItem>)ViewBag.Towns, "Изберете град")
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Bands)
+        @Html.TextBoxFor(m => m.Bands)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.BirthDate)
+        @Html.EditorFor(m => m.BirthDate)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.InterestsIds)
+        @Html.ListBoxFor(m => m.InterestsIds, (List<SelectListItem>)ViewBag.AllInterests, new { @class = "multi-select" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.MusicGenresIds)
+        @Html.ListBoxFor(m => m.MusicGenresIds, (IEnumerable<SelectListItem>)ViewBag.AllMusicGenres, new { @class = "multi-select" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.About)
+        <div class="form-textarea">
+            @Html.TextAreaFor(m => m.About)
+        </div>
+    </div>
+    <div class="form-group buttons">
+        <input class="default-btn" type="submit" value="Промяна" />
+        @Html.ActionLink("Отмяна", "DisplayProfile", new { userName = Model.UserName }, new { @class = "refuse-btn" })
+    </div>
+}
+
+@section JavaScript {
+    @Scripts.Render("~/bundles/jquery-ui")
+    @Scripts.Render("~/Scripts/lib/jquery.multiselect.js")
+}
+
+@section CSS {
+    @Styles.Render("~/Content/datepicker")
+    @Styles.Render("~/Content/theme")
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/edit-profile.js")
+}

@@ -1,0 +1,27 @@
+﻿@using Crossroads.Web.ViewModels.ForumViewModels.Comments
+@model AddCommentViewModel
+@using (Ajax.BeginForm("AddComment", "Comments",
+        new AjaxOptions
+        {
+            HttpMethod = "POST",
+            InsertionMode = InsertionMode.InsertBefore,
+            UpdateTargetId = "allComments" + Model.AnswerId,
+            OnSuccess = "DisplayTopic.formHide('#newCommentForm" + Model.AnswerId + "')"
+        }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+    @Html.HiddenFor(m => m.AnswerId)
+    @Html.EditorFor(m => m.Content)
+    <div class="buttons">
+        <input class="default-btn" type="submit" value="Добави" />
+        <a class="refuse-btn" href="javascript:void(0)" onclick="DisplayTopic.formHide('#newCommentForm@(Model.AnswerId)')">Откажи</a>
+    </div>
+}
+
+<script type="text/javascript" language=javascript>
+    $.validator.setDefaults({
+        ignore: ""
+    });
+    $.validator.unobtrusive.parse($('#newCommentForm@(Model.AnswerId)'));
+</script>

@@ -1,0 +1,22 @@
+﻿@using Crossroads.Web.Areas.Administration.ViewModels.UserViewModels.Towns
+@model TownInputViewModel
+
+@using (Ajax.BeginForm("AddTown",
+        new AjaxOptions
+        {
+            HttpMethod = "POST",
+            InsertionMode = InsertionMode.InsertBefore,
+            UpdateTargetId = "townsList",
+            OnSuccess = "inputClear"
+        }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+    @Html.TextBoxFor(m => m.Name, new { id = "addTownInput", @class = "default-input" })
+    <input class="default-btn" type="submit" value="Добави" />
+    <a class="refuse-btn" href="javascript:void(0)" onclick="townFormHide()">Откажи</a>
+}
+
+<script type="text/javascript" language=javascript>
+    $.validator.unobtrusive.parse($('#addTownForm'));
+</script>

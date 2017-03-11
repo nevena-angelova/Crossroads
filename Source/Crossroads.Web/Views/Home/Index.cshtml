@@ -1,0 +1,71 @@
+﻿@using Crossroads.Web.ViewModels.ProfilesViewModels
+@model IPagedList<ProfileViewModel>
+@{
+    ViewBag.Title = "Профили";
+}
+
+<h2 class="page-title">Търси профил по:</h2>
+<div class="search">
+    @using (Ajax.BeginForm("Search", new { searchProperty = "UserName" },
+                            new AjaxOptions
+                            {
+                                UpdateTargetId = "profiles",
+                                InsertionMode = InsertionMode.Replace,
+                                HttpMethod = "GET"
+                            }, new { id = "searchForm" }))
+    {
+        <input class="filter-input" type="text" name="searchString" data-form-id="searchForm" placeholder="Потребителско име" title="Търсене по потребителско име" />
+    }
+
+    @using (Ajax.BeginForm("Search", new { searchProperty = "About" },
+                            new AjaxOptions
+                            {
+                                UpdateTargetId = "profiles",
+                                InsertionMode = InsertionMode.Replace,
+                                HttpMethod = "GET"
+                            }, new { id = "aboutSearchForm" }))
+    {
+        <input class="filter-input" type="text" name="searchString" data-form-id="aboutSearchForm" placeholder="Дума в описанието" title="Търсене по дума, съдържаща се в 'За мен' описанието на профила" />
+    }
+
+    @using (Ajax.BeginForm("Search", new { searchProperty = "Band" },
+                            new AjaxOptions
+                            {
+                                UpdateTargetId = "profiles",
+                                InsertionMode = InsertionMode.Replace,
+                                HttpMethod = "GET"
+                            }, new { id = "bandSearchForm" }))
+    {
+        <input class="filter-input" type="text" name="searchString" data-form-id="bandSearchForm" placeholder="Любимa групa" title="Търсене в изброените любими групи в профила" />
+    }
+</div>
+
+@Ajax.ActionLink("Разширено търсене", "FilterProfiles", null,
+new AjaxOptions
+{
+    HttpMethod = "GET",
+    InsertionMode = InsertionMode.Replace,
+    UpdateTargetId = "profilesSearchFilter",
+    OnSuccess = "Index.filterShow"
+}, new { @class = "advanced-search-btn" })
+
+<div id="profilesSearchFilter"></div>
+
+<div id="profiles">
+    @Html.Action("Display")
+</div>
+
+@section JavaScript {
+    @Scripts.Render("~/bundles/jquery-ui")
+    @Scripts.Render("~/bundles/jquery.multiselect")
+    @Scripts.Render(" ~/Scripts/lib/jquery.multiselect.js")
+}
+
+@section CSS {
+    @Styles.Render("~/Content/theme")
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryajax")
+    @Scripts.Render("~/Scripts/index.js")
+}

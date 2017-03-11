@@ -1,0 +1,33 @@
+﻿@using Crossroads.Web.ViewModels.ProfileViewModels.Messages
+@model AddMessageViewModel
+
+@{string answerMsgIdString = Model.AnswerMsgId != null ? Model.AnswerMsgId.Value.ToString() : String.Empty; }
+
+@using (Ajax.BeginForm("PostMessage", "ProfileMessages",
+                                                        new AjaxOptions
+     {
+         HttpMethod = "POST",
+         InsertionMode = InsertionMode.InsertBefore,
+         UpdateTargetId = "msgSuccsess" + answerMsgIdString,
+         OnBegin = "DisplayProfile.formHide('profileMessageForm" + answerMsgIdString + "')",
+         OnSuccess = "DisplayProfile.messageOnSuccess('msgSuccsess" + answerMsgIdString + "')"
+     }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+    @Html.HiddenFor(m => m.ProfileId)
+    @Html.TextBoxFor(m => m.Title, new { @class = "default-input", placeholder = "Заглавие" })
+    @Html.EditorFor(m => m.Content)
+
+    <div class="buttons">
+        <input class="default-btn" type="submit" value="Изпрати" />
+        <a class="refuse-btn" onclick="DisplayProfile.formHide('profileMessageForm@(answerMsgIdString)')" href="javascript:void(0)">Откажи</a>
+    </div>
+}
+
+<script type="text/javascript" language=javascript>
+    $.validator.setDefaults({
+        ignore: ""
+    });
+    $.validator.unobtrusive.parse($('#profileMessageForm@(answerMsgIdString)'));
+</script>
