@@ -1,7 +1,7 @@
 Crossroads
 ==========
 
-Site for rock and metal culture
+C#, Asp.Net MVC5 - Site for rock and metal culture
 
 <h4>Technologies</h4>
 Microsoft SQL Server 2014, Asp.Net MVC5, Entity Framework Code First, Razor, Ajax, JQuery
