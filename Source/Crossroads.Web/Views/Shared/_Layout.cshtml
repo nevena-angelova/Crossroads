@@ -18,9 +18,9 @@
     <meta name="author" content="Nevena Angelova" />
     <title>@ViewBag.Title - Crossroads</title>
     @Styles.Render("~/Content/css")
+    @RenderSection("CSS", required: false)
     @Scripts.Render("~/bundles/jquery")
     @RenderSection("JavaScript", required: false)
-    @RenderSection("CSS", required: false)
 </head>
 <body>
 

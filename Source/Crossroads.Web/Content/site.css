@@ -301,6 +301,7 @@ h2.page-title { font-size: 22px; line-height: 32px; font-weight: normal; margin:
 .search form + form { margin-left: 2px; }
 .search form input { vertical-align: middle; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 .search form input[type="text"] { height: 40px; padding: 0 5px; background: none; border: 2px solid #555; color: #fff; font-size: 15px; }
+.search form input[type="submit"] { height: 40px; margin-left: 2px; padding: 0 10px; background: #444; color: #aaa; text-transform: uppercase; font-size: 12px; border: none; }
 
 /* home page */
 

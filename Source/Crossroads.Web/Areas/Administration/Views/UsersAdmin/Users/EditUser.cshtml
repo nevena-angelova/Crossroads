@@ -89,14 +89,14 @@
     </div>
 }
 
-@section JavaScriptToHead  {
-    @Scripts.Render("~/bundles/jquery-ui")
-    @Scripts.Render(" ~/Scripts/lib/jquery.multiselect.js")
-}
-
 @section CssToHead  {
     @Styles.Render("~/Content/datepicker")
     @Styles.Render("~/Content/theme")
+}
+
+@section JavaScriptToHead  {
+    @Scripts.Render("~/bundles/jquery-ui")
+    @Scripts.Render(" ~/Scripts/lib/jquery.multiselect.js")
 }
 
 @section JavaScriptToFooter {

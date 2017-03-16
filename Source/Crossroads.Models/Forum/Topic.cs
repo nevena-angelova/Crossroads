@@ -30,7 +30,7 @@ namespace Crossroads.Models.Forum
         public string Title { get; set; }
 
         [Required]
-        [StringLength(6000, MinimumLength = 10)]
+        [StringLength(36000, MinimumLength = 10)]
         public string Content { get; set; }
 
         [Required]

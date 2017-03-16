@@ -55,14 +55,14 @@ new AjaxOptions
     @Html.Action("Display")
 </div>
 
+@section CSS {
+    @Styles.Render("~/Content/theme")
+}
+
 @section JavaScript {
     @Scripts.Render("~/bundles/jquery-ui")
     @Scripts.Render("~/bundles/jquery.multiselect")
     @Scripts.Render(" ~/Scripts/lib/jquery.multiselect.js")
-}
-
-@section CSS {
-    @Styles.Render("~/Content/theme")
 }
 
 @section Scripts {

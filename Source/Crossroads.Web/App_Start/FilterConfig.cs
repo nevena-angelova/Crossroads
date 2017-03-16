@@ -1,6 +1,4 @@
-﻿using Crossroads.Web.Infrastructure.ActionFilters;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace Crossroads.Web
 {
