@@ -1,0 +1,20 @@
+﻿@model Crossroads.Web.ViewModels.ProfileViewModels.Messages.MessageContentViewModel
+<div class="msg-container">
+    <div class="msg-content">
+        @Html.Raw(Model.Content)
+    </div>
+    <div class="msg-info">
+        @if (Model.Image != null)
+        {
+            <img src="@Url.Action("GetImage", "Profile", new { image = Model.Image, limitWidth = 30 })" alt="Аватар" />
+        }
+        else
+        {
+            <img src="@Url.Content("~/Content/img/default.jpg")" alt="Аватар" />
+        }
+
+        @Html.ActionLink(Model.AuthorName, "DisplayUser", new { controller = "Profile", userName = Model.AuthorName })
+
+        <span class="msg-created">@Model.DateCreated</span>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+﻿@using Crossroads.Web.Infrastructure.Constants
+@using Crossroads.Web.ViewModels.UsersViewModels
+@model UserInfoViewModel
+
+<div class="profile-wrap">
+    <div class="profile">
+        <a href="/Profile/DisplayUser/?userName=@Model.UserName" target="_blank">
+            @if (@Model.Image != null)
+            {
+                <span class="avatar-wrap">
+                    <span class="avatar">
+                        <img src="@Url.Action("GetImage", "Profile", new { image = Model.Image, limitWidth = Model.ImageWidth })" alt="Аватар" />
+                    </span>
+                </span>
+            }
+            else
+            {
+                <span class="avatar-wrap">
+                    <span class="avatar">
+                        <img src="@Url.Content("~/Content/img/no-photo.png")" alt="Аватар" />
+                    </span>
+                </span>
+            }
+            @if (Model.IsUserOnline)
+            {
+                <strong class="online">online</strong>
+            }
+            else
+            {
+                <strong class="offline">offline</strong>
+            }
+            <span class="user">@Model.UserName</span>
+        </a>
+    </div>
+</div>

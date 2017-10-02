@@ -1,0 +1,54 @@
+﻿@using Crossroads.Web.ViewModels.ProfileViewModels.Messages
+@model IPagedList<MessageViewModel>
+
+@foreach (var msg in Model)
+{
+    <div id="@msg.Id" class="message">
+        <div class="message-heading @(msg.IsRead ? "" : "msg-not-read")">
+            @Ajax.ActionLink("Изтрий", "DeleteMessage", "ProfileMessages", new { id = msg.Id },
+                        new AjaxOptions
+                        {
+                            UpdateTargetId = msg.Id.ToString(),
+                            HttpMethod = "DELETE",
+                            InsertionMode = InsertionMode.Replace,
+                            Confirm = "Потвърждавате ли изтриването?"
+                        })
+
+            @Ajax.ActionLink("Отговор", "PostMessage", "ProfileMessages", new { profileId = msg.AuthorId, answerMsgId = msg.Id },
+                new AjaxOptions
+                {
+                    HttpMethod = "GET",
+                    UpdateTargetId = "profileMessageForm" + msg.Id,
+                    InsertionMode = InsertionMode.Replace,
+                    OnSuccess = "formShow('profileMessageForm" + msg.Id + "')"
+                })
+
+            @Ajax.ActionLink("Детайли", "ReadMessage", "ProfileMessages", new { id = msg.Id },
+                        new AjaxOptions
+                        {
+                            UpdateTargetId = msg.Id.ToString(),
+                            HttpMethod = "GET",
+                            InsertionMode = InsertionMode.InsertAfter,
+                            OnSuccess = "messageContentShow",
+                            OnBegin = "messageContentHide"
+                        })
+            <div class="msg-title">
+                <strong>@msg.AuthorName: </strong>
+                <span>@msg.Title</span>
+            </div>
+        </div>
+    </div>
+    <div id="msgSuccsess@(msg.Id)" class="msg-answer-success"></div>
+    <div id="profileMessageForm@(msg.Id)" class="msg-answer-form mce-form"></div>
+}
+
+@if (Model.PageCount > 1)
+{
+    <div class="pager">
+        @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount, new AjaxOptions
+   {
+       UpdateTargetId = "profileMessages",
+       HttpMethod = "POST"
+   }).Options(o => o.Action("DisplayMessages"))
+    </div>
+}

@@ -1,0 +1,28 @@
+﻿@using Crossroads.Web.Areas.Administration.ViewModels.UserViewModels.Roles
+@model RoleInputViewModel
+@using (Ajax.BeginForm("EditRole",
+                    new AjaxOptions
+                    {
+                        HttpMethod = "POST",
+                        InsertionMode = InsertionMode.Replace,
+                        UpdateTargetId = "role" + Model.Id
+                    }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+    <div class="edit-item">
+        @Html.TextBoxFor(m => m.Name, new { @class = "default-input" })
+        <input class="default-btn" type="submit" value="Промени" />
+        @Ajax.ActionLink("Откажи", "EditRole", new { id = Model.Id, refuse = true },
+        new AjaxOptions
+        {
+            HttpMethod = "GET",
+            InsertionMode = InsertionMode.Replace,
+            UpdateTargetId = "role" + Model.Id
+        }, new { @class = "refuse-btn" })
+    </div>
+}
+<script type="text/javascript" language=javascript>
+    $.validator.unobtrusive.parse($('#role' + @(Model.Id)));
+</script>
+

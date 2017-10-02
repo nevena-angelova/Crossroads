@@ -1,0 +1,33 @@
+﻿@using Crossroads.Web.Areas.Administration.ViewModels.UserViewModels.Users
+@model MsgToAllViewModel
+<div id="msgToAllForm">
+    @using (Ajax.BeginForm("AddMessageToAll", "UsersAdmin",
+                            new AjaxOptions
+                            {
+                                HttpMethod = "POST",
+                                InsertionMode = InsertionMode.InsertBefore,
+                                UpdateTargetId = "msgToAll",
+                                OnSuccess = "formHide('#msgToAllForm')"
+                            }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary()
+        @Html.TextBoxFor(m => m.Title, new { @class = "default-input", placeholder = "Заглавие" })
+        @Html.EditorFor(m => m.Content)
+        <div class="buttons">
+            <input class="default-btn" type="submit" value="Изпрати" />
+            <a class="refuse-btn" onclick="formHide('#msgToAllForm')" href="javascript:void(0)">Откажи</a>
+        </div>
+    }
+</div>
+
+<script type="text/javascript" language=javascript>
+    //ajax only validation not working correctly:
+    //tinymce hides the default textarea, so the jquery validator needs to be set to validate hidden fields.
+    $.validator.setDefaults({
+        ignore: ""
+    });
+    // for rebinding the validations
+    $.validator.unobtrusive.parse('#msgToAll');
+</script>
+

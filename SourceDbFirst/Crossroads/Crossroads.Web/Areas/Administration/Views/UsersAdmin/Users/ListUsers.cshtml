@@ -1,0 +1,80 @@
+﻿@using Crossroads.Web.Areas.Administration.ViewModels.UserViewModels.Users
+@using MvcPaging
+@model IPagedList<UserViewModel>
+@{
+    ViewBag.Title = "Потребители";
+}
+<h2 class="page-title">@ViewBag.Title</h2>
+<div class="message-to-all">
+    @Ajax.ActionLink("Прати съобщение до всички", "AddMessageToAll", "UsersAdminController",
+        new AjaxOptions
+        {
+            HttpMethod = "GET",
+            UpdateTargetId = "msgToAll",
+            InsertionMode = InsertionMode.Replace
+        }, new { @class = "default-btn" })
+    <div id="msgToAll" class="msg-to-all"></div>
+    <div id="msgToAll" class="msg-to-all"></div>
+</div>
+<div class="admin-filter">
+    @using (Html.BeginForm("ListUsers", "UsersAdmin", FormMethod.Get))
+    {
+        <input type="text" name="searchString" />
+        <input type="submit" value="Търси" />
+    }
+</div>
+<div class="users-table">
+    <div class="users-haed-row">
+        <div class="user-name-th">
+            @Html.ActionLink("Име", "ListUsers",
+                new { orderBy = "UserName", searchString = ViewBag.SearchString })
+        </div>
+        <div class="email-th">Email</div>
+        <div class="last-activity-th">
+            @Html.ActionLink("Последна активност", "ListUsers",
+                new { orderBy = "LastActionTime descending", searchString = ViewBag.SearchString })
+        </div>
+        <div class="user-roles-th">Права</div>
+        <div class="user-details-th"></div>
+    </div>
+    @foreach (var user in Model)
+    {
+        <div class="users-row">
+            <div class="users-col">@Html.ActionLink(user.UserName, "DisplayUser", new { userName = user.UserName }, new { @class = "user-name" })</div>
+            <div class="users-col">@user.Email</div>
+            <div class="users-col">@user.LastActionTime</div>
+            <div class="users-col">
+                @foreach (var role in user.Roles)
+                {
+                    <p>@role.Name</p>
+                }
+            </div>
+            <div class="users-col user-details-td">
+                @Html.ActionLink("Детайли", "DisplayUser", new { userName = user.UserName }, new { @class = "user-details-btn" })
+            </div>
+        </div>
+    }
+</div>
+@if (Model.PageCount > 1)
+{
+    <div class="pager">
+        @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount).Options(o => o
+        .AddRouteValue("orderBy", ViewBag.OrderBy)
+        .AddRouteValue("searchString", ViewBag.SearchString))
+    </div>
+}
+
+@section JavaScriptToFooter {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryajax")
+    @Scripts.Render("~/bundles/jquery-ui")
+
+    <script>
+        $('body').addClass('users-page admin');
+
+        function formHide(id) {
+            $(id).hide('slow');
+        }
+
+    </script>
+}

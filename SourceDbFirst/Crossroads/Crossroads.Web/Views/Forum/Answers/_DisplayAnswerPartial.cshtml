@@ -1,0 +1,143 @@
+﻿@using Crossroads.Web.ViewModels.ForumViewModels.Answers
+@using Crossroads.Web.Infrastructure.Constants
+@model DisplayAnswerViewModel
+<div id="answer@(Model.Id)" class="answer-wrap">
+    <div class="answer">
+        <div class="item-left">
+            <a href="/Profile/DisplayUser/?userName=@Model.AuthorUserName" target="_blank">
+                @if (@Model.AuthorImage != null)
+                {
+                    <img src="@Url.Action("GetImage", "Profile", new { image = Model.AuthorImage, limitWidth = 100 })" alt="Аватар" />
+                }
+                else
+                {
+                    <img src="@Url.Content("~/Content/img/no-photo.png")" alt="Аватар" />
+                }
+            </a>
+            <div class="votes">
+                <span id="answerVote@(Model.Id)">
+                    @Model.Votes
+                </span>
+                <div>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        @Ajax.ActionLink(" ", "AnswerVote", "Answers", new { answerId = Model.Id, isVotePositive = true },
+                        new AjaxOptions
+                        {
+                            UpdateTargetId = "answerVote" + Model.Id,
+                            HttpMethod = "POST",
+                            InsertionMode = InsertionMode.Replace,
+                        }, new { @class = "vote up" })
+                        @Ajax.ActionLink(" ", "AnswerVote", "Answers", new { answerId = Model.Id, isVotePositive = false },
+                        new AjaxOptions
+                        {
+                            UpdateTargetId = "answerVote" + Model.Id,
+                            HttpMethod = "POST",
+                            InsertionMode = InsertionMode.Replace,
+                        }, new { @class = "vote down" })
+                    }
+                </div>
+            </div>
+            <div class="flags">
+                <span id="answerFlags@(Model.Id)">@Model.Flags</span> флага
+            </div>
+        </div>
+        <div class="item-details">
+            <div class="author-info">
+                От:
+                @Html.ActionLink(Model.AuthorUserName, "DisplayUser",
+                new { controller = "Profile", userName = Model.AuthorUserName },
+                new { target = "_blank" })
+
+                @if (Model.AuthorRoles.Count > 0)
+                {
+                        @("(");
+                    int counter = 0;
+                    foreach (var role in Model.AuthorRoles)
+                    {
+                            @role.Name;
+
+                        if (counter != Model.AuthorRoles.Count - 1)
+                        {
+                                @(", ");
+                        }
+
+                        counter++;
+                    }
+                        @(")");
+                }
+
+                (@Model.AuthorPoints точки)
+                на <em>@Model.DateCreated</em>
+
+                @if (Model.DateEdited != null)
+                {
+                    <text>промяна:</text>
+                    <em>@Model.DateEdited</em>
+                }
+            </div>
+            <div class="item-content">
+                @Html.Raw(Model.Content)
+            </div>
+            <div class="item-btns">
+                @if (Model.AuthorUserName == User.Identity.Name
+      || User.IsInRole(UserRoles.AdminRole)
+      || User.IsInRole(UserRoles.ModeratorRole))
+                {
+                    @Ajax.ActionLink("Промени", "EditAnswer", "Answers", new { answerId = Model.Id, userName = Model.AuthorUserName },
+                new AjaxOptions
+                {
+                    HttpMethod = "GET",
+                    UpdateTargetId = "editAnswerForm" + Model.Id,
+                    InsertionMode = InsertionMode.Replace,
+                    OnSuccess = "formShow('#editAnswerForm" + Model.Id + "')"
+                }, new { @class = "edit-btn" })
+                }
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                    @Ajax.ActionLink("Коментар", "AddComment", "Comments", new { answerId = Model.Id },
+                new AjaxOptions
+                {
+                    HttpMethod = "GET",
+                    UpdateTargetId = "newCommentForm" + Model.Id,
+                    InsertionMode = InsertionMode.Replace,
+                    OnSuccess = "formShow('#newCommentForm" + Model.Id + "')"
+                }, new { @class = "new-comment-btn" })
+
+                    string flagText = "Flag";
+                    if (Model.Flagged == true)
+                    {
+                        flagText = "Unflag";
+                    }
+
+                    if (Model.AuthorUserName != User.Identity.Name)
+                    {
+                        @Ajax.ActionLink(flagText, "AnswerFlag", "Answers", new { answerId = Model.Id },
+                    new AjaxOptions
+                    {
+                        UpdateTargetId = "answerFlags" + Model.Id,
+                        HttpMethod = "POST",
+                        InsertionMode = InsertionMode.Replace,
+                    },
+                    new
+                    {
+                        @class = "flag-btn",
+                        id = "flagAnswerBtn" + Model.Id,
+                        onclick = "OnFlagBtnClick('#flagAnswerBtn" + Model.Id + "')",
+                        title = "Докладва отговора на модераторите."
+                    })
+                    }
+                }
+            </div>
+        </div>
+    </div>
+    <div id="editAnswerForm@(Model.Id)" class="edit-answer-form mce-form"></div>
+    <div id="newCommentForm@(Model.Id)" class="new-comment-form mce-form"></div>
+    <div id="allComments@(Model.Id)" class="answer-comments">
+        @if (Model.Comments.Count > 0)
+        {
+            @Html.Partial(Partials.DisplayComments, Model.Comments.ToList())
+        }
+    </div>
+</div>

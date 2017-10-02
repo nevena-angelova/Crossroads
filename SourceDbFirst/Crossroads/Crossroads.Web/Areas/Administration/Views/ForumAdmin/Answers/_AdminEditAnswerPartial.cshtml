@@ -1,0 +1,33 @@
+﻿@using Crossroads.Web.Areas.Administration.ViewModels.ForumViewModels.Answers
+@model AdminEditAnswerViewModel
+@using (Ajax.BeginForm("AdminEditAnswer",
+    new AjaxOptions
+    {
+        HttpMethod = "POST",
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "answer" + Model.Id,
+        OnSuccess = "UpdateFlags('" + Model.Id + "')"
+    }))
+{
+    <div class="admin-checkbox-group">
+        @Html.LabelFor(m => m.RemoveFlags)
+        @Html.CheckBoxFor(m => m.RemoveFlags)
+    </div>
+
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+    @Html.EditorFor(m => m.Content)
+    <div class="buttons">
+        <input class="default-btn" type="submit" value="Промени" />
+        @Ajax.ActionLink("Откажи", "AdminEditAnswer", new { id = Model.Id, refuse = true },
+        new AjaxOptions
+        {
+            HttpMethod = "GET",
+            InsertionMode = InsertionMode.Replace,
+            UpdateTargetId = "answer" + Model.Id
+        }, new { @class = "refuse-btn" })
+    </div>
+}
+<script type="text/javascript" language=javascript>
+    $.validator.unobtrusive.parse($('#answer' + @(Model.Id)));
+</script>

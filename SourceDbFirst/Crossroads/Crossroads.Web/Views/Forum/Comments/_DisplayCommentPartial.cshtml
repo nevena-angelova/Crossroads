@@ -1,0 +1,102 @@
+﻿@using Crossroads.Web.ViewModels.ForumViewModels.Comments
+@using Crossroads.Web.Infrastructure.Constants
+@model DisplayCommentViewModel
+
+<div id="comment@(Model.Id)" class="comment-container">
+    <div class="comment">
+        <div class="item-left">
+            <a href="/Profile/DisplayUser/?userName=@Model.AuthorUserName" target="_blank">
+                @if (@Model.AuthorImage != null)
+                {
+                    <img src="@Url.Action("GetImage", "Profile", new { image = Model.AuthorImage, limitWidth = 60 })" alt="Аватар" />
+                }
+                else
+                {
+                    <img src="@Url.Content("~/Content/img/no-photo-60x60.png")" alt="Аватар" />
+                }
+            </a>
+            <div class="flags">
+                <span id="flagsComment@(Model.Id)">@Model.Flags</span> флага
+            </div>
+        </div>
+        <div class="item-details">
+            <div class="author-info">
+                От:
+                @Html.ActionLink(Model.AuthorUserName, "DisplayUser",
+                new { controller = "Profile", userName = Model.AuthorUserName },
+                new { target = "_blank" })
+
+                @if (Model.AuthorRoles.Count > 0)
+                {
+                    @("(");
+                    int counter = 0;
+                    foreach (var role in Model.AuthorRoles)
+                    {
+                        @role.Name;
+
+                        if (counter != Model.AuthorRoles.Count - 1)
+                        {
+                            @(", ");
+                        }
+
+                        counter++;
+                    }
+                    @(")");
+                }
+
+                (@Model.AuthorPoints точки)
+                на <em>@Model.DateCreated</em>
+
+                @if (Model.DateEdited != null)
+                {
+                    <text>промяна:</text>
+                    <em>@Model.DateEdited</em>
+                }
+            </div>
+            <div class="item-content">
+                @Html.Raw(Model.Content)
+            </div>
+            <div class="item-btns">
+                @if (Model.AuthorUserName == User.Identity.Name || User.IsInRole(UserRoles.AdminRole) || User.IsInRole(UserRoles.ModeratorRole))
+                {
+                    @Ajax.ActionLink("Промени", "EditComment", "Comments", new { commentId = Model.Id, userName = Model.AuthorUserName },
+                new AjaxOptions
+                {
+                    HttpMethod = "GET",
+                    UpdateTargetId = "editCommentForm" + Model.Id,
+                    InsertionMode = InsertionMode.Replace,
+                    OnSuccess = "formShow('#editCommentForm" + Model.Id + "')"
+                }, new { @class = "edit-btn" })
+                }
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                    string flagText = "Flag";
+                    if (Model.Flagged == true)
+                    {
+                        flagText = "Unflag";
+                    }
+
+                    if (Model.AuthorUserName != User.Identity.Name)
+                    {
+                        @Ajax.ActionLink(flagText, "CommentFlag", "Comments", new { commentId = Model.Id },
+                new AjaxOptions
+                {
+                    HttpMethod = "POST",
+                    UpdateTargetId = "flagsComment" + Model.Id,
+                    InsertionMode = InsertionMode.Replace,
+                },
+                new
+                {
+                    @class = "flag-btn",
+                    id = "flagCommentBtn" + Model.Id,
+                    onclick = "OnFlagBtnClick('#flagCommentBtn" + Model.Id + "')",
+                    title = "Докладва коментара на модераторите."
+                })
+                    }
+                }
+            </div>
+        </div>
+    </div>
+    <div id="editCommentForm@(Model.Id)" class="edit-comment-form mce-form"></div>
+</div>

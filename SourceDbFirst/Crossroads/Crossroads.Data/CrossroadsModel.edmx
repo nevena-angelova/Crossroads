@@ -1,0 +1,1567 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CrossroadsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AnswerFlags">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="Flagged" Type="bit" />
+          <Property Name="AnswerId" Type="int" />
+        </EntityType>
+        <EntityType Name="Answers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="TopicId" Type="int" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateEdited" Type="datetime" />
+          <Property Name="Votes" Type="int" Nullable="false" />
+          <Property Name="Flags" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AnswerVotes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="IsVotePositive" Type="bit" />
+          <Property Name="AnswerId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="90" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="130" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CommentFlags">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="Flagged" Type="bit" />
+          <Property Name="CommentId" Type="int" />
+        </EntityType>
+        <EntityType Name="Comments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="Flags" Type="int" Nullable="false" />
+          <Property Name="AnswerId" Type="int" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateEdited" Type="datetime" />
+        </EntityType>
+        <EntityType Name="MusicGenres">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MusicGenreUsers">
+          <Key>
+            <PropertyRef Name="MusicGenre_Id" />
+            <PropertyRef Name="User_Id" />
+          </Key>
+          <Property Name="MusicGenre_Id" Type="int" Nullable="false" />
+          <Property Name="User_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProfileComments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="AuthorId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProfileInterests">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProfileInterestUsers">
+          <Key>
+            <PropertyRef Name="ProfileInterest_Id" />
+            <PropertyRef Name="User_Id" />
+          </Key>
+          <Property Name="ProfileInterest_Id" Type="int" Nullable="false" />
+          <Property Name="User_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProfileMessages">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="AuthorId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="IsRead" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="RoleUsers">
+          <Key>
+            <PropertyRef Name="Role_Id" />
+            <PropertyRef Name="User_Id" />
+          </Key>
+          <Property Name="Role_Id" Type="int" Nullable="false" />
+          <Property Name="User_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TopicFlags">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="Flagged" Type="bit" />
+          <Property Name="TopicId" Type="int" />
+        </EntityType>
+        <EntityType Name="Topics">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CategoryId" Type="int" Nullable="false" />
+          <Property Name="AuthorId" Type="int" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateUpdated" Type="datetime" Nullable="false" />
+          <Property Name="DateEdited" Type="datetime" />
+          <Property Name="Votes" Type="int" Nullable="false" />
+          <Property Name="Views" Type="int" Nullable="false" />
+          <Property Name="Flags" Type="int" Nullable="false" />
+          <Property Name="Priority" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="TopicVotes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="IsVotePositive" Type="bit" />
+          <Property Name="TopicId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Towns">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="UserName" Type="nvarchar(max)" />
+          <Property Name="LastActionTime" Type="datetime" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="40" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="40" />
+          <Property Name="TownId" Type="int" />
+          <Property Name="Bands" Type="nvarchar" MaxLength="600" />
+          <Property Name="IsMale" Type="bit" />
+          <Property Name="BirthDate" Type="datetime" />
+          <Property Name="About" Type="nvarchar" MaxLength="1500" />
+          <Property Name="Image" Type="nvarchar(max)" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="ForumPoints" Type="int" Nullable="false" />
+          <Property Name="Skype" Type="nvarchar" MaxLength="32" />
+          <Property Name="Facebook" Type="nvarchar" MaxLength="90" />
+          <Property Name="EmailConfirmed" Type="bit" />
+          <Property Name="EmailMsgNotify" Type="bit" />
+        </EntityType>
+        <Association Name="FK_dbo_AnswerFlags_dbo_Answers_AnswerId">
+          <End Role="Answers" Type="Self.Answers" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AnswerFlags" Type="Self.AnswerFlags" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Answers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AnswerFlags">
+              <PropertyRef Name="AnswerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AnswerFlags_dbo_Users_UserId">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AnswerFlags" Type="Self.AnswerFlags" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AnswerFlags">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Answers_dbo_Topics_TopicId">
+          <End Role="Topics" Type="Self.Topics" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Answers" Type="Self.Answers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Topics">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Answers">
+              <PropertyRef Name="TopicId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Answers_dbo_Users_UserId">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Answers" Type="Self.Answers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Answers">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AnswerVotes_dbo_Answers_AnswerId">
+          <End Role="Answers" Type="Self.Answers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AnswerVotes" Type="Self.AnswerVotes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Answers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AnswerVotes">
+              <PropertyRef Name="AnswerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AnswerVotes_dbo_Users_UserId">
+          <End Role="Users" Type="Self.Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AnswerVotes" Type="Self.AnswerVotes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AnswerVotes">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_CommentFlags_dbo_Comments_CommentId">
+          <End Role="Comments" Type="Self.Comments" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CommentFlags" Type="Self.CommentFlags" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comments">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CommentFlags">
+              <PropertyRef Name="CommentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_CommentFlags_dbo_Users_UserId">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CommentFlags" Type="Self.CommentFlags" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CommentFlags">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Comments_dbo_Answers_AnswerId">
+          <End Role="Answers" Type="Self.Answers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Answers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="AnswerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Comments_dbo_Users_UserId">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_MusicGenreUsers_dbo_MusicGenres_MusicGenre_Id">
+          <End Role="MusicGenres" Type="Self.MusicGenres" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="MusicGenreUsers" Type="Self.MusicGenreUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MusicGenres">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MusicGenreUsers">
+              <PropertyRef Name="MusicGenre_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_MusicGenreUsers_dbo_Users_User_Id">
+          <End Role="Users" Type="Self.Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="MusicGenreUsers" Type="Self.MusicGenreUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MusicGenreUsers">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ProfileComments_dbo_Users_AuthorId">
+          <End Role="Users" Type="Self.Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ProfileComments" Type="Self.ProfileComments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProfileComments">
+              <PropertyRef Name="AuthorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ProfileComments_dbo_Users_UserId">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="ProfileComments" Type="Self.ProfileComments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProfileComments">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ProfileInterestUsers_dbo_ProfileInterests_ProfileInterest_Id">
+          <End Role="ProfileInterests" Type="Self.ProfileInterests" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ProfileInterestUsers" Type="Self.ProfileInterestUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProfileInterests">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProfileInterestUsers">
+              <PropertyRef Name="ProfileInterest_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ProfileInterestUsers_dbo_Users_User_Id">
+          <End Role="Users" Type="Self.Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ProfileInterestUsers" Type="Self.ProfileInterestUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProfileInterestUsers">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ProfileMessages_dbo_Users_AuthorId">
+          <End Role="Users" Type="Self.Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ProfileMessages" Type="Self.ProfileMessages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProfileMessages">
+              <PropertyRef Name="AuthorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ProfileMessages_dbo_Users_UserId">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="ProfileMessages" Type="Self.ProfileMessages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProfileMessages">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_RoleUsers_dbo_Roles_Role_Id">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RoleUsers" Type="Self.RoleUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RoleUsers">
+              <PropertyRef Name="Role_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_RoleUsers_dbo_Users_User_Id">
+          <End Role="Users" Type="Self.Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RoleUsers" Type="Self.RoleUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RoleUsers">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_TopicFlags_dbo_Topics_TopicId">
+          <End Role="Topics" Type="Self.Topics" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TopicFlags" Type="Self.TopicFlags" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Topics">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TopicFlags">
+              <PropertyRef Name="TopicId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_TopicFlags_dbo_Users_UserId">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TopicFlags" Type="Self.TopicFlags" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TopicFlags">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Topics_dbo_Categories_CategoryId">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Topics" Type="Self.Topics" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Topics">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Topics_dbo_Users_AuthorId">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Topics" Type="Self.Topics" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Topics">
+              <PropertyRef Name="AuthorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_TopicVotes_dbo_Topics_TopicId">
+          <End Role="Topics" Type="Self.Topics" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TopicVotes" Type="Self.TopicVotes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Topics">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TopicVotes">
+              <PropertyRef Name="TopicId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_TopicVotes_dbo_Users_UserId">
+          <End Role="Users" Type="Self.Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TopicVotes" Type="Self.TopicVotes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TopicVotes">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Users_dbo_Towns_TownId">
+          <End Role="Towns" Type="Self.Towns" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Towns">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="TownId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CrossroadsModelStoreContainer">
+          <EntitySet Name="AnswerFlags" EntityType="Self.AnswerFlags" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Answers" EntityType="Self.Answers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AnswerVotes" EntityType="Self.AnswerVotes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CommentFlags" EntityType="Self.CommentFlags" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Comments" EntityType="Self.Comments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MusicGenres" EntityType="Self.MusicGenres" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MusicGenreUsers" EntityType="Self.MusicGenreUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProfileComments" EntityType="Self.ProfileComments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProfileInterests" EntityType="Self.ProfileInterests" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProfileInterestUsers" EntityType="Self.ProfileInterestUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProfileMessages" EntityType="Self.ProfileMessages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RoleUsers" EntityType="Self.RoleUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TopicFlags" EntityType="Self.TopicFlags" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Topics" EntityType="Self.Topics" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TopicVotes" EntityType="Self.TopicVotes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Towns" EntityType="Self.Towns" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_AnswerFlags_dbo_Answers_AnswerId" Association="Self.FK_dbo_AnswerFlags_dbo_Answers_AnswerId">
+            <End Role="Answers" EntitySet="Answers" />
+            <End Role="AnswerFlags" EntitySet="AnswerFlags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AnswerFlags_dbo_Users_UserId" Association="Self.FK_dbo_AnswerFlags_dbo_Users_UserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="AnswerFlags" EntitySet="AnswerFlags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Answers_dbo_Topics_TopicId" Association="Self.FK_dbo_Answers_dbo_Topics_TopicId">
+            <End Role="Topics" EntitySet="Topics" />
+            <End Role="Answers" EntitySet="Answers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Answers_dbo_Users_UserId" Association="Self.FK_dbo_Answers_dbo_Users_UserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Answers" EntitySet="Answers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AnswerVotes_dbo_Answers_AnswerId" Association="Self.FK_dbo_AnswerVotes_dbo_Answers_AnswerId">
+            <End Role="Answers" EntitySet="Answers" />
+            <End Role="AnswerVotes" EntitySet="AnswerVotes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AnswerVotes_dbo_Users_UserId" Association="Self.FK_dbo_AnswerVotes_dbo_Users_UserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="AnswerVotes" EntitySet="AnswerVotes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_CommentFlags_dbo_Comments_CommentId" Association="Self.FK_dbo_CommentFlags_dbo_Comments_CommentId">
+            <End Role="Comments" EntitySet="Comments" />
+            <End Role="CommentFlags" EntitySet="CommentFlags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_CommentFlags_dbo_Users_UserId" Association="Self.FK_dbo_CommentFlags_dbo_Users_UserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="CommentFlags" EntitySet="CommentFlags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Comments_dbo_Answers_AnswerId" Association="Self.FK_dbo_Comments_dbo_Answers_AnswerId">
+            <End Role="Answers" EntitySet="Answers" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Comments_dbo_Users_UserId" Association="Self.FK_dbo_Comments_dbo_Users_UserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_MusicGenreUsers_dbo_MusicGenres_MusicGenre_Id" Association="Self.FK_dbo_MusicGenreUsers_dbo_MusicGenres_MusicGenre_Id">
+            <End Role="MusicGenres" EntitySet="MusicGenres" />
+            <End Role="MusicGenreUsers" EntitySet="MusicGenreUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_MusicGenreUsers_dbo_Users_User_Id" Association="Self.FK_dbo_MusicGenreUsers_dbo_Users_User_Id">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="MusicGenreUsers" EntitySet="MusicGenreUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ProfileComments_dbo_Users_AuthorId" Association="Self.FK_dbo_ProfileComments_dbo_Users_AuthorId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ProfileComments" EntitySet="ProfileComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ProfileComments_dbo_Users_UserId" Association="Self.FK_dbo_ProfileComments_dbo_Users_UserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ProfileComments" EntitySet="ProfileComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ProfileInterestUsers_dbo_ProfileInterests_ProfileInterest_Id" Association="Self.FK_dbo_ProfileInterestUsers_dbo_ProfileInterests_ProfileInterest_Id">
+            <End Role="ProfileInterests" EntitySet="ProfileInterests" />
+            <End Role="ProfileInterestUsers" EntitySet="ProfileInterestUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ProfileInterestUsers_dbo_Users_User_Id" Association="Self.FK_dbo_ProfileInterestUsers_dbo_Users_User_Id">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ProfileInterestUsers" EntitySet="ProfileInterestUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ProfileMessages_dbo_Users_AuthorId" Association="Self.FK_dbo_ProfileMessages_dbo_Users_AuthorId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ProfileMessages" EntitySet="ProfileMessages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ProfileMessages_dbo_Users_UserId" Association="Self.FK_dbo_ProfileMessages_dbo_Users_UserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ProfileMessages" EntitySet="ProfileMessages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_RoleUsers_dbo_Roles_Role_Id" Association="Self.FK_dbo_RoleUsers_dbo_Roles_Role_Id">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="RoleUsers" EntitySet="RoleUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_RoleUsers_dbo_Users_User_Id" Association="Self.FK_dbo_RoleUsers_dbo_Users_User_Id">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="RoleUsers" EntitySet="RoleUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_TopicFlags_dbo_Topics_TopicId" Association="Self.FK_dbo_TopicFlags_dbo_Topics_TopicId">
+            <End Role="Topics" EntitySet="Topics" />
+            <End Role="TopicFlags" EntitySet="TopicFlags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_TopicFlags_dbo_Users_UserId" Association="Self.FK_dbo_TopicFlags_dbo_Users_UserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="TopicFlags" EntitySet="TopicFlags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Topics_dbo_Categories_CategoryId" Association="Self.FK_dbo_Topics_dbo_Categories_CategoryId">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Topics" EntitySet="Topics" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Topics_dbo_Users_AuthorId" Association="Self.FK_dbo_Topics_dbo_Users_AuthorId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Topics" EntitySet="Topics" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_TopicVotes_dbo_Topics_TopicId" Association="Self.FK_dbo_TopicVotes_dbo_Topics_TopicId">
+            <End Role="Topics" EntitySet="Topics" />
+            <End Role="TopicVotes" EntitySet="TopicVotes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_TopicVotes_dbo_Users_UserId" Association="Self.FK_dbo_TopicVotes_dbo_Users_UserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="TopicVotes" EntitySet="TopicVotes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Users_dbo_Towns_TownId" Association="Self.FK_dbo_Users_dbo_Towns_TownId">
+            <End Role="Towns" EntitySet="Towns" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CrossroadsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AnswerFlag">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="Flagged" Type="Boolean" />
+          <Property Name="AnswerId" Type="Int32" />
+          <NavigationProperty Name="Answer" Relationship="Self.FK_dbo_AnswerFlags_dbo_Answers_AnswerId" FromRole="AnswerFlags" ToRole="Answers" />
+          <NavigationProperty Name="User" Relationship="Self.FK_dbo_AnswerFlags_dbo_Users_UserId" FromRole="AnswerFlags" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Answer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="TopicId" Type="Int32" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateEdited" Type="DateTime" Precision="3" />
+          <Property Name="Votes" Type="Int32" Nullable="false" />
+          <Property Name="Flags" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AnswerFlags" Relationship="Self.FK_dbo_AnswerFlags_dbo_Answers_AnswerId" FromRole="Answers" ToRole="AnswerFlags" />
+          <NavigationProperty Name="Topic" Relationship="Self.FK_dbo_Answers_dbo_Topics_TopicId" FromRole="Answers" ToRole="Topics" />
+          <NavigationProperty Name="User" Relationship="Self.FK_dbo_Answers_dbo_Users_UserId" FromRole="Answers" ToRole="Users" />
+          <NavigationProperty Name="AnswerVotes" Relationship="Self.FK_dbo_AnswerVotes_dbo_Answers_AnswerId" FromRole="Answers" ToRole="AnswerVotes" />
+          <NavigationProperty Name="Comments" Relationship="Self.FK_dbo_Comments_dbo_Answers_AnswerId" FromRole="Answers" ToRole="Comments" />
+        </EntityType>
+        <EntityType Name="AnswerVote">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="IsVotePositive" Type="Boolean" />
+          <Property Name="AnswerId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Answer" Relationship="Self.FK_dbo_AnswerVotes_dbo_Answers_AnswerId" FromRole="AnswerVotes" ToRole="Answers" />
+          <NavigationProperty Name="User" Relationship="Self.FK_dbo_AnswerVotes_dbo_Users_UserId" FromRole="AnswerVotes" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="90" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="130" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Topics" Relationship="Self.FK_dbo_Topics_dbo_Categories_CategoryId" FromRole="Categories" ToRole="Topics" />
+        </EntityType>
+        <EntityType Name="CommentFlag">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="Flagged" Type="Boolean" />
+          <Property Name="CommentId" Type="Int32" />
+          <NavigationProperty Name="Comment" Relationship="Self.FK_dbo_CommentFlags_dbo_Comments_CommentId" FromRole="CommentFlags" ToRole="Comments" />
+          <NavigationProperty Name="User" Relationship="Self.FK_dbo_CommentFlags_dbo_Users_UserId" FromRole="CommentFlags" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="Flags" Type="Int32" Nullable="false" />
+          <Property Name="AnswerId" Type="Int32" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateEdited" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Answer" Relationship="Self.FK_dbo_Comments_dbo_Answers_AnswerId" FromRole="Comments" ToRole="Answers" />
+          <NavigationProperty Name="CommentFlags" Relationship="Self.FK_dbo_CommentFlags_dbo_Comments_CommentId" FromRole="Comments" ToRole="CommentFlags" />
+          <NavigationProperty Name="User" Relationship="Self.FK_dbo_Comments_dbo_Users_UserId" FromRole="Comments" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="MusicGenre">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.MusicGenreUsers" FromRole="MusicGenres" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="ProfileComment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AuthorId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="User" Relationship="Self.FK_dbo_ProfileComments_dbo_Users_AuthorId" FromRole="ProfileComments" ToRole="Users" />
+          <NavigationProperty Name="User1" Relationship="Self.FK_dbo_ProfileComments_dbo_Users_UserId" FromRole="ProfileComments" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="ProfileInterest">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.ProfileInterestUsers" FromRole="ProfileInterests" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="ProfileMessage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AuthorId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsRead" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_dbo_ProfileMessages_dbo_Users_AuthorId" FromRole="ProfileMessages" ToRole="Users" />
+          <NavigationProperty Name="User1" Relationship="Self.FK_dbo_ProfileMessages_dbo_Users_UserId" FromRole="ProfileMessages" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Users" Relationship="Self.RoleUsers" FromRole="Roles" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="TopicFlag">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="Flagged" Type="Boolean" />
+          <Property Name="TopicId" Type="Int32" />
+          <NavigationProperty Name="Topic" Relationship="Self.FK_dbo_TopicFlags_dbo_Topics_TopicId" FromRole="TopicFlags" ToRole="Topics" />
+          <NavigationProperty Name="User" Relationship="Self.FK_dbo_TopicFlags_dbo_Users_UserId" FromRole="TopicFlags" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Topic">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CategoryId" Type="Int32" Nullable="false" />
+          <Property Name="AuthorId" Type="Int32" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateUpdated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateEdited" Type="DateTime" Precision="3" />
+          <Property Name="Votes" Type="Int32" Nullable="false" />
+          <Property Name="Views" Type="Int32" Nullable="false" />
+          <Property Name="Flags" Type="Int32" Nullable="false" />
+          <Property Name="Priority" Type="Byte" />
+          <NavigationProperty Name="Answers" Relationship="Self.FK_dbo_Answers_dbo_Topics_TopicId" FromRole="Topics" ToRole="Answers" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_dbo_Topics_dbo_Categories_CategoryId" FromRole="Topics" ToRole="Categories" />
+          <NavigationProperty Name="TopicFlags" Relationship="Self.FK_dbo_TopicFlags_dbo_Topics_TopicId" FromRole="Topics" ToRole="TopicFlags" />
+          <NavigationProperty Name="User" Relationship="Self.FK_dbo_Topics_dbo_Users_AuthorId" FromRole="Topics" ToRole="Users" />
+          <NavigationProperty Name="TopicVotes" Relationship="Self.FK_dbo_TopicVotes_dbo_Topics_TopicId" FromRole="Topics" ToRole="TopicVotes" />
+        </EntityType>
+        <EntityType Name="TopicVote">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="IsVotePositive" Type="Boolean" />
+          <Property Name="TopicId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Topic" Relationship="Self.FK_dbo_TopicVotes_dbo_Topics_TopicId" FromRole="TopicVotes" ToRole="Topics" />
+          <NavigationProperty Name="User" Relationship="Self.FK_dbo_TopicVotes_dbo_Users_UserId" FromRole="TopicVotes" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Town">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_dbo_Users_dbo_Towns_TownId" FromRole="Towns" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastActionTime" Type="DateTime" Precision="3" />
+          <Property Name="FirstName" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="TownId" Type="Int32" />
+          <Property Name="Bands" Type="String" MaxLength="600" FixedLength="false" Unicode="true" />
+          <Property Name="IsMale" Type="Boolean" />
+          <Property Name="BirthDate" Type="DateTime" Precision="3" />
+          <Property Name="About" Type="String" MaxLength="1500" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ForumPoints" Type="Int32" Nullable="false" />
+          <Property Name="Skype" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="Facebook" Type="String" MaxLength="90" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" />
+          <Property Name="EmailMsgNotify" Type="Boolean" />
+          <NavigationProperty Name="AnswerFlags" Relationship="Self.FK_dbo_AnswerFlags_dbo_Users_UserId" FromRole="Users" ToRole="AnswerFlags" />
+          <NavigationProperty Name="Answers" Relationship="Self.FK_dbo_Answers_dbo_Users_UserId" FromRole="Users" ToRole="Answers" />
+          <NavigationProperty Name="AnswerVotes" Relationship="Self.FK_dbo_AnswerVotes_dbo_Users_UserId" FromRole="Users" ToRole="AnswerVotes" />
+          <NavigationProperty Name="CommentFlags" Relationship="Self.FK_dbo_CommentFlags_dbo_Users_UserId" FromRole="Users" ToRole="CommentFlags" />
+          <NavigationProperty Name="Comments" Relationship="Self.FK_dbo_Comments_dbo_Users_UserId" FromRole="Users" ToRole="Comments" />
+          <NavigationProperty Name="ProfileComments" Relationship="Self.FK_dbo_ProfileComments_dbo_Users_AuthorId" FromRole="Users" ToRole="ProfileComments" />
+          <NavigationProperty Name="ProfileComments1" Relationship="Self.FK_dbo_ProfileComments_dbo_Users_UserId" FromRole="Users" ToRole="ProfileComments" />
+          <NavigationProperty Name="ProfileMessages" Relationship="Self.FK_dbo_ProfileMessages_dbo_Users_AuthorId" FromRole="Users" ToRole="ProfileMessages" />
+          <NavigationProperty Name="ProfileMessages1" Relationship="Self.FK_dbo_ProfileMessages_dbo_Users_UserId" FromRole="Users" ToRole="ProfileMessages" />
+          <NavigationProperty Name="TopicFlags" Relationship="Self.FK_dbo_TopicFlags_dbo_Users_UserId" FromRole="Users" ToRole="TopicFlags" />
+          <NavigationProperty Name="Topics" Relationship="Self.FK_dbo_Topics_dbo_Users_AuthorId" FromRole="Users" ToRole="Topics" />
+          <NavigationProperty Name="TopicVotes" Relationship="Self.FK_dbo_TopicVotes_dbo_Users_UserId" FromRole="Users" ToRole="TopicVotes" />
+          <NavigationProperty Name="Town" Relationship="Self.FK_dbo_Users_dbo_Towns_TownId" FromRole="Users" ToRole="Towns" />
+          <NavigationProperty Name="MusicGenres" Relationship="Self.MusicGenreUsers" FromRole="Users" ToRole="MusicGenres" />
+          <NavigationProperty Name="ProfileInterests" Relationship="Self.ProfileInterestUsers" FromRole="Users" ToRole="ProfileInterests" />
+          <NavigationProperty Name="Roles" Relationship="Self.RoleUsers" FromRole="Users" ToRole="Roles" />
+        </EntityType>
+        <Association Name="FK_dbo_AnswerFlags_dbo_Answers_AnswerId">
+          <End Role="Answers" Type="Self.Answer" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AnswerFlags" Type="Self.AnswerFlag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Answers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AnswerFlags">
+              <PropertyRef Name="AnswerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AnswerFlags_dbo_Users_UserId">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AnswerFlags" Type="Self.AnswerFlag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AnswerFlags">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Answers_dbo_Topics_TopicId">
+          <End Role="Topics" Type="Self.Topic" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Answers" Type="Self.Answer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Topics">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Answers">
+              <PropertyRef Name="TopicId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Answers_dbo_Users_UserId">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Answers" Type="Self.Answer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Answers">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AnswerVotes_dbo_Answers_AnswerId">
+          <End Role="Answers" Type="Self.Answer" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AnswerVotes" Type="Self.AnswerVote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Answers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AnswerVotes">
+              <PropertyRef Name="AnswerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Comments_dbo_Answers_AnswerId">
+          <End Role="Answers" Type="Self.Answer" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Comments" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Answers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="AnswerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AnswerVotes_dbo_Users_UserId">
+          <End Role="Users" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AnswerVotes" Type="Self.AnswerVote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AnswerVotes">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Topics_dbo_Categories_CategoryId">
+          <End Role="Categories" Type="Self.Category" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Topics" Type="Self.Topic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Topics">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_CommentFlags_dbo_Comments_CommentId">
+          <End Role="Comments" Type="Self.Comment" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CommentFlags" Type="Self.CommentFlag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comments">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CommentFlags">
+              <PropertyRef Name="CommentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_CommentFlags_dbo_Users_UserId">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CommentFlags" Type="Self.CommentFlag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CommentFlags">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Comments_dbo_Users_UserId">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Comments" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ProfileComments_dbo_Users_AuthorId">
+          <End Role="Users" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ProfileComments" Type="Self.ProfileComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProfileComments">
+              <PropertyRef Name="AuthorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ProfileComments_dbo_Users_UserId">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="ProfileComments" Type="Self.ProfileComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProfileComments">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ProfileMessages_dbo_Users_AuthorId">
+          <End Role="Users" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ProfileMessages" Type="Self.ProfileMessage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProfileMessages">
+              <PropertyRef Name="AuthorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ProfileMessages_dbo_Users_UserId">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="ProfileMessages" Type="Self.ProfileMessage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProfileMessages">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_TopicFlags_dbo_Topics_TopicId">
+          <End Role="Topics" Type="Self.Topic" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TopicFlags" Type="Self.TopicFlag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Topics">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TopicFlags">
+              <PropertyRef Name="TopicId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_TopicFlags_dbo_Users_UserId">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TopicFlags" Type="Self.TopicFlag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TopicFlags">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Topics_dbo_Users_AuthorId">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Topics" Type="Self.Topic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Topics">
+              <PropertyRef Name="AuthorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_TopicVotes_dbo_Topics_TopicId">
+          <End Role="Topics" Type="Self.Topic" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TopicVotes" Type="Self.TopicVote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Topics">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TopicVotes">
+              <PropertyRef Name="TopicId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_TopicVotes_dbo_Users_UserId">
+          <End Role="Users" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TopicVotes" Type="Self.TopicVote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TopicVotes">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Users_dbo_Towns_TownId">
+          <End Role="Towns" Type="Self.Town" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Towns">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="TownId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MusicGenreUsers">
+          <End Role="MusicGenres" Type="Self.MusicGenre" Multiplicity="*" />
+          <End Role="Users" Type="Self.User" Multiplicity="*" />
+        </Association>
+        <Association Name="ProfileInterestUsers">
+          <End Role="ProfileInterests" Type="Self.ProfileInterest" Multiplicity="*" />
+          <End Role="Users" Type="Self.User" Multiplicity="*" />
+        </Association>
+        <Association Name="RoleUsers">
+          <End Role="Roles" Type="Self.Role" Multiplicity="*" />
+          <End Role="Users" Type="Self.User" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="CrossroadsEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AnswerFlags" EntityType="Self.AnswerFlag" />
+          <EntitySet Name="Answers" EntityType="Self.Answer" />
+          <EntitySet Name="AnswerVotes" EntityType="Self.AnswerVote" />
+          <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="CommentFlags" EntityType="Self.CommentFlag" />
+          <EntitySet Name="Comments" EntityType="Self.Comment" />
+          <EntitySet Name="MusicGenres" EntityType="Self.MusicGenre" />
+          <EntitySet Name="ProfileComments" EntityType="Self.ProfileComment" />
+          <EntitySet Name="ProfileInterests" EntityType="Self.ProfileInterest" />
+          <EntitySet Name="ProfileMessages" EntityType="Self.ProfileMessage" />
+          <EntitySet Name="Roles" EntityType="Self.Role" />
+          <EntitySet Name="TopicFlags" EntityType="Self.TopicFlag" />
+          <EntitySet Name="Topics" EntityType="Self.Topic" />
+          <EntitySet Name="TopicVotes" EntityType="Self.TopicVote" />
+          <EntitySet Name="Towns" EntityType="Self.Town" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_dbo_AnswerFlags_dbo_Answers_AnswerId" Association="Self.FK_dbo_AnswerFlags_dbo_Answers_AnswerId">
+            <End Role="Answers" EntitySet="Answers" />
+            <End Role="AnswerFlags" EntitySet="AnswerFlags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AnswerFlags_dbo_Users_UserId" Association="Self.FK_dbo_AnswerFlags_dbo_Users_UserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="AnswerFlags" EntitySet="AnswerFlags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Answers_dbo_Topics_TopicId" Association="Self.FK_dbo_Answers_dbo_Topics_TopicId">
+            <End Role="Topics" EntitySet="Topics" />
+            <End Role="Answers" EntitySet="Answers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Answers_dbo_Users_UserId" Association="Self.FK_dbo_Answers_dbo_Users_UserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Answers" EntitySet="Answers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AnswerVotes_dbo_Answers_AnswerId" Association="Self.FK_dbo_AnswerVotes_dbo_Answers_AnswerId">
+            <End Role="Answers" EntitySet="Answers" />
+            <End Role="AnswerVotes" EntitySet="AnswerVotes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Comments_dbo_Answers_AnswerId" Association="Self.FK_dbo_Comments_dbo_Answers_AnswerId">
+            <End Role="Answers" EntitySet="Answers" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AnswerVotes_dbo_Users_UserId" Association="Self.FK_dbo_AnswerVotes_dbo_Users_UserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="AnswerVotes" EntitySet="AnswerVotes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Topics_dbo_Categories_CategoryId" Association="Self.FK_dbo_Topics_dbo_Categories_CategoryId">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Topics" EntitySet="Topics" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_CommentFlags_dbo_Comments_CommentId" Association="Self.FK_dbo_CommentFlags_dbo_Comments_CommentId">
+            <End Role="Comments" EntitySet="Comments" />
+            <End Role="CommentFlags" EntitySet="CommentFlags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_CommentFlags_dbo_Users_UserId" Association="Self.FK_dbo_CommentFlags_dbo_Users_UserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="CommentFlags" EntitySet="CommentFlags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Comments_dbo_Users_UserId" Association="Self.FK_dbo_Comments_dbo_Users_UserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ProfileComments_dbo_Users_AuthorId" Association="Self.FK_dbo_ProfileComments_dbo_Users_AuthorId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ProfileComments" EntitySet="ProfileComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ProfileComments_dbo_Users_UserId" Association="Self.FK_dbo_ProfileComments_dbo_Users_UserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ProfileComments" EntitySet="ProfileComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ProfileMessages_dbo_Users_AuthorId" Association="Self.FK_dbo_ProfileMessages_dbo_Users_AuthorId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ProfileMessages" EntitySet="ProfileMessages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ProfileMessages_dbo_Users_UserId" Association="Self.FK_dbo_ProfileMessages_dbo_Users_UserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ProfileMessages" EntitySet="ProfileMessages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_TopicFlags_dbo_Topics_TopicId" Association="Self.FK_dbo_TopicFlags_dbo_Topics_TopicId">
+            <End Role="Topics" EntitySet="Topics" />
+            <End Role="TopicFlags" EntitySet="TopicFlags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_TopicFlags_dbo_Users_UserId" Association="Self.FK_dbo_TopicFlags_dbo_Users_UserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="TopicFlags" EntitySet="TopicFlags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Topics_dbo_Users_AuthorId" Association="Self.FK_dbo_Topics_dbo_Users_AuthorId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Topics" EntitySet="Topics" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_TopicVotes_dbo_Topics_TopicId" Association="Self.FK_dbo_TopicVotes_dbo_Topics_TopicId">
+            <End Role="Topics" EntitySet="Topics" />
+            <End Role="TopicVotes" EntitySet="TopicVotes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_TopicVotes_dbo_Users_UserId" Association="Self.FK_dbo_TopicVotes_dbo_Users_UserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="TopicVotes" EntitySet="TopicVotes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Users_dbo_Towns_TownId" Association="Self.FK_dbo_Users_dbo_Towns_TownId">
+            <End Role="Towns" EntitySet="Towns" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="MusicGenreUsers" Association="Self.MusicGenreUsers">
+            <End Role="MusicGenres" EntitySet="MusicGenres" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="ProfileInterestUsers" Association="Self.ProfileInterestUsers">
+            <End Role="ProfileInterests" EntitySet="ProfileInterests" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="RoleUsers" Association="Self.RoleUsers">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CrossroadsModelStoreContainer" CdmEntityContainer="CrossroadsEntities1">
+          <EntitySetMapping Name="AnswerFlags">
+            <EntityTypeMapping TypeName="CrossroadsModel.AnswerFlag">
+              <MappingFragment StoreEntitySet="AnswerFlags">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Flagged" ColumnName="Flagged" />
+                <ScalarProperty Name="AnswerId" ColumnName="AnswerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Answers">
+            <EntityTypeMapping TypeName="CrossroadsModel.Answer">
+              <MappingFragment StoreEntitySet="Answers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="TopicId" ColumnName="TopicId" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateEdited" ColumnName="DateEdited" />
+                <ScalarProperty Name="Votes" ColumnName="Votes" />
+                <ScalarProperty Name="Flags" ColumnName="Flags" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AnswerVotes">
+            <EntityTypeMapping TypeName="CrossroadsModel.AnswerVote">
+              <MappingFragment StoreEntitySet="AnswerVotes">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="IsVotePositive" ColumnName="IsVotePositive" />
+                <ScalarProperty Name="AnswerId" ColumnName="AnswerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="CrossroadsModel.Category">
+              <MappingFragment StoreEntitySet="Categories">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CommentFlags">
+            <EntityTypeMapping TypeName="CrossroadsModel.CommentFlag">
+              <MappingFragment StoreEntitySet="CommentFlags">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Flagged" ColumnName="Flagged" />
+                <ScalarProperty Name="CommentId" ColumnName="CommentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comments">
+            <EntityTypeMapping TypeName="CrossroadsModel.Comment">
+              <MappingFragment StoreEntitySet="Comments">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Flags" ColumnName="Flags" />
+                <ScalarProperty Name="AnswerId" ColumnName="AnswerId" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateEdited" ColumnName="DateEdited" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MusicGenres">
+            <EntityTypeMapping TypeName="CrossroadsModel.MusicGenre">
+              <MappingFragment StoreEntitySet="MusicGenres">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProfileComments">
+            <EntityTypeMapping TypeName="CrossroadsModel.ProfileComment">
+              <MappingFragment StoreEntitySet="ProfileComments">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="AuthorId" ColumnName="AuthorId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProfileInterests">
+            <EntityTypeMapping TypeName="CrossroadsModel.ProfileInterest">
+              <MappingFragment StoreEntitySet="ProfileInterests">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProfileMessages">
+            <EntityTypeMapping TypeName="CrossroadsModel.ProfileMessage">
+              <MappingFragment StoreEntitySet="ProfileMessages">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="AuthorId" ColumnName="AuthorId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="IsRead" ColumnName="IsRead" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="CrossroadsModel.Role">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TopicFlags">
+            <EntityTypeMapping TypeName="CrossroadsModel.TopicFlag">
+              <MappingFragment StoreEntitySet="TopicFlags">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Flagged" ColumnName="Flagged" />
+                <ScalarProperty Name="TopicId" ColumnName="TopicId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Topics">
+            <EntityTypeMapping TypeName="CrossroadsModel.Topic">
+              <MappingFragment StoreEntitySet="Topics">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="AuthorId" ColumnName="AuthorId" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+                <ScalarProperty Name="DateEdited" ColumnName="DateEdited" />
+                <ScalarProperty Name="Votes" ColumnName="Votes" />
+                <ScalarProperty Name="Views" ColumnName="Views" />
+                <ScalarProperty Name="Flags" ColumnName="Flags" />
+                <ScalarProperty Name="Priority" ColumnName="Priority" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TopicVotes">
+            <EntityTypeMapping TypeName="CrossroadsModel.TopicVote">
+              <MappingFragment StoreEntitySet="TopicVotes">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="IsVotePositive" ColumnName="IsVotePositive" />
+                <ScalarProperty Name="TopicId" ColumnName="TopicId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Towns">
+            <EntityTypeMapping TypeName="CrossroadsModel.Town">
+              <MappingFragment StoreEntitySet="Towns">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="CrossroadsModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="LastActionTime" ColumnName="LastActionTime" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="TownId" ColumnName="TownId" />
+                <ScalarProperty Name="Bands" ColumnName="Bands" />
+                <ScalarProperty Name="IsMale" ColumnName="IsMale" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="About" ColumnName="About" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="ForumPoints" ColumnName="ForumPoints" />
+                <ScalarProperty Name="Skype" ColumnName="Skype" />
+                <ScalarProperty Name="Facebook" ColumnName="Facebook" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="EmailMsgNotify" ColumnName="EmailMsgNotify" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="MusicGenreUsers" TypeName="CrossroadsModel.MusicGenreUsers" StoreEntitySet="MusicGenreUsers">
+            <EndProperty Name="MusicGenres">
+              <ScalarProperty Name="Id" ColumnName="MusicGenre_Id" />
+            </EndProperty>
+            <EndProperty Name="Users">
+              <ScalarProperty Name="Id" ColumnName="User_Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="ProfileInterestUsers" TypeName="CrossroadsModel.ProfileInterestUsers" StoreEntitySet="ProfileInterestUsers">
+            <EndProperty Name="ProfileInterests">
+              <ScalarProperty Name="Id" ColumnName="ProfileInterest_Id" />
+            </EndProperty>
+            <EndProperty Name="Users">
+              <ScalarProperty Name="Id" ColumnName="User_Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="RoleUsers" TypeName="CrossroadsModel.RoleUsers" StoreEntitySet="RoleUsers">
+            <EndProperty Name="Roles">
+              <ScalarProperty Name="Id" ColumnName="Role_Id" />
+            </EndProperty>
+            <EndProperty Name="Users">
+              <ScalarProperty Name="Id" ColumnName="User_Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

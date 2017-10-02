@@ -1,0 +1,43 @@
+﻿@using Crossroads.Web.Areas.Administration.ViewModels.UserViewModels.Roles
+@using Crossroads.Web.Infrastructure.Constants
+@model IList<RoleOutputViewModel>
+@{
+    ViewBag.Title = "Права";
+}
+<h2 class="page-title">
+    @ViewBag.Title
+    @Ajax.ActionLink("Добави право", "AddRole", null,
+        new AjaxOptions
+        {
+            HttpMethod = "GET",
+            UpdateTargetId = "addRoleForm",
+            InsertionMode = InsertionMode.Replace,
+            OnSuccess = "inputClear"
+        }, new { @class = "admin-add-item" })
+</h2>
+<div id="addRoleForm"></div>
+@Html.ActionLink("Сортирай", "ListRoles", new { ordered = true }, new { @class = "sort-items" })
+<ul id="rolesList" class="boxes">
+    @foreach (var role in Model)
+    {
+        @Html.Partial(Partials.Role, role)
+    }
+</ul>
+@section JavaScriptToHead {
+    @Scripts.Render("~/bundles/jquery")
+}
+@section JavaScriptToFooter {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryajax")
+    <script>
+        $('body').addClass('roles-page');
+
+        function roleFormHide() {
+            $('#addRoleForm form').hide()
+        }
+
+        function inputClear() {
+            $('#addRoleInput').val('');
+        }
+    </script>
+}

@@ -1,0 +1,118 @@
+﻿@using Crossroads.Web.ViewModels.ForumViewModels.Topics
+@model IPagedList<TopicViewModel>
+@{
+    ViewBag.Title = ViewBag.CategoryName;
+}
+
+<h2 class="page-title">@ViewBag.CategoryName</h2>
+
+@Html.ActionLink("Добави тема", "AddTopic", new { categoryId = ViewBag.CategoryId }, new { @class = "default-btn add-topic" })
+<div class="topics">
+
+    @if (Model.TotalItemCount > 0)
+    {
+        <div class="topic-sort-options">
+            @Html.ActionLink("най-нови", "DisplayTopics", new { categoryId = ViewBag.CategoryId, categoryName = ViewBag.CategoryName, orderBy = "DateUpdated descending" })
+            @Html.ActionLink("най-харесвани", "DisplayTopics", new { categoryId = ViewBag.CategoryId, categoryName = ViewBag.CategoryName, orderBy = "Votes descending" })
+            @Html.ActionLink("най-коментирани", "DisplayTopics", new { categoryId = ViewBag.CategoryId, categoryName = ViewBag.CategoryName, orderBy = "Answers.Count descending" })
+            @Html.ActionLink("най-четени", "DisplayTopics", new { categoryId = ViewBag.CategoryId, categoryName = ViewBag.CategoryName, orderBy = "Views descending" })
+        </div>
+
+        foreach (var topic in Model)
+        {
+            <div class="topic@(topic.IsPriority ? " priority" : "")">
+                <div class="topic-statistic">
+                    <div>
+                        <strong>@topic.Votes</strong>
+                        гласа
+                    </div>
+                    <div>
+                        <strong>@topic.Answers</strong>
+                        отговора
+                    </div>
+                    <div>
+                        <strong>@topic.Views</strong>
+                        посещения
+                    </div>
+                </div>
+                <div class="topic-content">
+                    @Html.ActionLink(@topic.Title, "DisplayTopic", new { controller = "Topics", topicId = topic.Id }, new { @class = "topic-title" })
+                    <div>
+                        от
+                        @Html.ActionLink(topic.AuthorUserName, "DisplayUser",
+              new { controller = "Profile", userName = topic.AuthorUserName },
+              new { @class = "author-link", target = "_blank" })
+                        @if (topic.AuthorRoles.Count > 0)
+                        {
+                            @("(");
+                            int counter = 0;
+                            foreach (var role in topic.AuthorRoles)
+                            {
+                                @role.Name;
+
+                                if (counter != topic.AuthorRoles.Count - 1)
+                                {
+                                    @(", ");
+                                }
+
+                                counter++;
+                            }
+                            @(")");
+                        }
+                        (@topic.AuthorPoints точки)
+                        на <span>@topic.DateCreated</span>
+                    </div>
+                    @if (topic.LastAnswerAuthorUserName != null)
+                    {
+                        <div>
+                            последен отговор от
+                            @Html.ActionLink(topic.LastAnswerAuthorUserName, "DisplayUser",
+                  new { controller = "Profile", userName = topic.LastAnswerAuthorUserName },
+                  new { @class = "author-link", target = "_blank" })
+                            @if (topic.LastAnswerAuthorRoles.Count > 0)
+                        {
+                                @("(");
+                            int counter = 0;
+                            foreach (var role in topic.LastAnswerAuthorRoles)
+                            {
+                                    @role.Name;
+
+                                if (counter != topic.LastAnswerAuthorRoles.Count - 1)
+                                {
+                                        @(", ");
+                                }
+
+                                counter++;
+                            }
+                                @(")");
+                        }
+
+                            (@topic.LastAnswerAuthorPionts точки)
+                            на <span>@topic.LastAnswerDateCreated</span>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="no-items-found">Няма теми.</div>
+    }
+</div>
+
+@if (Model.PageCount > 1)
+{
+    <div class="pager">
+        @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount).Options(o => o
+        .AddRouteValue("orderBy", ViewBag.OrderBy)
+        .AddRouteValue("categoryId", ViewBag.CategoryId)
+        .AddRouteValue("categoryName", ViewBag.CategoryName))
+    </div>
+}
+
+@section Scripts {
+    <script>
+        $('body').addClass('topics-page forum');
+    </script>
+}

@@ -1,0 +1,97 @@
+﻿@using Crossroads.Web.Areas.Administration.ViewModels.ForumViewModels.Topics
+@using Crossroads.Web.Infrastructure.Constants
+@model AdminTopicDetailsViewModel
+@{
+    ViewBag.Title = Model.Title;
+}
+
+<h2 class="page-title">
+    @Html.ActionLink(Model.Title, "DisplayTopic", new { area = string.Empty, controller = "Topics", topicId = Model.Id }, new { target = "_blank" })
+</h2>
+<h3>категория: @Model.Category</h3>
+@if (Model.IsPriority)
+{
+    <h3>Приоритетна</h3>
+}
+
+
+@{
+    if (Model.TopicFlags.Count > 0)
+    {
+        <div class="flags-users">
+            Флагове от потребители:
+
+            @{ int counter = 0;
+             foreach (var flag in Model.TopicFlags)
+             {
+                @(flag.User.UserName)
+
+                 counter++;
+                 if (counter < Model.TopicFlags.Count)
+                 {
+                    @(", ")
+                 }
+             }
+            }
+        </div>
+    }
+}
+
+<div class="display-topic">
+    <div class="item-left">
+        <a href="/Profile/DisplayProfile/?userName=@Model.Author" target="_blank">
+            @if (@Model.AuthorImage != null)
+            {
+                <img src="@Url.Action("GetImage", "UsersAdmin", new { image = Model.AuthorImage, limitWidth = 100 })" alt="Аватар" />
+            }
+            else
+            {
+                <img src="@Url.Content("~/Content/img/no-photo.png")" alt="Аватар" />
+            }
+        </a>
+        <div class="votes">
+            <span id="topicVotes">
+                @Model.Votes
+            </span>
+        </div>
+        <div class="views">
+            @Model.Views посещения
+        </div>
+        <div class="answersCount">
+            @Model.AnswerCount отговора
+        </div>
+        <div class="flags">
+            <span id="topicFlags">@Model.Flags</span> флага
+        </div>
+    </div>
+    <div class="item-details">
+        <div class="author-info">
+            От:
+            @Html.ActionLink(Model.Author, "DisplayProfile",
+                new { controller = "Profile", userName = Model.Author },
+                new { target = "_blank" })
+            (@Model.AuthorPoints точки)
+            на <em>@Model.DateCreated</em>
+
+            @if (Model.DateEdited != null)
+            {
+                <text>промяна:</text>
+                <em>@Model.DateEdited</em>
+            }
+        </div>
+        <div class="item-content">
+            @Html.Raw(Model.Content)
+        </div>
+        <div class="item-btns">
+            @Html.ActionLink("Промени", "AdminEditTopic", new { id = Model.Id }, new { @class = "edit-btn" })}
+            @Html.ActionLink("Изтрий", "AdminDeleteTopic", new { id = Model.Id }, new { @class = "delete-btn", onclick = "return confirm('Потвърждавате ли изтриването?');" })
+        </div>
+    </div>
+</div>
+
+
+@section JavaScriptToFooter {
+    <script>
+        $('body').addClass('topic-details-page admin');
+    </script>
+}

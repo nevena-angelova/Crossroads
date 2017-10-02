@@ -1,0 +1,17 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+
+@{
+    ViewBag.Title = "Error";
+}
+
+<h2 class="text-danger">
+    <img src="~/Content/img/error.png" alt="error" />
+    Грешка при обработка на заявката!
+</h2>
+
+@section Scripts {
+    <script>
+        $('body').addClass('error-page');
+    </script>
+}
+

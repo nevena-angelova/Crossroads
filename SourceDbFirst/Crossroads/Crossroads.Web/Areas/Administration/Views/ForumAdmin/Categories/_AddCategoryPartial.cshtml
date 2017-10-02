@@ -1,0 +1,27 @@
+﻿@using Crossroads.Web.Areas.Administration.ViewModels.ForumViewModels.Categories
+@model CategoryInputViewModel
+
+@using (Ajax.BeginForm("AddCategory",
+        new AjaxOptions
+        {
+            HttpMethod = "POST",
+            InsertionMode = InsertionMode.InsertBefore,
+            UpdateTargetId = "categoriesList",
+            OnSuccess = "inputsClear()"
+        }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+    @Html.TextBoxFor(m => m.Name, new { @class = "default-input", placeholder = "Заглавие" })
+    <div class="category-textarea">
+        @Html.TextAreaFor(m => m.Description, new { palceholder = "Описание" })
+    </div>
+    <div class="buttons">
+        <input class="default-btn" type="submit" value="Добави" />
+        <a class="refuse-btn" href="javascript:void(0)" onclick="categoryFormHide('#addCategory')">Откажи</a>
+    </div>
+}
+
+<script type="text/javascript" language=javascript>
+    $.validator.unobtrusive.parse($('#addCategory'));
+</script>

@@ -1,0 +1,20 @@
+﻿@using Crossroads.Web.Areas.Administration.ViewModels.UserViewModels.Roles
+@model RoleInputViewModel
+@using (Ajax.BeginForm("AddRole",
+                    new AjaxOptions
+                    {
+                        HttpMethod = "POST",
+                        InsertionMode = InsertionMode.InsertBefore,
+                        UpdateTargetId = "rolesList",
+                        OnSuccess = "inputClear"
+                    }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+    @Html.TextBoxFor(m => m.Name, new { id = "addRoleInput", @class = "default-input" })
+    <input class="default-btn" type="submit" value="Добави" />
+    <a class="refuse-btn" href="javascript:void(0)" onclick="roleFormHide()">Откажи</a>
+}
+<script type="text/javascript" language=javascript>
+    $.validator.unobtrusive.parse($('#addRoleForm'));
+</script>

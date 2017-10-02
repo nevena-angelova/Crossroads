@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e54e2c6e9be8475893729ec8579e2d48" Name="Diagram1">
+        <EntityTypeShape EntityType="CrossroadsModel.AnswerFlag" Width="1.5" PointX="5.25" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CrossroadsModel.Answer" Width="1.5" PointX="8.25" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CrossroadsModel.AnswerVote" Width="1.5" PointX="10.5" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CrossroadsModel.Category" Width="1.5" PointX="6" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CrossroadsModel.CommentFlag" Width="1.5" PointX="15.75" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CrossroadsModel.Comment" Width="1.5" PointX="13.5" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CrossroadsModel.MusicGenre" Width="1.5" PointX="0.75" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CrossroadsModel.ProfileComment" Width="1.5" PointX="5.25" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CrossroadsModel.ProfileInterest" Width="1.5" PointX="0.75" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CrossroadsModel.ProfileMessage" Width="1.5" PointX="5.25" PointY="21" IsExpanded="true" />
+        <EntityTypeShape EntityType="CrossroadsModel.Role" Width="1.5" PointX="0.75" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CrossroadsModel.TopicFlag" Width="1.5" PointX="5.25" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CrossroadsModel.Topic" Width="1.5" PointX="8.25" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CrossroadsModel.TopicVote" Width="1.5" PointX="10.5" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="CrossroadsModel.Town" Width="1.5" PointX="0.75" PointY="18.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CrossroadsModel.User" Width="1.5" PointX="3" PointY="9.75" IsExpanded="true" />
+        <AssociationConnector Association="CrossroadsModel.FK_dbo_AnswerFlags_dbo_Answers_AnswerId" ManuallyRouted="false" />
+        <AssociationConnector Association="CrossroadsModel.FK_dbo_AnswerFlags_dbo_Users_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="CrossroadsModel.FK_dbo_Answers_dbo_Topics_TopicId" ManuallyRouted="false" />
+        <AssociationConnector Association="CrossroadsModel.FK_dbo_Answers_dbo_Users_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="CrossroadsModel.FK_dbo_AnswerVotes_dbo_Answers_AnswerId" ManuallyRouted="false" />
+        <AssociationConnector Association="CrossroadsModel.FK_dbo_Comments_dbo_Answers_AnswerId" ManuallyRouted="false" />
+        <AssociationConnector Association="CrossroadsModel.FK_dbo_AnswerVotes_dbo_Users_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="CrossroadsModel.FK_dbo_Topics_dbo_Categories_CategoryId" ManuallyRouted="false" />
+        <AssociationConnector Association="CrossroadsModel.FK_dbo_CommentFlags_dbo_Comments_CommentId" ManuallyRouted="false" />
+        <AssociationConnector Association="CrossroadsModel.FK_dbo_CommentFlags_dbo_Users_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="CrossroadsModel.FK_dbo_Comments_dbo_Users_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="CrossroadsModel.FK_dbo_ProfileComments_dbo_Users_AuthorId" ManuallyRouted="false" />
+        <AssociationConnector Association="CrossroadsModel.FK_dbo_ProfileComments_dbo_Users_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="CrossroadsModel.FK_dbo_ProfileMessages_dbo_Users_AuthorId" ManuallyRouted="false" />
+        <AssociationConnector Association="CrossroadsModel.FK_dbo_ProfileMessages_dbo_Users_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="CrossroadsModel.FK_dbo_TopicFlags_dbo_Topics_TopicId" ManuallyRouted="false" />
+        <AssociationConnector Association="CrossroadsModel.FK_dbo_TopicFlags_dbo_Users_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="CrossroadsModel.FK_dbo_Topics_dbo_Users_AuthorId" ManuallyRouted="false" />
+        <AssociationConnector Association="CrossroadsModel.FK_dbo_TopicVotes_dbo_Topics_TopicId" ManuallyRouted="false" />
+        <AssociationConnector Association="CrossroadsModel.FK_dbo_TopicVotes_dbo_Users_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="CrossroadsModel.FK_dbo_Users_dbo_Towns_TownId" ManuallyRouted="false" />
+        <AssociationConnector Association="CrossroadsModel.MusicGenreUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="CrossroadsModel.ProfileInterestUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="CrossroadsModel.RoleUsers" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,32 @@
+﻿@using Crossroads.Web.Areas.Administration.ViewModels.UserViewModels.Towns
+@model TownInputViewModel
+
+@using (Ajax.BeginForm("EditTown",
+        new AjaxOptions
+        {
+            HttpMethod = "POST",
+            InsertionMode = InsertionMode.Replace,
+            UpdateTargetId = "town" + Model.Id
+        }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+    <div class="edit-item">
+        @Html.TextBoxFor(m => m.Name, new { @class = "default-input" })
+        <input class="default-btn" type="submit" value="Промени" />
+        @Ajax.ActionLink("Откажи", "EditTown", new { id = Model.Id, refuse = true },
+        new AjaxOptions
+        {
+            HttpMethod = "GET",
+            InsertionMode = InsertionMode.Replace,
+            UpdateTargetId = "town" + Model.Id
+        }, new { @class = "refuse-btn" })
+    </div>
+}
+
+<script type="text/javascript" language=javascript>
+    $.validator.unobtrusive.parse($('#town' + @(Model.Id)));
+</script>
+
+
+

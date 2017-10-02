@@ -1,0 +1,84 @@
+﻿@using Crossroads.Web.Areas.Administration.ViewModels.ForumViewModels.Comments
+@model AdminCommentViewModel
+
+<div id="commentDiv@(Model.Id)" class="comment">
+    <div class="item-left">
+        <a href="/Profile/DisplayProfile/?userName=@Model.Author" target="_blank">
+            @if (@Model.AuthorImage != null)
+            {
+                <img src="@Url.Action("GetImage", "UsersAdmin", new { image = Model.AuthorImage, limitWidth = 100 })" alt="Аватар" />
+            }
+            else
+            {
+                <img src="@Url.Content("~/Content/img/no-photo.png")" alt="Аватар" />
+            }
+        </a>
+    </div>
+    <div class="item-details">
+        <h4 class="admin-item-topic-title">
+            Тема: @Html.ActionLink(Model.Topic, "DisplayTopic", new { area = string.Empty, controller = "Topics", topicId = Model.TopicId }, new { target = "_blank" })
+        </h4>
+        <div class="admin-item-info">
+            <span id="commentFlags@(Model.Id)" >@Model.Flags</span>  флага,
+            от:
+            @Html.ActionLink(Model.Author, "DisplayUser",
+                new { controller = "UsersAdmin", userName = Model.Author },
+                new { target = "_blank" })
+            (@Model.AuthorPoints точки)
+            на <em>@Model.DateCreated</em>
+            @if (Model.DateEdited != null)
+            {
+                <text>промяна:</text>
+                <em>@Model.DateEdited</em>
+            }
+        </div>
+        @{
+            if (Model.CommentFlags.Count > 0)
+            {
+                <div class="flags-users" id="commentFlagsUsers@(Model.Id)">
+                    Флагове от потребители:
+
+                    @{ int counter = 0;
+                       foreach (var flag in Model.CommentFlags)
+                     {
+                        @(flag.User.UserName)
+
+                         counter++;
+                         if (counter < Model.CommentFlags.Count)
+                         {
+                            @(", ")
+                         }
+                     }
+                    }
+                </div>
+            }
+        }
+        <div class="item-content" id="comment@(Model.Id)">@Html.Raw(@Model.Content)</div>
+        <div class="item-btns">
+            @Ajax.ActionLink("Промени", "AdminEditComment", new { id = Model.Id },
+                    new AjaxOptions
+                    {
+                        HttpMethod = "GET",
+                        UpdateTargetId = "comment" + Model.Id,
+                        InsertionMode = InsertionMode.Replace
+                    }, new { @class = "edit-btn" })
+            @Ajax.ActionLink("Изтрий", "AdminDeleteComment", new { id = Model.Id },
+                    new AjaxOptions
+                    {
+                        HttpMethod = "DELETE",
+                        UpdateTargetId = "commentDiv" + Model.Id,
+                        InsertionMode = InsertionMode.ReplaceWith,
+                        Confirm = "Потвърждавате ли изтриването?"
+                    }, new { @class = "delete-btn" })
+        </div>
+    </div>
+
+</div>
+<script>
+        function UpdateFlags(modelId) {
+            var flagDiv = $('#commentFlags' + modelId);
+            flagDiv.text('0');
+            var flagUsersDiv = $('#commentFlagsUsers' + modelId);
+            flagUsersDiv.remove();
+        }
+</script>

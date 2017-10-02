@@ -1,0 +1,89 @@
+﻿@using Crossroads.Web.Infrastructure.Constants
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <meta name="description" content="Crossroads - Сайт за рок и метъл култура. Метъл форум, където може да дискутирате различни теми от света на рок и метъл музиката." />
+    <meta name="keywords" content="Crossrads, metal, метъл, rock, рок, музика, форум, метъл форум, forum" />
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="revisit-after" content="1 month">
+    <meta name="rating" content="general" />
+    <meta property="og:image" content="http://crossroads.bg/Content/img/crossroads-face.jpg" />
+    <meta property="og:title" content="Crossroads" />
+    <meta property="og:description" content="Сайт за рок и метъл култура" />
+    <meta name="author" content="Nevena Angelova" />
+    <title>@ViewBag.Title - Crossroads</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("JavaScript", required: false)
+    @RenderSection("CSS", required: false)
+</head>
+<body>
+
+    <div id="container">
+        <header id="header">
+            <a id="menuBtn" class="mobile-menu-btn" href="#">
+                <span class="menu-btn-icon"></span>
+                <span class="menu-btn-icon"></span>
+                <span class="menu-btn-icon"></span>
+            </a>
+            @Html.Partial("_LoginPartial", new Crossroads.Web.ViewModels.AccountViewModels.LoginViewModel())
+            <nav id="navigation">
+                @if (!User.Identity.IsAuthenticated)
+            {
+                    @Html.ActionLink("Вход", "Login", new { controller = "Account" }, new { @class = "login-btn-mobile" })
+                }
+                else
+                {
+                    using (Html.BeginForm("LogOff", "Account", new { area = string.Empty }, FormMethod.Post, new { id = "logoutFormMobile" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <span class="hello-user">
+                            Здравей, @(User.Identity.Name) !
+                        </span>
+                        <a class="logout-btn-mobile" href="javascript:document.getElementById('logoutFormMobile').submit()">Изход</a>
+                    }
+                }
+                <ul>
+                    @{string action = ViewContext.RouteData.Values["Action"].ToString();}
+
+                    <li @if (action == "Index") { <text> class="active" </text>            }>@Html.ActionLink("Начало", "Index", "Home", new { area = string.Empty }, null)</li>
+                    <li @if (action == "DisplayUser") { <text> class="active" </text>             }>@Html.ActionLink("Профил", "DisplayUser", "Profile", new { area = string.Empty }, new { userName = User.Identity.Name })</li>
+                    <li @if (action == "DisplayCategories") { <text> class="active" </text>              }>@Html.ActionLink("Форум", "DisplayCategories", "Forum", new { area = string.Empty }, null)</li>
+                    <li @if (action == "About") { <text> class="active" </text>               }>@Html.ActionLink("За сайта", "About", "Home", new { area = string.Empty }, null)</li>
+
+                    @if (User.IsInRole(UserRoles.AdminRole))
+                    {
+                        <li @if (action == "ListUsers") { <text> class="active" </text>                }>@Html.ActionLink("Администрация", "ListUsers", "UsersAdmin", new { area = "Administration" }, null)</li>
+                    }
+                    else if (User.IsInRole(UserRoles.ModeratorRole))
+                    {
+                        <li @if (action == "ListCategories") { <text> class="active" </text>                }>@Html.ActionLink("Администрация", "ListCategories", "Categories", new { area = "Administration" }, null)</li>
+                    }
+                </ul>
+            </nav>
+        </header>
+        <section id="content">
+            @RenderBody()
+        </section>
+        <footer id="footer">
+            <p>&copy; Crossroads @DateTime.Now.Year</p>
+        </footer>
+    </div>
+
+    @RenderSection("scripts", required: false)
+
+    <script>
+        $('#menuBtn').click(function () {
+            $('#container').toggleClass('opened');
+            $('#navigation').toggleClass('opened');
+        })
+
+        $('#loginBtn').click(function () {
+            $('#loginFields').toggle();
+        })
+    </script>
+</body>
+</html>

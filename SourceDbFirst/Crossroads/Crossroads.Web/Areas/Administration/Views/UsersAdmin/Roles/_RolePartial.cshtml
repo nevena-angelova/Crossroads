@@ -1,0 +1,20 @@
+﻿@using Crossroads.Web.Areas.Administration.ViewModels.UserViewModels.Roles
+@model RoleOutputViewModel
+<li id="roleLi@(Model.Id)">
+    <div class="box" id="role@(Model.Id)">@Model.Name</div>
+    @Ajax.ActionLink("Промени", "EditRole", new { id = Model.Id },
+        new AjaxOptions
+        {
+            HttpMethod = "GET",
+            UpdateTargetId = "role" + Model.Id,
+            InsertionMode = InsertionMode.Replace
+        }, new { @class = "edit-btn" })
+    @Ajax.ActionLink("Изтрий", "DeleteRole", new { id = Model.Id },
+        new AjaxOptions
+        {
+            HttpMethod = "DELETE",
+            UpdateTargetId = "roleLi" + Model.Id,
+            InsertionMode = InsertionMode.ReplaceWith,
+            Confirm = "Потвърждавате ли изтриването?"
+        }, new { @class = "delete-btn" })
+</li>

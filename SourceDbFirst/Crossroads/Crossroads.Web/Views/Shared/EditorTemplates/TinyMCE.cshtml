@@ -1,0 +1,31 @@
+﻿@model string
+@* TINYMCE *@
+<script src="@Url.Content("~/Scripts/tinymce/tinymce.js")" type="text/javascript"></script>
+<script type="text/javascript">
+    tinymce.init({
+        selector: "textarea",
+        theme: "modern",
+        plugins: [
+            "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+            "searchreplace wordcount visualblocks visualchars code fullscreen",
+            "insertdatetime media nonbreaking save table contextmenu directionality",
+            "emoticons template paste textcolor colorpicker textpattern"
+        ],
+        toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link imageprint preview | forecolor backcolor emoticons",
+        toolbar2: "",
+        image_advtab: true,
+        templates: [
+            { title: 'Test template 1', content: 'Test 1' },
+            { title: 'Test template 2', content: 'Test 2' }
+        ],
+        language: "bg_BG",
+    });
+
+    // clears the previous menu divs for when used with ajax bug
+    $(".mce-widget").remove();
+    $(".mce-container").remove();
+
+</script>
+@Html.TextArea(string.Empty, /* Name suffix */
+    ViewData.TemplateInfo.FormattedModelValue /* Initial value */
+)
